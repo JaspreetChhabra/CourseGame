@@ -17,6 +17,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         templateUrl: 'addGame/addGame.html',
         controller: 'addGamectrl'
     })
+        .state('home', {
+            url: '/home',
+            templateUrl: 'login/homepage/pages/index.html',
+            controller:'homectrl'
+        })
         
         $urlRouterProvider.otherwise('/login');
 
