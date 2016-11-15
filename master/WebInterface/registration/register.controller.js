@@ -6,18 +6,14 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
         console.log("hbkdj");
         var user = $scope.faculty;
 
-        var a=$resource("localhost:3000/users");
-        a.get(function(res){
-            console.log(res);
-        });
-        //$scope.user = { "username" : "bjscdb", "password" : "25"};
-        // var a=$resource("localhost:3000/users/register");
+        $scope.user = { "username" : "bjscdb", "password" : "25"};
+        var a=$resource("https://shielded-tor-32602.herokuapp.com/users/register");
 
-        // a.save($scope.user,function(res){
-        //     console.log(res.Status);
+        a.save($scope.user,function(res){
+            console.log(res.Status);
         
-        //     //$location.path('/registration/registration.html');
-        // });
+            //$location.path('/registration/registration.html');
+        });
 
     }
     });
