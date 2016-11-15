@@ -9,9 +9,19 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('register',{
         url: '/registration',
-        templateUrl: 'registration.html',
+        templateUrl: 'registration/registration.html',
         controller: 'registerctrl'
     })
+        .state('addGame',{
+        url: '/addGame',
+        templateUrl: 'addGame/addGame.html',
+        controller: 'addGamectrl'
+    })
+        .state('home', {
+            url: '/home',
+            templateUrl: 'login/homepage/pages/index.html',
+            controller:'homectrl'
+        })
         
         $urlRouterProvider.otherwise('/login');
 

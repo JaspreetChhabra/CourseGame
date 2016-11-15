@@ -1,32 +1,27 @@
-app.controller("registerctrl",function($scope,$resource,$state){
+app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
    
-  
-
-
-   $scope.redirect = function(){
-   window.location = "registration.html";
-   }
-   
-
+       
     $scope.submit=function()
     {
-        
 
-         vm.register = register;
 
-        function register() {
-            vm.dataLoading = true;
-            UserService.Create(vm.user)
-                .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Registration successful', true);
-                        $location.path('/login');
-                    } else {
-                        FlashService.Error(response.message);
-                        vm.dataLoading = false;
-                    }
-                });
-        }
+         $state.go('home');
+
+        // console.log("hbkdj");
+        // var user = $scope.faculty;
+
+        // var a=$resource("localhost:3000/users");
+        // a.get(function(res){
+        //     console.log(res);
+        // });
+        //$scope.user = { "username" : "bjscdb", "password" : "25"};
+        // var a=$resource("localhost:3000/users/register");
+
+        // a.save($scope.user,function(res){
+        //     console.log(res.Status);
         
+        //     //$location.path('/registration/registration.html');
+        // });
+
     }
-});
+    });
