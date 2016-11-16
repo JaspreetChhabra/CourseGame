@@ -1,4 +1,5 @@
 var app=angular.module("myApp",['ui.router','ngResource']);
+
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
