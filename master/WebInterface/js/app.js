@@ -22,6 +22,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'login/homepage/pages/index.html',
             controller:'homectrl'
         })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'Dashboard/dashboard.html',
+            controller:'dashboardctrl'
+        })
         
         $urlRouterProvider.otherwise('/login');
 

@@ -6,13 +6,13 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location){
     $scope.submit=function()
     {
         var user = $scope.user;
-        console.log($scope.user);
+        //console.log($scope.user);
 
         //$scope.user = { "username" : "bjscdb", "password" : "25"};
         var a=$resource("https://shielded-tor-32602.herokuapp.com/users/login");
 
         a.save($scope.user,function(res){
-            console.log(res.Status);
+           // console.log(res.Status);
 
             if(res.Status == false){
                     
@@ -20,7 +20,7 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location){
             }else{
                 alert("Successful");
 
-                $state.go('home');
+                $state.go('dashboard');
 
             }
         });
@@ -30,6 +30,10 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location){
         //     console.log(res);
         // });
     }
+
+
+
+
 
     $scope.redirect = function(){
 
