@@ -198,10 +198,10 @@
 					else if(rear != -1 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -214,21 +214,16 @@
 						lbl_front.x += 75;
 						pi++;
 						front++;
-						if(pop_op[pi] == "S") {
-							lbl_operation.text = "Pop by assuming STACK";
-						}
-						else if(pop_op[pi] == "Q") {
-							lbl_operation.text = "Pop by assuming QUEUE";
-						}
+						lbl_operation.text = "Pop Appropriate Element";
 						lbl_status.text = "Poped " + lbl_e1.text;
 					}
 					else if(front != 0 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -252,10 +247,10 @@
 					else if(rear != 0 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -268,21 +263,16 @@
 						lbl_front.x += 75;
 						pi++;
 						front++;
-						if(pop_op[pi] == "S") {
-							lbl_operation.text = "Pop by assuming STACK";
-						}
-						else if(pop_op[pi] == "Q") {
-							lbl_operation.text = "Pop by assuming QUEUE";
-						}
+						lbl_operation.text = "Pop Appropriate Element";
 						lbl_status.text = "Poped " + lbl_e2.text;
 					}
 					else if(front != 1 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -306,10 +296,10 @@
 					else if(rear != 1 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Good Going.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -322,21 +312,16 @@
 						lbl_front.x += 75;
 						pi++;
 						front++;
-						if(pop_op[pi] == "S") {
-							lbl_operation.text = "Pop by assuming STACK";
-						}
-						else if(pop_op[pi] == "Q") {
-							lbl_operation.text = "Pop by assuming QUEUE";
-						}
+						lbl_operation.text = "Pop Appropriate Element";
 						lbl_status.text = "Poped " + lbl_e3.text;
 					}
 					else if(front != 2 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -360,10 +345,10 @@
 					else if(rear != 2 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -376,21 +361,16 @@
 						lbl_front.x += 75;
 						pi++;
 						front++;
-						if(pop_op[pi] == "S") {
-							lbl_operation.text = "Pop by assuming STACK";
-						}
-						else if(pop_op[pi] == "Q") {
-							lbl_operation.text = "Pop by assuming QUEUE";
-						}
+						lbl_operation.text = "Pop Appropriate Element";
 						lbl_status.text = "Poped " + lbl_e4.text;
 					}
 					else if(front != 3 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -408,20 +388,15 @@
 						lbl_rear.x += 75;
 						rear++;
 						lbl_status.text = "Queue is full.";
-						if(pop_op[0] == "S") {
-							lbl_operation.text = "Pop by assuming STACK";
+						lbl_operation.text = "Pop Appropriate Element";
 						}
-						else if(pop_op[0] == "Q") {
-							lbl_operation.text = "Pop by assuming QUEUE";
-						}
-					}
 					else if(rear != 3 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							game_over();
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -435,18 +410,18 @@
 						lbl_rear.x = -40;
 						front = rear = -1;
 						pi = 0;
+						life = 3;
 						lbl_operation.text = "Push " + data[0];
 						lbl_status.text = "Queue is empty.";
+						game_complete();
 					}
 					else if(front != 4 && life > 0) {
 						life--;
 						if(life == 0) {
-							//lbl_status.text = "Game Over.";
-							swal("Game Over","");
+							game_over();
 						}
 						else {
-							//lbl_status.text = "Incorrect Position.";
-							incorrect_position();
+							incorrect_position(life);
 						}
 						lbl_life.text = "" + life;
 					}
@@ -459,18 +434,46 @@
 		}
 
 		function game_over(){
-
-		}
-
-		function incorrect_position(){
 			swal({
-				  title: "Incorrect Position",
-				  text: "2 Chances more...",
+				  title: "Game Over",
 				  type: "error",
 				  confirmButtonColor: "#DD6B55",
 				  confirmButtonText: "Resume",
 				  closeOnConfirm: false
 				});
+		}
+
+		function game_complete(){
+			swal({
+				  title: "Game Complete.",
+					text: "Congratulations!",
+				  type: "success",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+		}
+
+		function incorrect_position(life){
+			swal({
+				  title: "Incorrect Position",
+				  text: "" + life + " Chances more...",
+				  type: "error",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+		}
+
+		function game_restart() {
+			lbl_e5.x = 110;
+			lbl_e5.y = -57;
+			lbl_front.x = -40;
+			lbl_rear.x = -40;
+			front = rear = -1;
+			pi = 0;
+			life = 3;
+			lbl_operation.text = "Push " + data[0];
 		}
 
 	</script>
