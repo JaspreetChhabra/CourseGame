@@ -8,7 +8,7 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
          $state.go('home');
 
         // console.log("hbkdj");
-        // var user = $scope.faculty;
+         var user = $scope.faculty;
 
         // var a=$resource("localhost:3000/users");
         // a.get(function(res){
