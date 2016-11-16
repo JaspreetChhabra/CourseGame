@@ -11,7 +11,6 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
 
         a.save(user,function(res){
             console.log(res);
-
             if(res.Status == false){
                     
                 alert("Please check username and password");

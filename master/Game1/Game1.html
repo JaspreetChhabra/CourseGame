@@ -1,9 +1,13 @@
+<!-- Queue game -->
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>EaselJS demo: Dragging</title>
 	<link href="../_shared/demo.css" rel="stylesheet" type="text/css">
 	<script src="http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+	<script src="sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
 	<script>
 		var stage, output, g;
 		var square1, square2, square3, square4, square5, boundary;
@@ -15,6 +19,26 @@
 		var pop_op = ["Q", "S", "3", "Q", "S"];
 
 		function init() {
+
+					swal({
+							  title: "Queue Game",
+							  text: "This game is for learning the queue concepts with fun. The queue game covers both the operations; ENQUEUE and DEQUEUE.",
+							  confirmButtonText: "Next",
+							  closeOnConfirm: false
+							},
+							function(isConfirm){
+							  swal({
+										  title: "Instructions",
+										  text: "1. Two types of operations are there; PUSH and POP.\n" +
+														"2. In Push operation, you have to push the given element into the queue; by selecting the exact position.\n" +
+														"3. In Pop operation, you have to pop the appropriate element from the queue; by selecting the element.",
+										  confirmButtonColor: "#DD6B55",
+										  confirmButtonText: "Let's Play",
+										  closeOnConfirm: false
+										});
+							});
+
+
 			stage = new createjs.Stage("demoCanvas");
 
 			g = new createjs.Graphics();
@@ -73,12 +97,12 @@
 			lbl_rear.y = 100;
 			lbl_rear.x = -40;
 
-			lbl_status_title = new createjs.Text("Status", "bold 14px Arial", "#000000");
+			lbl_status_title = new createjs.Text("Status", "bold 14px Arial", "#FFFFFF");
 			lbl_status_title.textAlign = "center";
 			lbl_status_title.y = 150;
 			lbl_status_title.x = 280;
 
-			lbl_status = new createjs.Text("Status", "bold 14px calibri", "Blue");
+			lbl_status = new createjs.Text("Status", "bold 14px calibri", "#FFFFFF");
 			lbl_status.textAlign = "center";
 			lbl_status.text = "Game Start";
 			lbl_status.y = 170;
@@ -95,16 +119,16 @@
 			lbl_operation.y = 150;
 			lbl_operation.x = 30;
 
-			lbl_life_title = new createjs.Text("Life           : ", "bold 14px Arial", "#000000");
+			lbl_life_title = new createjs.Text("Life : ", "bold 14px Arial", "#000000");
 			lbl_life_title.textAlign = "left";
-			lbl_life_title.y = 170;
-			lbl_life_title.x = -50;
+			lbl_life_title.y = -57;
+			lbl_life_title.x = 310;
 
 			lbl_life = new createjs.Text("", "bold 14px Arial", "red");
 			lbl_life.textAlign = "left";
 			lbl_life.text = "" + life;
-			lbl_life.y = 170;
-			lbl_life.x = 30;
+			lbl_life.y = -57;
+			lbl_life.x = 350;
 
 			lbl_elements = new createjs.Text("Elements : ", "bold 14px Arial", "#000000");
 			lbl_elements.textAlign = "left";
@@ -417,10 +441,12 @@
 					else if(front != 4 && life > 0) {
 						life--;
 						if(life == 0) {
-							lbl_status.text = "Game Over.";
+							//lbl_status.text = "Game Over.";
+							swal("Game Over","");
 						}
 						else {
-							lbl_status.text = "Incorrect Position.";
+							//lbl_status.text = "Incorrect Position.";
+							incorrect_position();
 						}
 						lbl_life.text = "" + life;
 					}
@@ -430,6 +456,21 @@
 			});
 
 			stage.update();
+		}
+
+		function game_over(){
+
+		}
+
+		function incorrect_position(){
+			swal({
+				  title: "Incorrect Position",
+				  text: "2 Chances more...",
+				  type: "error",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
 		}
 
 	</script>
