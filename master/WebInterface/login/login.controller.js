@@ -20,7 +20,7 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location){
             }else{
                 alert("Successful");
 
-                $state.go('addGame');
+                $state.go('dashboard');
 
             }
         });
