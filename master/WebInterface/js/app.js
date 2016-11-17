@@ -1,5 +1,4 @@
 var app=angular.module("myApp",['ui.router','ngResource']);
-
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
@@ -35,7 +34,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         
 });
 
-app.config(['$resourceProvider', function($resourceProvider) {
+app.config(['$resourceProvider','$locationProvider', function($resourceProvider,$locationProvider) {
   // Don't strip trailing slashes from calculated URLs
   $resourceProvider.defaults.stripTrailingSlashes = false;
+  $locationProvider.html5Mode({
+  enabled: true,
+  requireBase: false
+});
 }]);

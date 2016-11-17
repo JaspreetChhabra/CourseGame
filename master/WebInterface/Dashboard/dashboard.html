@@ -358,8 +358,20 @@
                         <button ng-click="uploadFile()">upload me</button>
     -->
                     </div>
-                     
 
+                    <div ng-controller = "dashboardctrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>
+                     
+<div ng-controller="dashboardctrl" class="container">
+<!--   <h1>Select text file</h1> -->
+    <input type="file" on-read-file="showContent($fileContent)" />
+    <div ng-if="content">
+        <!-- <h2>File content is:</h2> -->
+        <pre>{{ content }}</pre>
+    </div>
+</div>
 <!-- <div ng-controller = "myCtrl">
     <input type="file" file-model="myFile"/>
     <button ng-click="uploadFile()">upload me</button>
