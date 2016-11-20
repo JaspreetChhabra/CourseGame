@@ -250,6 +250,7 @@
                     <!-- /.dropdown-alerts 
                 </li> 
                 <!-- /.dropdown -->
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -361,19 +362,12 @@
 
                     
 
-                    <div ng-controller = "dashboardctrl">
+  <!--                   <div ng-controller = "dashboardctrl">
     <input type="file" file-model="myFile"/>
     <button ng-click="uploadFile()">upload me</button>
-</div>
+</div> -->
                      
-<div ng-controller="dashboardctrl" class="container">
-<!--   <h1>Select text file</h1> -->
-    <input type="file" on-read-file="showContent($fileContent)" />
-    <div ng-if="content">
-        <!-- <h2>File content is:</h2> -->
-        <pre>{{ content }}</pre>
-    </div>
-</div>
+
 <!-- <div ng-controller = "myCtrl">
     <input type="file" file-model="myFile"/>
     <button ng-click="uploadFile()">upload me</button>
@@ -383,6 +377,16 @@
                         <button class="glyphicon glyphicon-file"></button>
                         <p>Add Description</p>
                     </div>
+
+
+                    <div ng-controller="dashboardctrl" class="container">
+<!--   <h1>Select text file</h1> -->
+    <input type="file" on-read-file="showContent($fileContent)" />
+    <div ng-if="content">
+        <!-- <h2>File content is:</h2> -->
+        <pre>{{ content }}</pre>
+    </div>
+</div>
                 </div>
                 </center>   
             </div>
