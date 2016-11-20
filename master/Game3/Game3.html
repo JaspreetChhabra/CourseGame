@@ -1,0 +1,3254 @@
+<!-- Queue game -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EaselJS demo: Dragging</title>
+	<link href="../_shared/demo.css" rel="stylesheet" type="text/css">
+	<script src="easeljs-0.8.1.min.js"></script>
+	<script src="sweetalert/dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
+	<script>
+		var stage, output, g;
+		var pole_v1, pole_v2, pole_v3, from12, from13, from21, from23, from31, from32;
+		var base1, base2, base3, boundary;
+		var lbl1, lbl13, lbl21, lbl23, lbl31, lbl32;
+		var life = 3, n = 5;
+		var data = [0, 1, 2, 3, 4, 5];
+		var dragger;
+		var element_size = [0, 50, 60, 70, 80, 90];
+		var lbl_x = [0, 50, 170, 290];
+		var lbl_y = [0, 87, 121, 154, 187, 220];
+		var element_x1 = [0, 125, 120, 115, 110, 105];
+		var element_y1 = [0, 185, 218, 251, 284, 317];
+		var element_x2 = [0, 225, 230, 235, 240, 245];
+		var element_y2 = [0, 185, 218, 251, 284, 317];
+		var element_x3 = [0, 345, 350, 355, 360, 365];
+		var element_y3 = [0, 185, 218, 251, 284, 317];
+		var i, j;
+		var pole1 = [0, 0, 0, 0, 0, 0];
+		var pole2 = [0, 0, 0, 0, 0, 0];
+		var pole3 = [0, 0, 0, 0, 0, 0];
+		var count1, count2, count3;
+		var top1, top2, top3;
+		var move_count = 0;
+
+		function init() {
+
+					swal({
+							  title: "Tower of Hanoi",
+							  text: "This game is for learning the Tower of Hanoi concepts with fun. where you have to move all the disks from Tower-1 to Tower-3.",
+							  confirmButtonText: "Next",
+							  closeOnConfirm: false
+							},
+							function(isConfirm){
+							  swal({
+										  title: "Instructions",
+										  text: "",
+										  confirmButtonColor: "#DD6B55",
+										  confirmButtonText: "Let's Play",
+										  closeOnConfirm: false
+										});
+							});
+
+
+			stage = new createjs.Stage("demoCanvas");
+			dragger = new createjs.Container();
+			dragger.x = dragger.y = 100;
+
+			g = new createjs.Graphics();
+			g.beginStroke(createjs.Graphics.getRGB(0,0,0));
+
+			count1 = 5, count2 = 0, count3 = 0;
+			top1 = 1, top2 = 0; top3 = 0;
+			pole1 = data;
+
+			design_UI();
+
+		}
+
+		// to set up the UI...
+		function design_UI() {
+
+			base1 = new createjs.Shape();
+			base1.graphics.beginFill("#8B0000").drawRect(100, 350, 100, 10);
+			base1.name = "base1";
+
+			pole_v1 = new createjs.Shape();
+			pole_v1.graphics.beginFill("#EF0000").drawRect(145, 150, 7, 200);
+
+			from12 = new createjs.Shape();
+			from12.graphics.beginFill("#900000").drawRect(110, 370, 80, 30);
+			from12.name = "from12";
+
+			from13 = new createjs.Shape();
+			from13.graphics.beginFill("#900000").drawRect(110, 405, 80, 30);
+			from13.name = "from13";
+
+			base2 = new createjs.Shape();
+			base2.graphics.beginFill("#00008B").drawRect(220, 350, 100, 10);
+			base2.name = "base2";
+
+			pole_v2 = new createjs.Shape();
+			pole_v2.graphics.beginFill("#0000EF").drawRect(265, 150, 7, 200);
+
+			from21 = new createjs.Shape();
+			from21.graphics.beginFill("#000090").drawRect(230, 370, 80, 30);
+			from21.name = "from21";
+
+			from23 = new createjs.Shape();
+			from23.graphics.beginFill("#000090").drawRect(230, 405, 80, 30);
+			from23.name = "from23";
+
+			base3 = new createjs.Shape();
+			base3.graphics.beginFill("#008B00").drawRect(340, 350, 100, 10);
+			base3.name = "base3";
+
+			pole_v3 = new createjs.Shape();
+			pole_v3.graphics.beginFill("#00EF00").drawRect(385, 150, 7, 200);
+
+			from31 = new createjs.Shape();
+			from31.graphics.beginFill("#009000").drawRect(350, 370, 80, 30);
+			from31.name = "from31";
+
+			from32 = new createjs.Shape();
+			from32.graphics.beginFill("#009000").drawRect(350, 405, 80, 30);
+			from32.name = "from32";
+
+			boundary = new createjs.Shape(g);
+			boundary.graphics.beginStroke("#000").setStrokeStyle(1).drawRect(0, 0, 600, 500);
+
+			stage.addChild(base1, base2, base3, from12, from13, from21, from23, from31, from32, pole_v1, pole_v2, pole_v3, boundary);
+			stage.update();
+
+			lbl_tower1 = new createjs.Text("Tower 1", "bold 14px Calibri", "Red");
+			lbl_tower1.textAlign = "center";
+			lbl_tower1.y = 7;
+			lbl_tower1.x = 50;
+
+			lbl_tower2 = new createjs.Text("Tower 2", "bold 14px Calibri", "Blue");
+			lbl_tower2.textAlign = "center";
+			lbl_tower2.y = 7;
+			lbl_tower2.x = 170;
+
+			lbl_tower3 = new createjs.Text("Tower 3", "bold 14px Calibri", "Green");
+			lbl_tower3.textAlign = "center";
+			lbl_tower3.y = 7;
+			lbl_tower3.x = 290;
+
+			lbl12 = new createjs.Text("Tower 2", "bold 14px Calibri", "#FFFFFF");
+			lbl12.textAlign = "center";
+			lbl12.y = 277;
+			lbl12.x = 50;
+
+			lbl21 = new createjs.Text("Tower 1", "bold 14px Calibri", "#FFFFFF");
+			lbl21.textAlign = "center";
+			lbl21.y = 277;
+			lbl21.x = 170;
+
+			lbl31 = new createjs.Text("Tower 1", "bold 14px Calibri", "#FFFFFF");
+			lbl31.textAlign = "center";
+			lbl31.y = 277;
+			lbl31.x = 290;
+
+			lbl13 = new createjs.Text("Tower 3", "bold 14px Calibri", "#FFFFFF");
+			lbl13.textAlign = "center";
+			lbl13.y = 312;
+			lbl13.x = 50;
+
+			lbl23 = new createjs.Text("Tower 3", "bold 14px Calibri", "#FFFFFF");
+			lbl23.textAlign = "center";
+			lbl23.y = 312;
+			lbl23.x = 170;
+
+			lbl32 = new createjs.Text("Tower 2", "bold 14px Calibri", "#FFFFFF");
+			lbl32.textAlign = "center";
+			lbl32.y = 312;
+			lbl32.x = 290;
+
+			lbl_life_title = new createjs.Text("Life : ", "bold 14px Arial", "#000000");
+			lbl_life_title.textAlign = "left";
+			lbl_life_title.y = -57;
+			lbl_life_title.x = 410;
+
+			lbl_life = new createjs.Text("", "bold 14px Arial", "red");
+			lbl_life.textAlign = "left";
+			lbl_life.text = "" + life;
+			lbl_life.y = -57;
+			lbl_life.x = 450;
+
+			stage.update();
+
+			design_elements();
+
+			dragger.addChild(lbl_life_title, lbl_life);
+			dragger.addChild(lbl12, lbl13, lbl21, lbl23, lbl31, lbl32, lbl_tower1, lbl_tower2, lbl_tower3);
+			stage.addChild(dragger);
+
+			stage.update();
+
+			move_disk();
+		}
+
+		function design_elements() {
+
+			element1 = new createjs.Shape();
+			element1.graphics.beginFill("#AAAAAA").drawRect(0, 0, element_size[1], 30);
+			element1.name = "element1";
+			element1.x = element_x1[1];
+			element1.y = element_y1[1];
+
+			lbl_e1 = new createjs.Text("", "bold 21px Arial", "yellow");
+			lbl_e1.textAlign = "center";
+			lbl_e1.text = data[1];
+			lbl_e1.x = lbl_x[1];
+			lbl_e1.y = lbl_y[1];
+
+			element2 = new createjs.Shape();
+			element2.graphics.beginFill("#999999").drawRect(0, 0, element_size[2], 30);
+			element2.name = "element2";
+			element2.x = element_x1[2];
+			element2.y = element_y1[2];
+
+			lbl_e2 = new createjs.Text("", "bold 21px Arial", "yellow");
+			lbl_e2.textAlign = "center";
+			lbl_e2.text = data[2];
+			lbl_e2.x = lbl_x[1];
+			lbl_e2.y = lbl_y[2];
+
+			element3 = new createjs.Shape();
+			element3.graphics.beginFill("#666666").drawRect(0, 0, element_size[3], 30);
+			element3.name = "element3";
+			element3.x = element_x1[3];
+			element3.y = element_y1[3];
+
+			lbl_e3 = new createjs.Text("", "bold 21px Arial", "yellow");
+			lbl_e3.textAlign = "center";
+			lbl_e3.text = data[3];
+			lbl_e3.x = lbl_x[1];
+			lbl_e3.y = lbl_y[3];
+
+			element4 = new createjs.Shape();
+			element4.graphics.beginFill("#333333").drawRect(0, 0, element_size[4], 30);
+			element4.name = "element4";
+			element4.x = element_x1[4];
+			element4.y = element_y1[4];
+
+			lbl_e4 = new createjs.Text("", "bold 21px Arial", "yellow");
+			lbl_e4.textAlign = "center";
+			lbl_e4.text = data[4];
+			lbl_e4.x = lbl_x[1];
+			lbl_e4.y = lbl_y[4];
+
+			element5 = new createjs.Shape();
+			element5.graphics.beginFill("#000000").drawRect(0, 0, element_size[5], 30);
+			element5.name = "element5";
+			element5.x = element_x1[5];
+			element5.y = element_y1[5];
+
+			lbl_e5 = new createjs.Text("", "bold 21px Arial", "yellow");
+			lbl_e5.textAlign = "center";
+			lbl_e5.text = data[5];
+			lbl_e5.x = lbl_x[1];
+			lbl_e5.y = lbl_y[5];
+
+			dragger.addChild(lbl_e1, lbl_e2, lbl_e3, lbl_e4, lbl_e5);
+			stage.addChild(element1, element2, element3, element4, element5);
+			stage.update();
+		}
+
+		// to perform the push operations...
+		function move_disk() {
+
+			from21.on("click", function(evt){
+				move_count++;
+				if(count1 > 0) {
+					if(count2 == 0) {
+						if(top2 != 0 && top2 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[5];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[5];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[5];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[5];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[5];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count2 == 1) {
+						if(top2 != 0 && top2 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[4];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[4];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[4];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[4];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[4];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 2) {
+						if(top2 != 0 && top2 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[3];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[3];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[3];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[3];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[3];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 3) {
+						if(top2 != 0 && top2 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[2];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[2];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[2];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[2];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[2];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 4) {
+						if(top2 != 0 && top2 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[1];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[1];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[1];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[1];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[1];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					} // end else if
+
+				} // end if (count1 > 0)
+				else {
+					tower_empty(1);
+				}
+			});
+
+
+
+			from23.on("click", function(evt){
+				move_count++;
+				if(count3 > 0) {
+					if(count2 == 0) {
+						if(top2 != 0 && top2 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[5];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[5];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[5];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[5];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[5];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[5];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count2 == 1) {
+						if(top2 != 0 && top2 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[4];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[4];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[4];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[4];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[4];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[4];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 2) {
+						if(top2 != 0 && top2 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[3];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[3];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[3];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[3];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[3];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[3];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 3) {
+						if(top2 != 0 && top2 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[2];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[2];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[2];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[2];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[2];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[2];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count2 == 4) {
+						if(top2 != 0 && top2 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x2[5];
+								element1.y = element_y2[1];
+								lbl_e1.x = lbl_x[2];
+								lbl_e1.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x2[4];
+								element2.y = element_y2[1];
+								lbl_e2.x = lbl_x[2];
+								lbl_e2.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x2[3];
+								element3.y = element_y2[1];
+								lbl_e3.x = lbl_x[2];
+								lbl_e3.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x2[2];
+								element4.y = element_y2[1];
+								lbl_e4.x = lbl_x[2];
+								lbl_e4.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x2[1];
+								element5.y = element_y2[1];
+								lbl_e5.x = lbl_x[2];
+								lbl_e5.y = lbl_y[1];
+								count2++;
+								pole2[count2] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top2 = 5;
+							}
+						}
+						stage.update();
+					} // end else if
+
+				} // end if (count1 > 0)
+				else {
+					tower_empty(3);
+				}
+			});
+
+
+			from31.on("click", function(evt) {
+				move_count++;
+				if(count1 > 0) {
+					if(count3 == 0) {
+						if(top3 != 0 && top3 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[5];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[5];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[5];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[5];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[5];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count3 == 1) {
+						if(top3 != 0 && top3 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[4];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[4];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[4];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[4];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[4];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 2) {
+						if(top3 != 0 && top3 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[3];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[3];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[3];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[3];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[3];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 3) {
+						if(top3 != 0 && top3 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[2];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[2];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[2];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[2];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[2];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 4) {
+						if(top3 != 0 && top3 < top1) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top1 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[1];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 1;
+							}
+							else if (top1 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[1];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 2;
+							}
+							else if (top1 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[1];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 3;
+							}
+							else if (top1 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[1];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 4;
+							}
+							else if (top1 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[1];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole1[count1];
+								pole1[count1] = 0;
+								count1--;
+								if(count1 == 0) {
+									top1 = 0;
+								}
+								else {
+									top1 = 6 - pole1[count1];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+
+				} // end if (count1 > 0)
+				else {
+					tower_empty(1);
+				}
+				console.log(move_count);
+				if(count3 == 5) {
+					game_complete();
+				}
+			});
+
+
+
+
+			from32.on("click", function(evt) {
+				move_count++;
+				if(count2 > 0) {
+					if(count3 == 0) {
+						if(top3 != 0 && top3 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[5];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[5];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[5];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[5];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[5];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[5];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count3 == 1) {
+						if(top3 != 0 && top3 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[4];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[4];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[4];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2++;
+								}
+								top3 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[4];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[4];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[4];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 2) {
+						if(top3 != 0 && top3 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[3];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[3];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[3];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[3];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[3];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[3];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 3) {
+						if(top3 != 0 && top3 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[2];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[2];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[2];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[2];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[2];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[2];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count3 == 4) {
+						if(top3 != 0 && top3 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x3[5];
+								element1.y = element_y3[1];
+								lbl_e1.x = lbl_x[3];
+								lbl_e1.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x3[4];
+								element2.y = element_y3[1];
+								lbl_e2.x = lbl_x[3];
+								lbl_e2.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x3[3];
+								element3.y = element_y3[1];
+								lbl_e3.x = lbl_x[3];
+								lbl_e3.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x3[2];
+								element4.y = element_y3[1];
+								lbl_e4.x = lbl_x[3];
+								lbl_e4.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x3[1];
+								element5.y = element_y3[1];
+								lbl_e5.x = lbl_x[3];
+								lbl_e5.y = lbl_y[1];
+								count3++;
+								pole3[count3] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top3 = 5;
+							}
+						}
+						stage.update();
+					}
+				} // end if (count1 > 0)
+				else {
+					tower_empty(2);
+				}
+				console.log(move_count);
+				if(count3 == 5) {
+					game_complete();
+				}
+			});
+
+
+			from12.on("click", function(evt) {
+				move_count++;
+				if(count2 > 0) {
+					if(count1 == 0) {
+						if(top1 != 0 && top1 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[5];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[5];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[5];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[5];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[5];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count1 == 1) {
+						if(top1 != 0 && top1 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[4];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[4];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[4];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[4];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[4];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 2) {
+						if(top1 != 0 && top1 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[3];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[3];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[3];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[3];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[3];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 3) {
+						if(top1 != 0 && top1 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[2];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[2];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[2];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[2];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[2];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 4) {
+						if(top1 != 0 && top1 < top2) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top2 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[1];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 1;
+							}
+							else if (top2 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[1];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 2;
+							}
+							else if (top2 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[1];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 3;
+							}
+							else if (top2 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[1];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 4;
+							}
+							else if (top2 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[1];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole2[count2];
+								pole2[count2] = 0;
+								count2--;
+								if(count2 == 0) {
+									top2 = 0;
+								}
+								else {
+									top2 = 6 - pole2[count2];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+
+				} // end if (count1 > 0)
+				else {
+					tower_empty(2);
+				}
+			});
+
+
+			from13.on("click", function(evt) {
+				move_count++;
+				if(count3 > 0) {
+					if(count1 == 0) {
+						if(top1 != 0 && top1 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[5];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[5];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[5];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[5];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[5];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[5];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 5;
+							}
+						}
+
+						stage.update();
+					}
+					else if(count1 == 1) {
+						if(top1 != 0 && top1 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[4];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[4];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[4];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[4];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[4];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[4];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 2) {
+						if(top1 != 0 && top1 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[3];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[3];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[3];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[3];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[3];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[3];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 3) {
+						if(top1 != 0 && top1 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[2];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[2];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[2];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[2];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[2];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[2];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+					else if(count1 == 4) {
+						if(top1 != 0 && top1 < top3) {
+							life--;
+							incorrect_move(life);
+						}
+						else {
+							if(top3 == 1)
+							{
+								element1.x = element_x1[1];
+								element1.y = element_y1[1];
+								lbl_e1.x = lbl_x[1];
+								lbl_e1.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 1;
+							}
+							else if (top3 == 2) {
+								element2.x = element_x1[2];
+								element2.y = element_y1[1];
+								lbl_e2.x = lbl_x[1];
+								lbl_e2.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 2;
+							}
+							else if (top3 == 3) {
+								element3.x = element_x1[3];
+								element3.y = element_y1[1];
+								lbl_e3.x = lbl_x[1];
+								lbl_e3.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 3;
+							}
+							else if (top3 == 4) {
+								element4.x = element_x1[4];
+								element4.y = element_y1[1];
+								lbl_e4.x = lbl_x[1];
+								lbl_e4.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 4;
+							}
+							else if (top3 == 5) {
+								element5.x = element_x1[5];
+								element5.y = element_y1[1];
+								lbl_e5.x = lbl_x[1];
+								lbl_e5.y = lbl_y[1];
+								count1++;
+								pole1[count1] = pole3[count3];
+								pole3[count3] = 0;
+								count3--;
+								if(count3 == 0) {
+									top3 = 0;
+								}
+								else {
+									top3 = 6 - pole3[count3];
+								}
+								top1 = 5;
+							}
+						}
+						stage.update();
+					}
+				} // end if (count1 > 0)
+				else {
+					tower_empty(3);
+				}
+			});
+			stage.update();
+		}
+
+
+
+		function game_over(){
+			swal({
+				  title: "Game Over",
+				  type: "error",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+				// display the score after completion.
+		}
+
+		function game_complete(){
+			swal({
+				  title: "Game Complete.",
+					text: "Congratulations!",
+				  type: "success",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+
+				// display the score after completion.
+		}
+
+		function tower_empty(tower){
+			swal({
+				  title: "Tower " + tower + " is empty.",
+				  type: "error",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+			}
+
+		function incorrect_move(life){
+			swal({
+				  title: "Incorrect Disk Move",
+				  text: "" + life + " more chances...",
+				  type: "error",
+				  confirmButtonColor: "#DD6B55",
+				  confirmButtonText: "Resume",
+				  closeOnConfirm: false
+				});
+
+				lbl_life.text = life;
+				if(life == 0) {
+					game_over();
+				}
+		}
+
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="600" height="500">
+		alternate content
+	</canvas>
+</body>
+</html>
