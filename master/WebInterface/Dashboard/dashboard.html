@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 
 <head>
 
@@ -22,6 +22,25 @@
 
     <!-- Custom Fonts -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+     <script src="../js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../js/metisMenu.min.js"></script>
+
+    <!-- Flot Charts JavaScript -->
+    <script src="../js/excanvas.min.js"></script>
+    <script src="../js/jquery.flot.js"></script>
+    <script src="../js/jquery.flot.pie.js"></script>
+    <script src="../js/jquery.flot.resize.js"></script>
+    <script src="../js/jquery.flot.time.js"></script>
+    <script src="../js/jquery.flot.tooltip.min.js"></script>
+    <script src="../js/flot-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/sb-admin-2.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,6 +49,30 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        
+        .container_file{
+        width: 500px;
+        border: 1px solid #333;
+        padding: 4px;
+    }
+    .select-wrapper {
+        background: url(../img/file.png) no-repeat;
+        background-size: cover;
+        display: block;
+        position: relative;
+        width: 33px;
+        height: 26px;
+        margin-left: 26%; 
+    }
+    #image_src {
+        width: 26px;
+        height: 26px;
+        margin-right: 100px;
+        opacity: 0;
+        filter: alpha(opacity=0); /* IE 5-7 */
+    }
+    </style>
 </head>
 
 <body>
@@ -243,7 +286,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Course<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Add Course</a>
+                                    <a href="/course">Add Course</a>
                                 </li>
                                 <li>
                                     <a href="#">Update Course</a>
@@ -296,17 +339,46 @@
                 <center>
                 <div class = "panel-body" style="display: inline-flex; text-align: center;">
                     <div style="margin: 30px;">
-                        <button class="glyphicon glyphicon-plus" ></button>
+                        <button  type="file" class="glyphicon glyphicon-plus" ></button>
                         <p> Add Game</p>
                     </div>
                     <div style="margin: 30px;">
                         <button class="glyphicon glyphicon-remove"></button>
                         <p> Remove Game</p>    
                     </div>
-                    <div style="margin: 30px;">
-                        <button class="glyphicon glyphicon-play-circle"></button>
-                        <p> Add Tutorials</p>    
+                    <div style="margin: 30px;"">
+                        <span class="select-wrapper">
+                            <input type="file" name="image_src" id="image_src" />
+                        </span>
+                        <!-- <button type="file" class="glyphicon glyphicon-play-circle" data-toggle="modal"></button> -->
+                        <!-- <input type="file" name="upload" class="" data-toggle="modal" /> -->
+                        <p>Add Tutorial</p>                        
+
+                        <!-- <input type="file" file-model="myFile"/>
+                        <button ng-click="uploadFile()">upload me</button>
+    -->
                     </div>
+
+                    
+
+                    <div ng-controller = "dashboardctrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>
+                     
+<div ng-controller="dashboardctrl" class="container">
+<!--   <h1>Select text file</h1> -->
+    <input type="file" on-read-file="showContent($fileContent)" />
+    <div ng-if="content">
+        <!-- <h2>File content is:</h2> -->
+        <pre>{{ content }}</pre>
+    </div>
+</div>
+<!-- <div ng-controller = "myCtrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>  
+ -->
                     <div style="margin: 30px;">
                         <button class="glyphicon glyphicon-file"></button>
                         <p>Add Description</p>
@@ -322,25 +394,7 @@
 
     
      <!-- jQuery -->
-    <script src="../js/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../js/metisMenu.min.js"></script>
-
-    <!-- Flot Charts JavaScript -->
-    <script src="../js/excanvas.min.js"></script>
-    <script src="../js/jquery.flot.js"></script>
-    <script src="../js/jquery.flot.pie.js"></script>
-    <script src="../js/jquery.flot.resize.js"></script>
-    <script src="../js/jquery.flot.time.js"></script>
-    <script src="../js/jquery.flot.tooltip.min.js"></script>
-    <script src="../js/flot-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../js/sb-admin-2.js"></script>
+   
 
 </body>
 

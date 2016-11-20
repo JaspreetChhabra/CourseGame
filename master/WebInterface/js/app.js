@@ -12,6 +12,13 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         templateUrl: 'registration/registration.html',
         controller: 'registerctrl'
     })
+
+        .state('course', {
+            url: '/course',
+            templateUrl: 'course/course.html',
+            controller: 'coursectrl'
+        })
+
         .state('addGame',{
         url: '/addGame',
         templateUrl: 'addGame/addGame.html',
@@ -27,6 +34,8 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
         })
+
+        
         
         $urlRouterProvider.otherwise('/login');
 
