@@ -1,0 +1,102 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<title>Add Course</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+  <script type="text/javascript">
+    function ShowHideDiv(chkPassport) {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = chkPassport.checked ? "block" : "none";
+    }
+</script>
+</head>
+
+<body>
+<br><br>
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading" >
+          <h3 class="panel-title">ADD NEW COURSE</h3>
+        </div>
+        <div class="panel-body">
+        
+    <form name="form" ng-submit="vm.addcourse()" role="form" ng-controller="coursectrl">
+
+        <div class="form-group" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
+           <!--  <label for="username">First name</label> -->
+        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name" ng-model="cs.courseName" required />
+            <!-- <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+
+         <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+           
+            <textarea name="coursedesc" id="coursedesc" class="form-control" placeholder="Course Description" ng-model="cs.coursedesc">
+            </textarea>
+       <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.sdate.$dirty && form.sdate.$error.required }">
+           <!--  <label for="username">First name</label> -->
+        <input type="date" name="sdate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.sdate" required />
+           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+      <div  class="row">
+        <div ng-app="myApp" ng-controller="coursectrl" class="col-sm-6">
+
+        <label for="chkprogram">MSCIT 
+          <input type="checkbox" id="mscit" ng-model="mscit" ng-change="ShowHide()" />
+        </label>
+
+        <div ng-show="IsVisible" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        </div>
+
+      <br/>
+        <label for="chkprogram">BTech 
+          <input type="checkbox" id="btech" ng-model="btech" ng-change="ShowHide1()" />
+        </label>
+         <br/>
+        <label for="chkprogram">MTech 
+          <input type="checkbox" id="mtech" ng-model="mtech" ng-change="ShowHide()" />
+        </label>
+          <br/>
+        <label for="chkprogram">Mdes 
+          <input type="checkbox" id="mdes" ng-model="mdes" ng-change="ShowHide()" />
+        </label>
+          <br/>
+        </div>
+</div>
+ 
+ 
+
+
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="addcourse()">Add</button>
+           <!--  <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+            <a href="#/dashboard" class="btn btn-link">Cancel</a>
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
+  </div>
+    </div>
+
+
+
+</body>
+</html>
