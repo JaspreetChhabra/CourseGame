@@ -34,10 +34,27 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
         })
+// <<<<<<< HEAD
         .state('upload', {
             url: '/upload',
             templateUrl: 'file/fileupload.html',
             controller:'fileUploadctrl'
+// =======
+        .state('unit', {
+            url: '/unit',
+            templateUrl: 'unit/unit.html',
+            controller:'unitctrl'
+        })
+        .state('material', {
+            url: '/material',
+            templateUrl: 'material/material.html',
+            controller:'materialctrl'
+        })
+        .state('announcements', {
+            url: '/announcements',
+            templateUrl: 'announcements/announcements.html',
+            controller:'announcementctrl'
+// >>>>>>> 85a7928a1914bf23d50251475f84d613b7626bcd
         })
 
         

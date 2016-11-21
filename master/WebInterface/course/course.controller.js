@@ -4,7 +4,7 @@ app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$wi
      $scope.addcourse=function()
     {
 
-       
+       alert("hello");
       
     }
         

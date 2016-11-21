@@ -4,6 +4,18 @@
 	<title>Unit Management</title>
 	<link rel="stylesheet" type="text/css" href="css\style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css">
+	<script type="text/javascript">
+  	$(function() {
+    $('.datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    	});
+  	});
+	</script>
 </head>
 <body ng-app="">
 		<header>UNIT MANAGEMENT</header>
@@ -14,14 +26,22 @@
 			<span ng-show="myForm.unit.$error.required">Unit name is required.</span>
 			</p>
 			<p class="sp">Description &nbsp: </p><textarea rows="4" cols="50" id="mar"></textarea>
-			<p class="sp">Start Time &nbsp&nbsp&nbsp: <input type="number" name="start" ng-model="start" min="0" max="99" required></input>
+			<p class="sp">Start Time &nbsp&nbsp&nbsp: <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="start" class="datetimepicker1" class="input-append date" ng-model="start" required></input>
+			<span class="add-on">
+      			<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      			</i>
+    		</span>
 			<span style="color:black" ng-show="myForm.start.$dirty && myForm.start.$invalid">
 			<span ng-show="myForm.start.$error.required">Start time cannot be left blank.</span>
 			</p>
-			<p class="sp">End Time &nbsp&nbsp&nbsp&nbsp&nbsp: <input type="number" name="end" ng-model="end" min="0" max="99" required></input>
+			<p class="sp">End Time &nbsp&nbsp&nbsp&nbsp&nbsp: <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="end" class="datetimepicker1" class="input-append date" ng-model="end" required></input>
+			<span class="add-on">
+      			<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      			</i>
+    		</span>
 			<span style="color:black" ng-show="myForm.end.$dirty && myForm.end.$invalid">
 			<span ng-show="myForm.end.$error.required">End time cannot be left blank.</span>
-			</p>
+			</p>	
 			<p class="sp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="message" type="submit" value="Go!"></input></p>
 		</form>
 </body>
