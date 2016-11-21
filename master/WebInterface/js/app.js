@@ -1,4 +1,4 @@
-var app=angular.module("myApp",['ui.router','ngResource']);
+var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload']);
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
@@ -33,6 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             url: '/dashboard',
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
+        })
+        .state('upload', {
+            url: '/upload',
+            templateUrl: 'file/fileupload.html',
+            controller:'fileUploadctrl'
         })
 
         

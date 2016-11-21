@@ -2,9 +2,9 @@
 	<head>
 		<title>Home</title>
 	</head>
-	<body ng-app="fileUpload">
+	<body ng-app="myapp">
 		<h1>Angular Node File Upload</h1>
-        <form  ng-controller="MyCtrl as up" name="up.upload_form">
+        <form  ng-controller="fileUploadctrl as up" name="up.upload_form">
                 Single Image with validations
             <input 
                 type="file" 
@@ -26,8 +26,4 @@
             <p>{{up.progress}}</p>
         </form>
 	</body>
-	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-	<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
-	<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-	<script type="text/javascript" src="main.js"></script>
 </html>
