@@ -34,6 +34,21 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
         })
+        .state('unit', {
+            url: '/unit',
+            templateUrl: 'unit/unit.html',
+            controller:'unitctrl'
+        })
+        .state('material', {
+            url: '/material',
+            templateUrl: 'material/material.html',
+            controller:'materialctrl'
+        })
+        .state('announcements', {
+            url: '/announcements',
+            templateUrl: 'announcements/announcements.html',
+            controller:'announcementctrl'
+        })
 
         
         
