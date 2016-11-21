@@ -47,8 +47,13 @@
         </div>
 
         <div class="form-group" ng-class="{ 'has-error': form.sdate.$dirty && form.sdate.$error.required }">
-           <!--  <label for="username">First name</label> -->
+            <label for="sdate">Starting Date</label> 
         <input type="date" name="sdate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.sdate" required />
+           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.edate.$dirty && form.edate.$error.required }">
+         <label for="sdate">Ending Date</label>
+        <input type="date" name="edate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.edate" required />
            <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
         </div>
       <div  class="row">
@@ -62,26 +67,87 @@
         <label for="chkprogram">SEM-1 
           <input type="checkbox" id="SEM-1" />
         </label>
-        </div>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" />
+        </label>
+       </div>
 
       <br/>
-        <label for="chkprogram">BTech 
+        <label for="chkprogram1">BTech 
           <input type="checkbox" id="btech" ng-model="btech" ng-change="ShowHide1()" />
         </label>
          <br/>
+           <div ng-show="IsVisible1" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        <label for="chkprogram">SEM-2
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4
+          <input type="checkbox" id="SEM-4" />
+        </label>
+        <label for="chkprogram">SEM-5
+          <input type="checkbox" id="SEM-5" />
+        </label>
+        <label for="chkprogram">SEM-6
+          <input type="checkbox" id="SEM-6" />
+        </label>
+        <label for="chkprogram">SEM-7
+          <input type="checkbox" id="SEM-7" />
+        </label>
+        <label for="chkprogram">SEM-8
+          <input type="checkbox" id="SEM-8" />
+        </label>
+       </div>
         <label for="chkprogram">MTech 
-          <input type="checkbox" id="mtech" ng-model="mtech" ng-change="ShowHide()" />
+          <input type="checkbox" id="mtech" ng-model="mtech" ng-change="ShowHide2()" />
         </label>
           <br/>
-        <label for="chkprogram">Mdes 
-          <input type="checkbox" id="mdes" ng-model="mdes" ng-change="ShowHide()" />
+          <div ng-show="IsVisible2" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
         </label>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" />
+        </label>
+       </div>
+        <label for="chkprogram">Mdes 
+          <input type="checkbox" id="mdes" ng-model="mdes" ng-change="ShowHide3()" />
+        </label>
+         <div ng-show="IsVisible3" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" />
+        </label>
+       </div>
           <br/>
         </div>
 </div>
  
- 
-
 
         <div class="form-actions">
             <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="addcourse()">Add</button>
@@ -95,6 +161,7 @@
 </div>
   </div>
     </div>
+
 
 
 
