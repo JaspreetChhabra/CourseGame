@@ -4,9 +4,28 @@ app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$wi
      $scope.addcourse=function()
     {
 
-       alert("hello");
+       var course = $scope.cs;
+       console.log();
+       
+        var a = $resource("localhost:3030/courses/insert");
+
+        a.save($scope.course,function(res){
+            console.log(res.Status);
+
+            if(res.Status == false){
+                    
+                alert("Course already Exists");
+            }else{
+                alert("New Course added Successfully");
+
+                $state.go('dashboard');
+
+            }
+        });
       
     }
+    
+
         
 
         $scope.IsVisible = false;

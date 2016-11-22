@@ -7,6 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'login/login.html',
             controller:'loginctrl'
         })
+        
         .state('register',{
         url: '/registration',
         templateUrl: 'registration/registration.html',
@@ -34,12 +35,12 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
         })
-// <<<<<<< HEAD
+
         .state('upload', {
             url: '/upload',
             templateUrl: 'file/fileupload.html',
             controller:'fileUploadctrl'
-// =======
+        })
         .state('unit', {
             url: '/unit',
             templateUrl: 'unit/unit.html',
@@ -54,7 +55,6 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             url: '/announcements',
             templateUrl: 'announcements/announcements.html',
             controller:'announcementctrl'
-// >>>>>>> 85a7928a1914bf23d50251475f84d613b7626bcd
         })
 
         

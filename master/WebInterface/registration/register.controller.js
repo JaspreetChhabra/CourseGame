@@ -15,10 +15,10 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
             if(res.Status == false)
             {
                     
-                alert("Please check username and password");
+                alert("Username already exists.");
             }else
             {
-                alert("Successful");
+                alert("Data inserted Successfully");
 
                 $state.go('dashboard');
 
