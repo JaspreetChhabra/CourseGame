@@ -1,4 +1,5 @@
 app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter){
+
 $scope.programes = [ { 'pr': 'MSCIT', 'sem': [1,2] }, { 'pr': 'BTECH', 'sem': [1,2] }, { 'pr': 'ARD', 'sem': [1,2] }];
 
 

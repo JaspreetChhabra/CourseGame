@@ -50,6 +50,13 @@
          <label for="sdate">Ending Date</label>
         <input type="date" name="endTime" id="endTime" class="form-control" placeholder="End date" ng-model="game.endTime" required />
            <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+
+<label>Select Course for Update </label>   
+        <select ng-model="cs.title" ng-options="ups._id as ups.title for ups in up">
+          <option style="display:none" value="">Course</option>      
+        </select>
+
+
         </div>
         <label>Difficulty Level</label>
     		<div class="form-group">

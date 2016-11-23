@@ -6,8 +6,33 @@ app.controller("addGamectrl",function($scope,$resource,$state,$http){
         a.get(function(res){
             console.log(res);
             // $scope.game = {};
-             console.log(res.Result[0].title);
+
+            $scope.up = res.Result;
+            console.log($scope.up);
+
+            // console.log(res.Result[0].title);
         });
+
+     var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/tags");
+             a.get(function(res)
+             {
+                 console.log(res);
+                 $scope.tags = res.Result;
+
+                 console.log($scope.tags);
+            });
+        
+
+// var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/tags");
+//              a.get(function(res)
+//              {
+//                  console.log(res);
+//                  $scope.tags = res.Result;
+
+//                  console.log($scope.tags);
+//             });
+        
+
 
    $scope.submit=function()
     {
