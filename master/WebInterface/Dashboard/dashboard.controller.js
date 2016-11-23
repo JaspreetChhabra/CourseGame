@@ -24,6 +24,13 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
     $scope.showContent = function($fileContent){
         $scope.content = $fileContent;
     };
+
+    $scope.viewCourse = function(courseID){
+        console.log("coure ID " + courseID);
+
+        $state.go('viewCourse', {obj : courseID})
+
+    }
 });
 
 

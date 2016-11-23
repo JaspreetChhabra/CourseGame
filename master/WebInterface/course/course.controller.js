@@ -1,27 +1,46 @@
-app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter){
-$scope.programes = [ { 'pr': 'MSCIT', 'sem': [1,2] }, { 'pr': 'BTECH', 'sem': [1,2] }, { 'pr': 'ARD', 'sem': [1,2] }];
+app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter, $stateParams){
 
 
+if(typeof($stateParams.obj) != 'undefined'){
+    console.log($stateParams);
 
+    $scope.data = {};
 
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
+     a.get(function(res)
+     {
+         console.log("Courses data " + res.Status);
+         $scope.course = res.course;
+         $scope.topics = res.topics;
+         $scope.games = res.games;
+         $scope.materials = res.materials;
+    });
 
-$scope.userTypes = [
-    {
-        "type": 'MSCIT',
-        "name" : 'MSCIT',
-        "options": [1,2]
-    },
-    {
-        "type": 'BTECH',
-        "name": 'BTECH',
-        "options": [1,2]
-    },
-]
-
-$scope.selectedpr = function () {
-        $scope.progs = $filter('filter')($scope.userTypes, {checked: true});
-        console.log($scope.progs);
 }
+else{
+ console.log("hello");   
+}
+
+
+
+
+// $scope.userTypes = [
+//     {
+//         "type": 'MSCIT',
+//         "name" : 'MSCIT',
+//         "options": [1,2]
+//     },
+//     {
+//         "type": 'BTECH',
+//         "name": 'BTECH',
+//         "options": [1,2]
+//     },
+// ]
+
+// $scope.selectedpr = function () {
+//         $scope.progs = $filter('filter')($scope.userTypes, {checked: true});
+//         console.log($scope.progs);
+// }
 
 
   //cs. prog = [ { "pr" : "MSCIT","sem":[1,2]},{ "pr" : "Btecj","sem":[3,2]}],
@@ -43,9 +62,10 @@ $scope.selectedpr = function () {
  $scope.addcourse=function()
     {
         var course = $scope.cs;
-        console.log(course);
+        console.log(JSON.stringify(course));
 
-        console.log(course.prog);
+
+
         // var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
 
         // a.save($scope.course,function(res){
@@ -75,16 +95,17 @@ $scope.selectedpr = function () {
  //  };
         
 
-        $scope.IsVisible = false;
+            $scope.IsVisible = false;
             $scope.ShowHide = function () {
                 
-                $scope.IsVisible = $scope.cs.prog.mscit;
+                $scope.IsVisible = $scope.cs.pr.MSCIT;
                 
             }
             console.log();
+
          $scope.IsVisible1 = false;
         $scope.ShowHide1 = function () {
-                $scope.IsVisible1 = $scope.cs.prog.btech;
+                $scope.IsVisible1 = $scope.cs.pr.BTECH;
             }
 
              $scope.IsVisible2 = false;
