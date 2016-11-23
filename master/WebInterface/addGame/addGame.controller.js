@@ -11,28 +11,15 @@ app.controller("addGamectrl",function($scope,$resource,$state,$http){
 
    $scope.submit=function()
     {
-        var game = $scope.game;
-        console.log($scope.game);
+        var games = $scope.game;
+        console.log(games);
 
         //$scope.user = { "username" : "bjscdb", "password" : "25"};
         //var a=$resource("https://shielded-tor-32602.herokuapp.com/users/login")   
-        var a=$resource("localhost:/games/insert");
-
-        $scope.game1 = {
-
-            title: "gwkwdjgvik",
-              difLevel: null,
-              points: null,
-              startTime: null,
-              endTime: null,
-              maxAttempt: null,
-              minScore: null,
-              desc: "gwkwdjgvik",
-              hintUrl: null,
-              topicId: null
-        }
-
-        a.save($scope.game1,function(res){
+        //var a=$resource("localhost:/games/insert");
+        var a=$resource("https://shielded-tor-32602.herokuapp.com/games/insert");
+       
+        a.save($scope.game,function(res){
             console.log(res.Status);
 
             if(res.Status == false){
@@ -41,7 +28,7 @@ app.controller("addGamectrl",function($scope,$resource,$state,$http){
             }else{
                 alert("Successful");
 
-                //$state.go('addGame');
+                $state.go('dashboard');
 
             }
         });

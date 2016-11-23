@@ -1,3 +1,32 @@
+app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state) {
+
+    $scope.addedCourses = {};
+
+    userID = localStorage.getItem("userID");
+    console.log("dashboard " + userID);
+    //var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getByFaculty/userID");
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getByFaculty/"+userID);
+     a.get(function(res)
+     {
+     console.log(res);
+
+     if(res.Status == true){
+        $scope.addedCourses = res.Result;
+        $scope.courseFlag = 1;
+        console.log($scope.addedCourses);
+     }
+     else{
+        $scope.courseFlag = 0;
+        $scope.addedCourses = "NO COURSE ADDED YET";
+     }
+     });
+
+    $scope.showContent = function($fileContent){
+        $scope.content = $fileContent;
+    };
+});
+
+
 // app.controller("dashboardctrl",function($scope,$resource,$state,$http,$location){
    
        
@@ -63,31 +92,25 @@
 //          }]);
         
 
-    app.controller('dashboardctrl', function ($scope) {
-    $scope.showContent = function($fileContent){
-        $scope.content = $fileContent;
-    };
-  });
-
-        app.directive('onReadFile', function ($parse) {
-    return {
-        restrict: 'A',
-        scope: false,
-        link: function(scope, element, attrs) {
-            var fn = $parse(attrs.onReadFile);
+//         app.directive('onReadFile', function ($parse) {
+//     return {
+//         restrict: 'A',
+//         scope: false,
+//         link: function(scope, element, attrs) {
+//             var fn = $parse(attrs.onReadFile);
             
-            element.on('change', function(onChangeEvent) {
-                var reader = new FileReader();
+//             element.on('change', function(onChangeEvent) {
+//                 var reader = new FileReader();
                 
-                reader.onload = function(onLoadEvent) {
-                    scope.$apply(function() {
-                        fn(scope, {$fileContent:onLoadEvent.target.result});
-                    });
-                };
+//                 reader.onload = function(onLoadEvent) {
+//                     scope.$apply(function() {
+//                         fn(scope, {$fileContent:onLoadEvent.target.result});
+//                     });
+//                 };
 
-                reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
-            });
-        }
-    };
-});
+//                 reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+//             });
+//         }
+//     };
+// });
 

@@ -1,4 +1,4 @@
-var app=angular.module("myApp",['ui.router','ngResource']);
+var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload','ngStorage']);
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
@@ -7,6 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'login/login.html',
             controller:'loginctrl'
         })
+        
         .state('register',{
         url: '/registration',
         templateUrl: 'registration/registration.html',
@@ -33,6 +34,12 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             url: '/dashboard',
             templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
+        })
+
+        .state('upload', {
+            url: '/upload',
+            templateUrl: 'file/fileupload.html',
+            controller:'fileUploadctrl'
         })
         .state('unit', {
             url: '/unit',

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html ng-app="myApp">
 <title>Add Course</title>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -10,17 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-
-
-  <script type="text/javascript">
-    function ShowHideDiv(chkPassport) {
-        var dvPassport = document.getElementById("dvPassport");
-        dvPassport.style.display = chkPassport.checked ? "block" : "none";
-    }
-</script>
 </head>
 
-<body>
+<body ng-controller="coursectrl">
 <br><br>
 <div class="container">
   <div class="row centered-form">
@@ -35,52 +27,89 @@
 
         <div class="form-group" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
            <!--  <label for="username">First name</label> -->
-        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name" ng-model="cs.courseName" required />
+        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name" ng-model="cs.name" required />
             <!-- <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        
         </div>
+
+         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive">
+
 
          <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
            
-            <textarea name="coursedesc" id="coursedesc" class="form-control" placeholder="Course Description" ng-model="cs.coursedesc">
+            <textarea name="coursedesc" id="coursedesc" class="form-control" placeholder="Course Description" ng-model="cs.desc">
             </textarea>
        <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
         </div>
+          
+          <!-- <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }"> -->
+           
+            <dropdown placeholder="Colour..." list="colours" selected="colour" property="name"></dropdown>
 
-        <div class="form-group" ng-class="{ 'has-error': form.sdate.$dirty && form.sdate.$error.required }">
+       <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        <!-- </div> -->
+        <label>Select Tag </label>   
+        <select ng-model="cs.tag" ng-options="tag._id as tag.name for tag in tags">
+          <option style="display:none" value="">Tags</option>      
+        </select>
+
+
+       <!--  <div class="form-group" ng-class="{ 'has-error': form.sdate.$dirty && form.sdate.$error.required }">
             <label for="sdate">Starting Date</label> 
         <input type="date" name="sdate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.sdate" required />
            <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
-        </div>
+        <!-- </div>
         <div class="form-group" ng-class="{ 'has-error': form.edate.$dirty && form.edate.$error.required }">
          <label for="sdate">Ending Date</label>
         <input type="date" name="edate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.edate" required />
            <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
-        </div>
+        <!-- </div> -->
       <div  class="row">
         <div ng-app="myApp" ng-controller="coursectrl" class="col-sm-6">
 
-        <label for="chkprogram">MSCIT 
-          <input type="checkbox" id="mscit" ng-model="mscit" ng-change="ShowHide()" />
+
+          <label ng-repeat="user in userTypes">
+              <input type="checkbox" name="{{user.type}}" id="{{user.type}}" ng-model="user.checked" ng-change="selectedpr()">
+              <label for="{{user.type}}">{{user.type}}</label>
+              <br/>
+                <label ng-repeat="option in user.options">
+                    <input type="checkbox" name="{{option}}" id="{{option}}" ng-model="option.checked" ng-change="selectedpr()">
+                    <label for="{{option}}">{{option}}</label>
+                </label>
+
+          </label>
+          <!-- <label>MSC IT
+            <input type="checkbox" ng-model="cs.prog" ng-true-value="'MSCIT'">
+          </label><br/>
+
+          {{cs.prog}}
+          <label>Value2:
+            <input type="checkbox" ng-model="checkboxModel.value2"
+                   ng-true-value="'YES'" ng-false-value="'NO'">
+           </label>
+
+        <label for="chkprogram" ng-model="cs.prog">MSCIT 
+          <input type="checkbox" name="mscit" ng-model="prog.checked" ng-change="ShowHide()" value="mscit" />
         </label>
 
         <div ng-show="IsVisible" class="col-sm-10">
         <label for="chkprogram">SEM-1 
-          <input type="checkbox" id="SEM-1" />
+          <input type="checkbox" id="SEM-1" ng-model="cs.prog.mscit" value="sem1" />
         </label>
         <label for="chkprogram">SEM-2 
-          <input type="checkbox" id="SEM-2" />
+          <input type="checkbox" id="SEM-2" ng-model="cs.prog.mscit" value="sem2" />
         </label>
         <label for="chkprogram">SEM-3 
-          <input type="checkbox" id="SEM-3" />
+          <input type="checkbox" id="SEM-3" ng-model="cs.prog.mscit" value="sem3" />
         </label>
         <label for="chkprogram">SEM-4 
-          <input type="checkbox" id="SEM-4" />
+          <input type="checkbox" id="SEM-4" ng-model="cs.prog.mscit" value="sem4" />
         </label>
        </div>
 
       <br/>
         <label for="chkprogram1">BTech 
-          <input type="checkbox" id="btech" ng-model="btech" ng-change="ShowHide1()" />
+          <input type="checkbox" id="btech" ng-model="cs.prog.btech" ng-change="ShowHide1()" />
         </label>
          <br/>
            <div ng-show="IsVisible1" class="col-sm-10">
@@ -142,7 +171,7 @@
         </label>
         <label for="chkprogram">SEM-4 
           <input type="checkbox" id="SEM-4" />
-        </label>
+        </label> -->
        </div>
           <br/>
         </div>
@@ -155,13 +184,14 @@
             <a href="#/dashboard" class="btn btn-link">Cancel</a>
         </div>
 
+
+
     </form>
 </div>
 </div>
 </div>
   </div>
     </div>
-
 
 
 

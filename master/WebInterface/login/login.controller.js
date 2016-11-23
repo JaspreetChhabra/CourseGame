@@ -1,24 +1,62 @@
 
 
-app.controller("loginctrl",function($scope,$resource,$state,$http,$location){
+app.controller("loginctrl",function($scope,$resource,$state,$http,$location,$localStorage){
+    $scope.user = {};
    
+   if(localStorage.getItem('password','username') != null)
+    {
+        $scope.user.password = localStorage.getItem('password');
+        $scope.user.username = localStorage.getItem('username');
+    }
+    
+  
+
+    $scope.save = function(){
+
+
+        if ($scope.check) {
+                    // $window.alert("CheckBox is checked.");
+                    localStorage.setItem('username', $scope.user.username);
+            console.log("localStorage password = " + localStorage.username);
+            localStorage.setItem('password', $scope.user.password);
+            console.log("localStorage password= " + localStorage.password);
+
+                }
+                 else 
+                 {
+                    console.log("you nort checked checkbox");
+                }
+            }
+    // $scope.try =function()
+    // {
        
+    //     $localStorage.message = $scope.username;
+    //     console.log($scope.username);
+    // }   
     $scope.submit=function()
     {
         var user = $scope.user;
-        //console.log($scope.user);
+        console.log($scope.user);
 
         //$scope.user = { "username" : "bjscdb", "password" : "25"};
         var a=$resource("https://shielded-tor-32602.herokuapp.com/users/login");
 
         a.save($scope.user,function(res){
-           // console.log(res.Status);
+            console.log(res.Status);
+
+            if(res.Status == true){
+                console.log("data " + res.LoggedUser._id);
+                localStorage.setItem('userID', res.LoggedUser._id);
+                localStorage.setItem('userName' , res.LoggedUser.firstName + " " + res.LoggedUser.lastName);
+            }
 
             if(res.Status == false){
                     
                 alert("Please check username and password");
             }else{
+                
                 alert("Successful");
+                console.log(res);
 
                 $state.go('dashboard');
 
