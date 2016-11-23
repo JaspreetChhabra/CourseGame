@@ -1,12 +1,11 @@
 app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
-   
      
      $scope.submit=function()
     {
         var user = $scope.faculty;
         console.log(user);
 
-        //$scope.user = { "username" : "bjscdb", "password" : "25"};
+        $scope.user = { "username" : "bjscdb", "password" : "25"};
         var a=$resource("https://shielded-tor-32602.herokuapp.com/users/register");
 
         a.save(user,function(res)

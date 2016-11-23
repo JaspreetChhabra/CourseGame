@@ -281,7 +281,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Data Structure</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Course<span class="fa arrow"></span></a>
@@ -333,7 +333,10 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            <div class = "panel panel-primary">
+
+            <div ng-repeat = "courses in addedCourses">
+            </div>
+                       <div class = "panel panel-primary">
                 <div class = "panel-heading">
                     <strong>Stack</strong>
                 </div>
@@ -390,10 +393,12 @@
         <!-- <h2>File content is:</h2> -->
         <pre>{{ content }}</pre>
     </div>
-</div>
+
                 </div>
                 </center>   
+            </div>  
             </div>
+     
         </div>
         <!-- /#page-wrapper -->
 
