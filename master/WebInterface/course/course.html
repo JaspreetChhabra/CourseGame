@@ -23,7 +23,7 @@
         </div>
         <div class="panel-body">
         
-    <form name="form" ng-submit="vm.addcourse()" role="form" ng-controller="coursectrl">
+    <form id="courseForm" method="post" name= "courseForm">
 
         <div class="form-group" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
            <!--  <label for="username">First name</label> -->
@@ -32,43 +32,74 @@
         
         </div>
 
-         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive">
+         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
 
 
          <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
            
             <textarea name="coursedesc" id="coursedesc" class="form-control" placeholder="Course Description" ng-model="cs.desc">
             </textarea>
-       <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+       
         </div>
           
-          <!-- <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }"> -->
-           
-            <dropdown placeholder="Colour..." list="colours" selected="colour" property="name"></dropdown>
-
-       <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
-        <!-- </div> -->
         <label>Select Tag </label>   
         <select ng-model="cs.tag" ng-options="tag._id as tag.name for tag in tags">
           <option style="display:none" value="">Tags</option>      
         </select>
 
+        <div class="col-lg-12">
+        <label class="checkbox">MSCIT
+           <input type="checkbox" ng-model="cs.pr.MSCIT.checked" ng-checked="cs.pr.checked" ng-change="ShowHide()">
+        </label>
 
-       <!--  <div class="form-group" ng-class="{ 'has-error': form.sdate.$dirty && form.sdate.$error.required }">
-            <label for="sdate">Starting Date</label> 
-        <input type="date" name="sdate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.sdate" required />
-           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
-        <!-- </div>
-        <div class="form-group" ng-class="{ 'has-error': form.edate.$dirty && form.edate.$error.required }">
-         <label for="sdate">Ending Date</label>
-        <input type="date" name="edate" id="sdate" class="form-control" placeholder="Starting date" ng-model="cs.edate" required />
-           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
-        <!-- </div> -->
-      <div  class="row">
-        <div ng-app="myApp" ng-controller="coursectrl" class="col-sm-6">
+        <div ng-show="IsVisible" class="col-sm-10">
+          <label class="checkbox">SEM 1
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M1.checked" ng-checked="cs.pr.M1.checked" ng-value="1" name="1">
+          </label>
+          <label class="checkbox">SEM 2
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M2.checked" ng-checked="cs.pr.M2.checked">
+          </label>
+          <label class="checkbox">SEM 3
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M3.checked" ng-checked="cs.pr.M3.checked">
+          </label>
+          <label class="checkbox">SEM 4
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M4.checked" ng-checked="cs.pr.M4.checked">
+          </label>
+        </div>
+        </div>
+              
+        <div class="col-lg-12">
+              <label class="checkbox">BTECH
+                 <input type="checkbox" ng-model="cs.pr.BTECH.checked" ng-checked="cs.pr.BTECH.checked" value="BTECH" ng-change="ShowHide1()">
+              </label>
+        <div ng-show="IsVisible1" class="col-sm-10">
+              <label class="checkbox">SEM 1
+                 <input type="checkbox" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.M1.checked" value="1">
+              </label>
+              <label class="checkbox">SEM 2
+             <input type="checkbox" ng-model="cs.pr.BTECH.M2.checked" ng-checked="cs.pr.M2.checked">
+            </label>
+            <label class="checkbox">SEM 3
+               <input type="checkbox" ng-model="cs.pr.BTECH.M3.checked" ng-checked="cs.pr.M3.checked">
+            </label>
+            <label class="checkbox">SEM 4
+               <input type="checkbox" ng-model="cs.pr.BTECH.M4.checked" ng-checked="cs.pr.M4.checked">
+            </label>
+
+        </div>
+        </div>
+
+        </div>
+          <br/>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="addcourse()">Add</button>
+            <a href="#/dashboard" class="btn btn-link">Cancel</a>
+        </div>
 
 
-          <label ng-repeat="user in userTypes">
+
+    </form>
+          <!-- <label ng-repeat="user in userTypes">
               <input type="checkbox" name="{{user.type}}" id="{{user.type}}" ng-model="user.checked" ng-change="selectedpr()">
               <label for="{{user.type}}">{{user.type}}</label>
               <br/>
@@ -77,7 +108,7 @@
                     <label for="{{option}}">{{option}}</label>
                 </label>
 
-          </label>
+          </label> -->
           <!-- <label>MSC IT
             <input type="checkbox" ng-model="cs.prog" ng-true-value="'MSCIT'">
           </label><br/>
@@ -172,21 +203,9 @@
         <label for="chkprogram">SEM-4 
           <input type="checkbox" id="SEM-4" />
         </label> -->
-       </div>
-          <br/>
-        </div>
-</div>
- 
-
-        <div class="form-actions">
-            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="addcourse()">Add</button>
+       
            <!--  <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
-            <a href="#/dashboard" class="btn btn-link">Cancel</a>
-        </div>
-
-
-
-    </form>
+            
 </div>
 </div>
 </div>

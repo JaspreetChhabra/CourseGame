@@ -281,7 +281,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Course<span class="fa arrow"></span></a>
@@ -328,13 +328,10 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">List of courses</h1>
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
 
-            <div ng-repeat = "courses in addedCourses">
+            <!-- <div ng-repeat = "courses in addedCourses">
                 <div class="col-lg-4" style="">
 
                     <div class="panel panel-default">
@@ -348,11 +345,48 @@
                       </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-<!--                        <div class = "panel panel-primary">
+            <div ng-repeat = "topic in topics">
+                <div class = "panel panel-primary">
                 <div class = "panel-heading">
-                    <strong>Stack</strong>
+                    <strong>{{topic.name}}</strong>
+                </div>
+                <p><div ng-if="topic.desc != ''">{{topic.desc}}</div></p>
+                <div class="col-lg-12">
+                <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <h2>Tutorials</h2>
+                        <div ng-repeat="material in materials">
+                        <div ng-if = "material.topicId == topic._id">
+                            <ul>
+                                <li>
+                                    <p ng-if="material.topicId == topic._id"> {{material.name}}</p>
+                                    <p ng-if="material.topicId == topic._id"> {{material.desc}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                
+                </div>
+
+                <div class="col-lg-12">
+                <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <h2>Games</h2>
+                        <div ng-repeat="game in games">
+                            <ul>
+                                <li>
+                                    <p ng-if="game.topicId == topic._id"> {{game.title}}</p>
+                                    <p ng-if="game.topicId == topic._id"> {{game.desc}}</p>
+                                    <p ng-if="game.topicId == topic._id"> <a href="{{game.link}}"></a></p>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                
                 </div>
                 <center>
                 <div class = "panel-body" style="display: inline-flex; text-align: center;">
@@ -369,48 +403,12 @@
                         <p> Remove Game</p>    
                     </div>
                     <div style="margin: 30px;"">
-                        <span class="select-wrapper">
-                            <input type="file" name="image_src" id="image_src" />
-                        </span>
-                        <button type="file" class="glyphicon glyphicon-play-circle" data-toggle="modal"></button>
-                        <!-- <input type="file" name="upload" class="" data-toggle="modal" /> -->
-                        <!-- <p>Add Tutorial</p>    -->                     
-
-                        <!-- <input type="file" file-model="myFile"/>
-                        <button ng-click="uploadFile()">upload me</button>
-    -->
-                    <!-- </div> -->
-
-                    
-
-  <!--                   <div ng-controller = "dashboardctrl">
-    <input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button>
-</div> -->
-                     
-
-<!-- <div ng-controller = "myCtrl">
-    <input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button>
-</div>  
- -->
-                    <!-- <div style="margin: 30px;">
-                        <button class="glyphicon glyphicon-file"></button>
-                        <p>Add Description</p>
-                    </div> -->
-
-
-     <!--                <div ng-controller="dashboardctrl" class="container">
-  <h1>Select text file</h1>
-    <input type="file" on-read-file="showContent($fileContent)" />
-    <div ng-if="content">
-        <h2>File content is:</h2>
-        <pre>{{ content }}</pre>
-    </div>
-
-                </div> -->
+                        <input type="file" name="upload" class="" data-toggle="modal" />
+                        <p>Add Tutorial</p>
+                    </div>
                 </center>   
-            </div> -->  
+            </div>  
+            </div>
             </div>
      
         </div>

@@ -20,6 +20,15 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             controller: 'coursectrl'
         })
 
+        .state('viewCourse', {
+            url: '/viewCourse',
+            templateUrl: 'course/viewCourse.html',
+            controller: 'coursectrl',
+             params: {
+                obj: null
+            }
+        })
+
         .state('addGame',{
         url: '/addGame',
         templateUrl: 'addGame/addGame.html',
