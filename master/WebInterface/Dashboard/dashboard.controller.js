@@ -1,4 +1,4 @@
-app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state) {
+app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state,$stateParams) {
 
     $scope.addedCourses = {};
 
