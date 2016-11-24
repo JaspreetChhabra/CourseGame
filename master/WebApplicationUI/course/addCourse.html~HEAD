@@ -1,12 +1,5 @@
-<!--
-* GenesisUI Bootstrap 4 Admin Template built as framework!
-* Version 1.4.0
-* https://GenesisUI.com
-* Copyright 2016 creativeLabs Łukasz Holeczek
-* License : https://GenesisUI.com/license.html
--->
 <!DOCTYPE html>
-<html lang="en"  ng-app="myApp">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +10,7 @@
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
         <title>Course Game</title>
         <!-- Main styles for this application -->
-        <link href="../assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <!-- BODY options, add following classes to body to change options
 		1. 'sidebar-nav'		  - Navigation on the left
@@ -33,12 +26,9 @@
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
                 <a class="navbar-brand" href="#"></a>
                 <ul class="nav navbar-nav hidden-md-down">
-<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
                     </li>
--->
-<!--
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -48,36 +38,29 @@
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Settings</a>
                     </li>
--->
                 </ul>
                 <ul class="nav navbar-nav pull-right hidden-md-down">
                     <li class="nav-item dropdown">
-
-<!--
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English">
                         </a>
--->
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-header text-xs-center">
                                 <strong>Choose language</strong>
                             </div>
-                          <!--  <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/Poland.png" class="img-flag" alt="Polish"> Polish</a>
                             <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English"> English</a>
                             <a class="dropdown-item" href="#">
-                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>-->
+                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>
                         </div>
-
                     </li>
-<!--
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="label label-pill label-danger">5</span></a>
                     </li>
--->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                             <span class="hidden-md-down">admin</span>
                         </a>
@@ -85,7 +68,6 @@
                             <div class="dropdown-header text-xs-center">
                                 <strong>Account</strong>
                             </div>
-<!--
                             <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="label label-info">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="label label-success">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="label label-danger">42</span></a>
@@ -99,15 +81,12 @@
                             <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="label label-primary">42</span></a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
--->
                             <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
                         </div>
                     </li>
-<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
                     </li>
--->
                 </ul>
             </div>
         </header>
@@ -118,17 +97,17 @@
                         Dashboard
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Dashboard/index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
+                        <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
                     </li>
                     <li class="divider"></li>
                     <li class="nav-title">
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle"><i class="icon-puzzle"></i> Components</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="course.html"><i class="icon-puzzle"></i> BUTTONS</a>
+                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> BUTTONS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
@@ -240,97 +219,113 @@
         <!-- Main content -->
         <main class="main">
             <!-- Breadcrumb -->
-            <ol class="breadcrumb m-b-0">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-               <li class="active">View Courses </li>
-            </ol>
             
-            
-                <div class="container-fluid " ng-repeat = "topic in topics">
+            <div class="container-fluid">
                 <div class="animated fadeIn">
-                    <div class="row row-equal">
-                        <div class="col-md-12">
+                            
+                    <!--/.row-->
+                    <div class="row">
+                        <div class="col-md-6 col-sm-offset-3">
                             <div class="card">
-                                <div class="card-header card-primary">
-                                   <h3>{{topic.name}}   <button type="button" class="btn btn-success fa fa-plus pull-rigth" ng-click="addUnit(topics._id)"> Add Unit</button></h3>
+                                <div class="card-header">
+                                    <strong>Add</strong> Course
                                 </div>
-                                 <div class="card-block">
-                                     <h4> Unit Description </h4>
-                                    <p><div ng-if="topic.desc != ''">{{topic.desc}}</div></p>
-                        
-                        <div ng-repeat="material in materials">
-                        <div ng-if = "material.topicId == topic._id">
-                                  <h5><button type="button" class="btn btn-success btn-lg btn-block fa fa-book" data-toggle="collapse" data-target="#{{material.topicId}}">
-  {{material.name}}</h5>
-</button>
-                            <br/>
-                            <div id="{{material.topicId}}" class="collapse">
-                            <ul>
-                                <li>
-                                    <p ng-if="material.topicId == topic._id"> {{material.name}}</p>
-                                    <p ng-if="material.topicId == topic._id"> {{material.desc}}</p>
-                                </li>
-                            </ul>
-                                  <button type="button" class="btn btn-success fa fa-book" ng-click="updateMaterial(material._id)"> Update Material </button>
-                                <br/>
+                                <form id="courseForm" method="post" name= "courseForm">
+                                <div class="card-block">
+                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Course Name</label>
+                                            <div class="col-md-9"  ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
+                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="cs.name" required>
+                                               <!--  <span class="help-block">This is a help text</span> -->
+                                            </div>
+                                        </div>
+
+                                         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
+
+
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.."></textarea>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="select">Select Tag</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" size="1" ng-model="cs.tagId" ng-options="tag._id as tag.name for tag in tags">
+                                                     <option style="display:none" value="">Tags</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                       
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label">Programme</label>
+                                            <div class="col-md-9">
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="cs.pr.MSCIT.checked" ng-checked="cs.pr.checked" ng-change="ShowHide()">MSC IT
+                                                </label>
+                                                <div ng-show="IsVisible">
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="cs.pr.MSCIT.M1.checked" ng-checked="cs.pr.M1.checked" ng-value="1" name="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.MSCIT.M2.checked" ng-checked="cs.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.MSCIT.M3.checked" ng-checked="cs.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="cs.pr.MSCIT.M4.checked" ng-checked="cs.pr.M4.checked">SEM 4
+                                                </label>
+                                                </div>
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="cs.pr.BTECH.checked" ng-checked="cs.pr.BTECH.checked" value="BTECH" ng-change="ShowHide1()">B.TECH
+                                                </label>
+                                                <div ng-show="IsVisible1">
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.M1.checked" value="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M2.checked" ng-checked="cs.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M3.checked" ng-checked="cs.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M4.checked" ng-checked="cs.pr.M4.checked">SEM 4
+                                                </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="addcourse()"><i class="fa fa-dot-circle-o"></i> Add</button>
+                                    <a href="#/dashboard"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
+                                </div>
                             </div>
-                        </div>
-                                </div>
-                                <hr/>
-                        <div ng-repeat="game in games">
-                            <div ng-if = "game.topicId == topic._id">
-                            <h5><button type="button" class="btn btn-info btn-lg btn-block fa fa-gamepad" data-toggle="collapse" data-target="#{{game._id}}">
-                                Games</h5>
-</button>
-                                <div id="{{game._id}}" class="collapse">
-                                    <ul>
-                                        <li>
-                                            <p ng-if="game.topicId == topic._id"> {{game.title}}</p>
-                                            <p ng-if="game.topicId == topic._id"> {{game.desc}}</p>
-                                            <p ng-if="game.topicId == topic._id"> <a href="{{game.link}}"></a></p>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="btn btn-success fa fa-edit" ng-click="updateGame(game._id)"> Update Game </button>
-                                </div>
-                            </div>
-                        </div>
-                                <hr/>
-                            <div  class="row">
-                               <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addMaterial(topics._id)"> Add Material</button></div>
-                                <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addGame(topics._id)"> Add Game </button></div>
-                                </div>
-                        
+                        </form>
                     </div>
-                    </div>
+                </div>
             </div>
-                    </div>
-                    </div>
-            </div>
-        </main>
-        <footer class="footer ng-scope">
-            <span class="pull-right text-muted">
-                <a href="http://bootstrapmaster.com">LeafUI</a> © 2016 creativeLabs. Powered by <a href="http://GenesisUI.com">GenesisUI</a>
-            </span>
-        </footer>
+        </div>                    
         <!-- Bootstrap and necessary plugins -->
-        <script src="../assets/js/libs/jquery.min.js"></script>
-        <script src="../assets/js/libs/tether.min.js"></script>
-        <script src="../assets/js/libs/bootstrap.min.js"></script>
-        <script src="../assets/js/libs/pace.min.js"></script>
+        <script src="assets/js/libs/jquery.min.js"></script>
+        <script src="assets/js/libs/tether.min.js"></script>
+        <script src="assets/js/libs/bootstrap.min.js"></script>
+        <script src="assets/js/libs/pace.min.js"></script>
         <!-- Plugins and scripts required by all views -->
-        <script src="../assets/js/libs/Chart.min.js"></script>
-        <script src="../assets/js/views/shared.js"></script>
+        <script src="assets/js/libs/Chart.min.js"></script>
+        <script src="assets/js/views/shared.js"></script>
         <!-- GenesisUI main scripts -->
-        <script src="../assets/js/app.js"></script>
-        <!-- Plugins and scripts required by this views -->
-        <script src="../assets/js/libs/toastr.min.js"></script>
-        <script src="../assets/js/libs/gauge.min.js"></script>
-        <script src="../assets/js/libs/moment.min.js"></script>
-        <script src="../assets/js/libs/daterangepicker.min.js"></script>
-        <!-- Custom scripts required by this view -->
-        <script src="../assets/js/views/main.js"></script>
-        
-        
+        <script src="assets/js/app.js"></script>    
     </body>
 </html>

@@ -1,12 +1,5 @@
-<!--
-* GenesisUI Bootstrap 4 Admin Template built as framework!
-* Version 1.4.0
-* https://GenesisUI.com
-* Copyright 2016 creativeLabs Łukasz Holeczek
-* License : https://GenesisUI.com/license.html
--->
 <!DOCTYPE html>
-<html lang="en"  ng-app="myApp">
+<html lang="en" ng-app="myApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,12 +26,9 @@
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
                 <a class="navbar-brand" href="#"></a>
                 <ul class="nav navbar-nav hidden-md-down">
-<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
                     </li>
--->
-<!--
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -48,36 +38,29 @@
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Settings</a>
                     </li>
--->
                 </ul>
                 <ul class="nav navbar-nav pull-right hidden-md-down">
                     <li class="nav-item dropdown">
-
-<!--
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English">
                         </a>
--->
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-header text-xs-center">
                                 <strong>Choose language</strong>
                             </div>
-                          <!--  <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/Poland.png" class="img-flag" alt="Polish"> Polish</a>
                             <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English"> English</a>
                             <a class="dropdown-item" href="#">
-                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>-->
+                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>
                         </div>
-
                     </li>
-<!--
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="label label-pill label-danger">5</span></a>
                     </li>
--->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                             <span class="hidden-md-down">admin</span>
                         </a>
@@ -85,7 +68,6 @@
                             <div class="dropdown-header text-xs-center">
                                 <strong>Account</strong>
                             </div>
-<!--
                             <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="label label-info">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="label label-success">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="label label-danger">42</span></a>
@@ -99,15 +81,12 @@
                             <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="label label-primary">42</span></a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
--->
                             <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
                         </div>
                     </li>
-<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
                     </li>
--->
                 </ul>
             </div>
         </header>
@@ -118,17 +97,17 @@
                         Dashboard
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Dashboard/index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
+                        <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
                     </li>
                     <li class="divider"></li>
                     <li class="nav-title">
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle"><i class="icon-puzzle"></i> Components</a>
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="course.html"><i class="icon-puzzle"></i> BUTTONS</a>
+                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> BUTTONS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
@@ -242,77 +221,109 @@
             <!-- Breadcrumb -->
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
-               <li class="active">View Courses </li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
             </ol>
-            
-            
-                <div class="container-fluid " ng-repeat = "topic in topics">
+            <div class="container-fluid">
                 <div class="animated fadeIn">
-                    <div class="row row-equal">
-                        <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6-offset-3">
                             <div class="card">
-                                <div class="card-header card-primary">
-                                   <h3>{{topic.name}}   <button type="button" class="btn btn-success fa fa-plus pull-rigth" ng-click="addUnit(topics._id)"> Add Unit</button></h3>
+                                <div class="card-header">
+                                    <strong>Update</strong> Game
                                 </div>
-                                 <div class="card-block">
-                                     <h4> Unit Description </h4>
-                                    <p><div ng-if="topic.desc != ''">{{topic.desc}}</div></p>
-                        
-                        <div ng-repeat="material in materials">
-                        <div ng-if = "material.topicId == topic._id">
-                                  <h5><button type="button" class="btn btn-success btn-lg btn-block fa fa-book" data-toggle="collapse" data-target="#{{material.topicId}}">
-  {{material.name}}</h5>
-</button>
-                            <br/>
-                            <div id="{{material.topicId}}" class="collapse">
-                            <ul>
-                                <li>
-                                    <p ng-if="material.topicId == topic._id"> {{material.name}}</p>
-                                    <p ng-if="material.topicId == topic._id"> {{material.desc}}</p>
-                                </li>
-                            </ul>
-                                  <button type="button" class="btn btn-success fa fa-book" ng-click="updateMaterial(material._id)"> Update Material </button>
-                                <br/>
-                            </div>
+                                <form name="form" ng-submit="vm.addgame()" role="form" ng-controller="addGamectrl">
+                                <div class="card-block">
+                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Game</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
+                                                <input type="text" name="title" id="title" class="form-control" placeholder="Game Name" ng-model="game.title" required>
+                                            </div>
+                                        </div>
+                                
+                                        <div class="form-group row" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+                                            <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+                                            <div class="col-md-9">
+                                                <textarea name="desc" id="desc" class="form-control" rows="9" placeholder="Game Description" ng-model="game.desc"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row" ng-class="{ 'has-error': form.startTime.$dirty && form.startTime.$error.required }">
+                                            <label class="col-md-3 form-control-label" for="sdate">Starting Date</label>
+                                            <div class="col-md-9">
+                                                <input type="date" name="startTime" id="startTime" class="form-control" placeholder="Starting date" ng-model="game.startTime" required />
+                                                <!-- <span class="help-block">Please enter your email</span> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row" ng-class="{ 'has-error': form.endTime.$dirty && form.endTime.$error.required }">
+                                            <label class="col-md-3 form-control-label" for="sdate">Ending Date</label>
+                                            <div class="col-md-9">
+                                                <input type="date" name="endTime" id="endTime" class="form-control" placeholder="End date" ng-model="game.endTime" required />
+                                                <!-- <span class="help-block">Please enter your email</span> -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="select">Select Course for Update</label>
+                                            <div class="col-md-9">
+                                                <select id="select" name="select" class="form-control" size="1" ng-model="cs.title" ng-options="ups._id as ups.title for ups in up">
+                                                    <option style="display:none" value="">Course</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label">Difficulty Level</label>
+                                            <div class="col-md-9">
+                                                <label class="radio-inline" for="inline-radio1">
+                                                    <input type="radio" name="difLevel" ng-model="game.difLevel" value="easy"> Easy
+                                                </label>
+                                                <label class="radio-inline" for="inline-radio2">
+                                                    <input type="radio" name="difLevel" ng-model="game.difLevel" value="medium"> Medium
+                                                </label>
+                                                <label class="radio-inline" for="inline-radio3">
+                                                    <input type="radio" name="difLevel" ng-model="game.difLevel" value="hard"> Hard
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Points</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
+                                                <input type="text" name="points" id="points" class="form-control" placeholder="Maximum Points Earn" ng-model="game.points" required />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Attempts</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.maxAttempt.$dirty && form.maxAttempt.$error.required }">
+                                                <input type="text" name="maxAttempt" id="points" class="form-control" placeholder="Maximum Attempt" ng-model="game.maxAttempt" required />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Score</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.minScore.$dirty && form.minScore.$error.required }">
+                                                <input type="text" name="minScore" id="minScore" class="form-control" placeholder="Minimum Score" ng-model="game.minScore" required />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-click="submit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                                    <a href="../Dashboard/index.html"></a><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
+                                </div>
+                            </div> 
                         </div>
-                                </div>
-                                <hr/>
-                        <div ng-repeat="game in games">
-                            <div ng-if = "game.topicId == topic._id">
-                            <h5><button type="button" class="btn btn-info btn-lg btn-block fa fa-gamepad" data-toggle="collapse" data-target="#{{game._id}}">
-                                Games</h5>
-</button>
-                                <div id="{{game._id}}" class="collapse">
-                                    <ul>
-                                        <li>
-                                            <p ng-if="game.topicId == topic._id"> {{game.title}}</p>
-                                            <p ng-if="game.topicId == topic._id"> {{game.desc}}</p>
-                                            <p ng-if="game.topicId == topic._id"> <a href="{{game.link}}"></a></p>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="btn btn-success fa fa-edit" ng-click="updateGame(game._id)"> Update Game </button>
-                                </div>
-                            </div>
-                        </div>
-                                <hr/>
-                            <div  class="row">
-                               <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addMaterial(topics._id)"> Add Material</button></div>
-                                <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addGame(topics._id)"> Add Game </button></div>
-                                </div>
-                        
+                        </form>
+                        <!--/col-->
                     </div>
-                    </div>
-            </div>
-                    </div>
-                    </div>
-            </div>
-        </main>
-        <footer class="footer ng-scope">
-            <span class="pull-right text-muted">
-                <a href="http://bootstrapmaster.com">LeafUI</a> © 2016 creativeLabs. Powered by <a href="http://GenesisUI.com">GenesisUI</a>
-            </span>
-        </footer>
+                </div>    
+            </div>        
+        </div>                          
         <!-- Bootstrap and necessary plugins -->
         <script src="../assets/js/libs/jquery.min.js"></script>
         <script src="../assets/js/libs/tether.min.js"></script>
@@ -323,14 +334,6 @@
         <script src="../assets/js/views/shared.js"></script>
         <!-- GenesisUI main scripts -->
         <script src="../assets/js/app.js"></script>
-        <!-- Plugins and scripts required by this views -->
-        <script src="../assets/js/libs/toastr.min.js"></script>
-        <script src="../assets/js/libs/gauge.min.js"></script>
-        <script src="../assets/js/libs/moment.min.js"></script>
-        <script src="../assets/js/libs/daterangepicker.min.js"></script>
-        <!-- Custom scripts required by this view -->
-        <script src="../assets/js/views/main.js"></script>
-        
-        
+    </div>     
     </body>
 </html>

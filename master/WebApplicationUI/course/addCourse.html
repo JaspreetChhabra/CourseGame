@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
         <title>Course Game</title>
         <!-- Main styles for this application -->
-        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="../assets/css/style.css" rel="stylesheet">
     </head>
     <!-- BODY options, add following classes to body to change options
 		1. 'sidebar-nav'		  - Navigation on the left
@@ -225,7 +225,7 @@
                             
                     <!--/.row-->
                     <div class="row">
-                        <div class="col-md-6 col-sm-offset-3">
+                        <div class="col-md-6-offset-3">
                             <div class="card">
                                 <div class="card-header">
                                     <strong>Add</strong> Course
@@ -309,7 +309,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="addcourse()"><i class="fa fa-dot-circle-o"></i> Add</button>
-                                    <a href="#/dashboard"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
+                                    <a href="../Dashboard/index.html"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
                                 </div>
                             </div>
                         </form>
@@ -318,14 +318,14 @@
             </div>
         </div>                    
         <!-- Bootstrap and necessary plugins -->
-        <script src="assets/js/libs/jquery.min.js"></script>
-        <script src="assets/js/libs/tether.min.js"></script>
-        <script src="assets/js/libs/bootstrap.min.js"></script>
-        <script src="assets/js/libs/pace.min.js"></script>
+        <script src="../assets/js/libs/jquery.min.js"></script>
+        <script src="../assets/js/libs/tether.min.js"></script>
+        <script src="../assets/js/libs/bootstrap.min.js"></script>
+        <script src="../assets/js/libs/pace.min.js"></script>
         <!-- Plugins and scripts required by all views -->
-        <script src="assets/js/libs/Chart.min.js"></script>
-        <script src="assets/js/views/shared.js"></script>
+        <script src="../assets/js/libs/Chart.min.js"></script>
+        <script src="../assets/js/views/shared.js"></script>
         <!-- GenesisUI main scripts -->
-        <script src="assets/js/app.js"></script>    
+        <script src="../assets/js/app.js"></script>    
     </body>
 </html>

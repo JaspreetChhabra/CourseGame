@@ -11,12 +11,27 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         .state('register',{
         url: '/registration',
         templateUrl: 'register/pages-register.html',
+<<<<<<< HEAD
+=======
+=======
+        url: '/register',
+<<<<<<< HEAD
+        templateUrl: 'register/pages-register.html',
+=======
+        templateUrl: 'course/pages-register.html',
+>>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
+>>>>>>> 39bbfd2985cf5856e70fce2559b78f091470e3f6
+>>>>>>> c2f58ebce2394dd9049965987b1efe51eaf31a53
         controller: 'registerctrl'
     })
 
         .state('course', {
             url: '/course',
+<<<<<<< HEAD
             templateUrl: 'course/course.html',
+=======
+            templateUrl: 'course/addCourse.html',
+>>>>>>> c2f58ebce2394dd9049965987b1efe51eaf31a53
             controller: 'coursectrl'
         })
 
@@ -28,12 +43,21 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
                 obj: null
             }
         })
-
+        .state('updateProfile',{
+            url:'/updateProfile',
+            templateUrl:'profile/updateProfile',
+            controller:'registerctrl'
+        })
         .state('addGame',{
         url: '/addGame',
-        templateUrl: 'addGame/addGame.html',
+        templateUrl: 'addGame/AddGame.html',
         controller: 'addGamectrl'
     })
+        .state('updateGame',{
+            url:'/updateGame',
+            templateUrl:'addGame/updategame',
+            controller:'addGamectrl'
+        })
         .state('home', {
             url: '/home',
             templateUrl: 'login/homepage/pages/index.html',
@@ -52,7 +76,12 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('unit', {
             url: '/unit',
-            templateUrl: 'unit/unit.html',
+            templateUrl: 'unit/addunit.html',
+            controller:'unitctrl'
+        })
+        .state('updateUnit',{
+            url:'/update',
+            templateUrl:'unit/updateunit.html',
             controller:'unitctrl'
         })
         .state('material', {
