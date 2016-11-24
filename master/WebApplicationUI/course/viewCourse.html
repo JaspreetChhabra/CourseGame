@@ -78,7 +78,7 @@
 -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="../assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                             <span class="hidden-md-down">admin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -125,7 +125,11 @@
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle"><i class="icon-puzzle"></i> Components</a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Unit </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Unit </a>
+<!--
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
                                 <a class="nav-link" href="course.html"><i class="icon-puzzle"></i> BUTTONS</a>
@@ -146,7 +150,9 @@
                                 <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> TABLES</a>
                             </li>
                         </ul>
+-->
                     </li>
+<!--
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ICONS</a>
                         <ul class="nav-dropdown-items">
@@ -234,6 +240,7 @@
                             </li>
                         </ul>
                     </li>
+-->
                 </ul>
             </nav>
         </div>
@@ -243,7 +250,7 @@
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Dashboard</a></li>
-               <li class="active">View Courses </li>
+                <li class="active">View Courses</li>
             </ol>
             
             
@@ -253,10 +260,10 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-primary">
-                                   <h3>{{topic.name}}   <button type="button" class="btn btn-success fa fa-plus pull-rigth" ng-click="addUnit(topics._id)"> Add Unit</button></h3>
+                                   <h5>{{topic.name}}   <button type="button" class="btn btn-success fa fa-plus pull-right" ng-click="addUnit(topics._id)" style="float:right"> Add Unit</button></h5>
                                 </div>
                                  <div class="card-block">
-                                     <h4> Unit Description </h4>
+                                     <Strong> Unit Description </Strong>
                                     <p><div ng-if="topic.desc != ''">{{topic.desc}}</div></p>
                         
                         <div ng-repeat="material in materials">
@@ -297,8 +304,8 @@
                         </div>
                                 <hr/>
                             <div  class="row">
-                               <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addMaterial(topics._id)"> Add Material</button></div>
-                                <div class="col-md-6"><button type="button" class="btn btn-success btn-sm btn-block fa fa-plus" ng-click="addGame(topics._id)"> Add Game </button></div>
+                               <div class="col-md-6"><button type="button" class="btn btn-success btn-lg btn-block fa fa-plus" ng-click="addMaterial(topics._id)"> Add Material</button></div>
+                                <div class="col-md-6"><button type="button" class="btn btn-success btn-lg btn-block fa fa-plus" ng-click="addGame(topics._id)"> Add Game </button></div>
                                 </div>
                         
                     </div>

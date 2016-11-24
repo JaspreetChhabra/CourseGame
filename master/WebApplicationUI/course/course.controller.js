@@ -3,10 +3,16 @@ app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$wi
 
 alert("ms");
 
+
+$scope.cs = {};
+$scope.cs.userId = localStorage.getItem("userID");
+$scope.userId = localStorage.getItem("userID");
+console.log("course" + $scope.userId);
 if(typeof($stateParams.obj) != 'undefined'){
     console.log($stateParams);
-
+    courseID = $stateParams.obj;
     $scope.data = {};
+
 
     var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
      a.get(function(res)
@@ -63,26 +69,27 @@ else{
 
  $scope.addcourse=function()
     {
+     alert("ms");
         var course = $scope.cs;
         console.log(JSON.stringify(course));
 
 
-
-        // var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
-
-        // a.save($scope.course,function(res){
-        //     console.log(res.Status);
-
-        //     if(res.Status == false){
-                    
-        //         alert("Course already Exists");
-        //     }else{
-        //         alert("New Course added Successfully");
-
-        //        // $state.go('dashboard');
-
-        //     }
-        // });
+//
+//        var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+//
+//        a.save(course,function(res){
+//            console.log(res.Status);
+//
+//            if(res.Status == false){
+//                    
+//                alert("Course already Exists");
+//            }else{
+//                alert("New Course added Successfully");
+//
+//                $state.go('dashboard');
+//
+//            }
+//        });
       
     }
     
