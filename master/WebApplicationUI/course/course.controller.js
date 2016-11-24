@@ -67,6 +67,19 @@ else{
             });
         
 
+
+$scope.updateGame = function()
+{
+    alert("heloo");
+ var a=$resource("https://shielded-tor-32602.herokuapp.com/games");
+     a.get(function(res) 
+     {
+        console.log(res);
+      //  console.log(game_id);
+     });  
+   
+}
+
  $scope.addcourse=function()
     {
      alert("ms");
