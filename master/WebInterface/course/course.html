@@ -41,9 +41,10 @@
             </textarea>
        
         </div>
-          
+         <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+
         <label>Select Tag </label>   
-        <select ng-model="cs.tag" ng-options="tag._id as tag.name for tag in tags">
+        <select ng-model="cs.tagId" ng-options="tag._id as tag.name for tag in tags">
           <option style="display:none" value="">Tags</option>      
         </select>
 
