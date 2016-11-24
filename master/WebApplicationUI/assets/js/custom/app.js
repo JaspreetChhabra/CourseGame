@@ -40,9 +40,10 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     })
         .state('updateGame',{
             url:'/updateGame',
-            templateUrl:'addGame/updategame',
-            controller:'addGamectrl'
+            templateUrl:'addGame/updategame.html',
+            controller:'updateGameCtrl'
         })
+        
         .state('home', {
             url: '/home',
             templateUrl: 'login/homepage/pages/index.html',
