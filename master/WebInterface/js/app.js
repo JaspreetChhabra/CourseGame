@@ -66,6 +66,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             controller:'announcementctrl'
         })
 
+        .state('filenew',{
+        url: '/filenew',
+        templateUrl: 'newfile/filetry.html',
+        controller: 'filetryctrl'
+    })
         
         
         $urlRouterProvider.otherwise('/login');
