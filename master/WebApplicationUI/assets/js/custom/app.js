@@ -10,13 +10,13 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         
         .state('register',{
         url: '/register',
-        templateUrl: 'pages-register.html',
+        templateUrl: 'course/pages-register.html',
         controller: 'registerctrl'
     })
 
         .state('course', {
             url: '/course',
-            templateUrl: 'course/course.html',
+            templateUrl: 'components-forms.html',
             controller: 'coursectrl'
         })
 
