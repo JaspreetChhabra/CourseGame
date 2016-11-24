@@ -12,7 +12,7 @@ app.controller('fileUploadctrl',['Upload','$window',function(Upload,$window){
     vm.upload = function (file) {
         console.log("called123");
         Upload.upload({
-            url: 'https://shielded-tor-32602.herokuapp.com/users/login', //webAPI exposed to upload the file
+            url: 'https://shielded-tor-32602.herokuapp.com/upload', //webAPI exposed to upload the file
             data:{file:file} //pass file as data, should be user ng-model
         }).then(function (resp) { //upload function returns a promise
             if(resp.data.error_code === 0){ //validate success

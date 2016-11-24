@@ -41,7 +41,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('dashboard', {
             url: '/dashboard',
-            templateUrl: 'Dashboard/index.html',
+            templateUrl: 'Dashboard/dashboard.html',
             controller:'dashboardctrl'
         })
 
@@ -66,6 +66,11 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             controller:'announcementctrl'
         })
 
+        .state('filenew',{
+        url: '/filenew',
+        templateUrl: 'newfile/filetry.html',
+        controller: 'filetryctrl'
+    })
         
         
         $urlRouterProvider.otherwise('/login');
