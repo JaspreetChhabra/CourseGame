@@ -9,29 +9,14 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         
         .state('register',{
-        url: '/registration',
-        templateUrl: 'register/pages-register.html',
-<<<<<<< HEAD
-=======
-=======
         url: '/register',
-<<<<<<< HEAD
         templateUrl: 'register/pages-register.html',
-=======
-        templateUrl: 'course/pages-register.html',
->>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
->>>>>>> 39bbfd2985cf5856e70fce2559b78f091470e3f6
->>>>>>> c2f58ebce2394dd9049965987b1efe51eaf31a53
         controller: 'registerctrl'
     })
 
         .state('course', {
             url: '/course',
-<<<<<<< HEAD
-            templateUrl: 'course/course.html',
-=======
             templateUrl: 'course/addCourse.html',
->>>>>>> c2f58ebce2394dd9049965987b1efe51eaf31a53
             controller: 'coursectrl'
         })
 
