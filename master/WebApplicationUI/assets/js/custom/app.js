@@ -9,8 +9,8 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         
         .state('register',{
-        url: '/register',
-        templateUrl: 'pages-register.html',
+        url: '/registration',
+        templateUrl: 'register/pages-register.html',
         controller: 'registerctrl'
     })
 
@@ -18,6 +18,15 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             url: '/course',
             templateUrl: 'course/course.html',
             controller: 'coursectrl'
+        })
+
+        .state('viewCourse', {
+            url: '/viewCourse',
+            templateUrl: 'course/viewCourse.html',
+            controller: 'coursectrl',
+             params: {
+                obj: null
+            }
         })
 
         .state('addGame',{
@@ -31,7 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             controller:'homectrl'
         })
         .state('dashboard', {
-            url: '/Dashboard',
+            url: '/dashboard',
             templateUrl: 'Dashboard/index.html',
             controller:'dashboardctrl'
         })
