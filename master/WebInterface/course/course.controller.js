@@ -1,5 +1,10 @@
 
 app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter,$stateParams){
+<<<<<<< HEAD
+
+alert("ms");
+=======
+>>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
 
 $scope.cs = {};
 $scope.cs.userId = localStorage.getItem("userID");

@@ -6,7 +6,7 @@
 * License : https://GenesisUI.com/license.html
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +15,7 @@
         <meta name="author" content="Lukasz Holeczek">
         <meta name="keyword" content="LeafUI Admin - UI Admin Kit Powered by Bootstrap 4">
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-        <title>LeafUI Admin - UI Admin Kit</title>
+        <title>Course Game</title>
         <!-- Main styles for this application -->
         <link href="../assets/css/style.css" rel="stylesheet">
     </head>
@@ -258,7 +258,7 @@
                                 <div class="card-block">
                                    {{courses.desc}}                            
                                 &nbsp;&nbsp;
-                                   <button type="button" class="btn btn-info active">View More</button>
+                                   <button type="button" ng-click="viewCourse(courses._id)" class="btn btn-info active">View More</button>
                                     
                                
                         
@@ -266,6 +266,7 @@
                             </div>
                         </div>
                     </div>
+                      
 <!--                    <div class="card-group m-b-1">-->
 
 <!--

@@ -9,29 +9,56 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         
         .state('register',{
-        url: '/register',
+<<<<<<< HEAD
+        url: '/registration',
         templateUrl: 'register/pages-register.html',
+=======
+        url: '/register',
+<<<<<<< HEAD
+        templateUrl: 'register/pages-register.html',
+=======
+        templateUrl: 'course/pages-register.html',
+>>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
+>>>>>>> 39bbfd2985cf5856e70fce2559b78f091470e3f6
         controller: 'registerctrl'
     })
 
         .state('course', {
             url: '/course',
-            templateUrl: 'course/components-forms.html',
+            templateUrl: 'course/addCourse.html',
             controller: 'coursectrl'
         })
 
+        .state('viewCourse', {
+            url: '/viewCourse',
+            templateUrl: 'course/viewCourse.html',
+            controller: 'coursectrl',
+             params: {
+                obj: null
+            }
+        })
+        .state('updateProfile',{
+            url:'/updateProfile',
+            templateUrl:'profile/updateProfile',
+            controller:'registerctrl'
+        })
         .state('addGame',{
         url: '/addGame',
-        templateUrl: 'addGame/addGame.html',
+        templateUrl: 'addGame/AddGame.html',
         controller: 'addGamectrl'
     })
+        .state('updateGame',{
+            url:'/updateGame',
+            templateUrl:'addGame/updategame',
+            controller:'addGamectrl'
+        })
         .state('home', {
             url: '/home',
             templateUrl: 'login/homepage/pages/index.html',
             controller:'homectrl'
         })
         .state('dashboard', {
-            url: '/Dashboard',
+            url: '/dashboard',
             templateUrl: 'Dashboard/index.html',
             controller:'dashboardctrl'
         })
@@ -43,7 +70,12 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('unit', {
             url: '/unit',
-            templateUrl: 'unit/unit.html',
+            templateUrl: 'unit/addunit.html',
+            controller:'unitctrl'
+        })
+        .state('updateUnit',{
+            url:'/update',
+            templateUrl:'unit/updateunit.html',
             controller:'unitctrl'
         })
         .state('material', {

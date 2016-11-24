@@ -1,6 +1,16 @@
 
 app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter,$stateParams){
 
+<<<<<<< HEAD
+alert("ms");
+
+if(typeof($stateParams.obj) != 'undefined'){
+    console.log($stateParams);
+
+    $scope.data = {};
+
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
+=======
 $scope.cs = {};
 $scope.cs.userId = localStorage.getItem("userID");
 $scope.userId = localStorage.getItem("userID");
@@ -12,6 +22,7 @@ if(typeof($stateParams.obj) != 'undefined'){
 
 
     var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/" + courseID);
+>>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
      a.get(function(res)
      {
          console.log("Courses data " + res.Status);
@@ -71,6 +82,23 @@ else{
 
 
 
+<<<<<<< HEAD
+        // var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+
+        // a.save($scope.course,function(res){
+        //     console.log(res.Status);
+
+        //     if(res.Status == false){
+                    
+        //         alert("Course already Exists");
+        //     }else{
+        //         alert("New Course added Successfully");
+
+        //        // $state.go('dashboard');
+
+        //     }
+        // });
+=======
         var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
 
         a.save(course,function(res){
@@ -86,6 +114,7 @@ else{
 
             }
         });
+>>>>>>> 6d218f915741732dcac139f60e82ffcbcc781836
       
     }
     

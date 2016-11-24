@@ -1989,7 +1989,7 @@ fieldset[disabled] a.btn {
 
 .btn-warning {
   color: #fff;
-  background-color: #f8cb00;
+  background-color: grey;
   border-color: #f8cb00; }
   .btn-warning:hover {
     color: #fff;
