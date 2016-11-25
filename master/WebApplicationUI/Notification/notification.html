@@ -1,0 +1,96 @@
+<!--
+* GenesisUI Bootstrap 4 Admin Template built as framework!
+* Version 1.4.0
+* https://GenesisUI.com
+* Copyright 2016 creativeLabs Łukasz Holeczek
+* License : https://GenesisUI.com/license.html
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+<!--
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="keyword" content=">
+-->
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <title>Course Game</title>
+        <!-- Main styles for this application -->
+        <link href="../assets/css/style.css" rel="stylesheet">
+    </head>
+    <body class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-lg-8">
+                    <div class="card-group vamiddle">
+                        <div class="card  p-a-2">
+                            <div class="card-block">
+                                <center>
+                                <!-- <h2>Notification</h2> -->
+                                
+                                <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="card" class="col-sm-12 col-md-offset-3">
+                                <div class="card-header card-info">
+                                     Send Notification
+                                </div>
+                                <div class="card-block">
+                                   <form class="form" method="post" name="announcements">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label" for="text-input">Title</label>
+                                            <div class="col-sm-9" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
+                                                <input type="text" name="title" id="title" class="form-control" placeholder="Title Name" ng-model="announcements.name" required>
+                                                 <span ng-show="form.title.$dirty && form.title.$error.required" class="help-block"> Title is required</span> 
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 form-control-label" for="textarea-input">Description</label>
+                                            <div class="col-sm-9" ng-class="{ 'has-error': form.desc.$dirty && form.desc.$error.required }">
+                                                <textarea ng-model="announcements.desc" class="form-control" placeholder="Enter text here.." required></textarea>
+                                            
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" ng-model="announcements.courseId" ng-value="courseid" ng-init="announcements.courseId = courseid">
+                                        <input type="hidden" ng-model="announcements.userId" ng-value="userid" ng-init="announcements.userId = userid">
+                                         &nbsp;&nbsp;
+                                   <button type="button" ng-click="sendNotification()" class="btn btn-info active">Send Notification </button> 
+                                   </form>                       
+                                </div>
+                            </div>
+                        </div>
+                        </center>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        <!-- Bootstrap and necessary plugins -->
+        <script src="assets/js/libs/jquery.min.js"></script>
+        <script src="assets/js/libs/tether.min.js"></script>
+        <script src="assets/js/libs/bootstrap.min.js"></script>
+        <script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > 0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+        
+        
+    </body>
+</html>
