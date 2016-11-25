@@ -48,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         .state('upload', {
             url: '/upload',
             templateUrl: 'file/fileupload.html',
-            controller:'fileUploadctrl'
+            controller:'MyCtrl'
         })
         .state('unit', {
             url: '/unit',
