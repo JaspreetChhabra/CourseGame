@@ -1,0 +1,158 @@
+<!--
+* GenesisUI Bootstrap 4 Admin Template built as framework!
+* Version 1.4.0
+* https://GenesisUI.com
+* Copyright 2016 creativeLabs Łukasz Holeczek
+* License : https://GenesisUI.com/license.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="ROOT Admin - UI Admin Kit Powered by Bootstrap 4">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="ROOT Admin - UI Admin Kit Powered by Bootstrap 4">
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <title>Course Game</title>
+        <!-- Main styles for this application -->
+        <link href="assets/css/style.css" rel="stylesheet">
+    </head>
+    <body class="">
+          <form name="form" role="form" novalidate>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 center-block pull-xs-none">
+                    <div class="card vamiddle">
+                        <div class="card-block p-a-2">
+                            <h1>Manage Profile</h1>
+                            <!-- <p class="text-muted">Create your account</p> -->
+                            
+                            
+                            <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required && !form.username.$pristine }">
+                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" ng-model="faculty.firstName" ng-minlength="2" ng-maxlength="15" ng-pattern="/^(\D)+$/"required />
+                                <p ng-show="form.firstName.$error.minlength" class="help-block">Enter Valid Name.</p>
+                               <p ng-show="form.firstName.$error.maxlength" class="help-block">Enter valid name.</p>
+                                <span ng-show="form.firstName.$dirty && form.firstName.$error.required">First name is required </span>
+                            </div>                    
+                            
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.ng-minlength="3" ng-maxlength="8"lastName.$dirty && form.lastName.$error.required && !form.username.$pristine}">
+                                <span class="input-group-addon">
+                                    <i class="icon-user"></i></span>
+                                 <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last name" ng-model="faculty.lastName" ng-minlength="3" ng-maxlength="15" ng-pattern="/^(\D)+$/" required />
+                                 <p ng-show="form.lastName.$error.minlength" class="help-block">Enter Valid Name.</p>
+                               <p ng-show="form.lastName.$error.maxlength" class="help-block">Enter valid name.</p>
+            <span ng-show="form.lastName.$dirty && form.lastName.$error.required">Last name is required</span>
+                            </div>
+                            
+                         <input type="hidden" name="usertype" ng-model="faculty.userType" value="{{userType}}" ng-init="faculty.userType= '1'">
+
+                            
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.username.$dirty && !form.username.$pristine  }">
+                                <span class="input-group-addon">@</span>
+                                <input type="email" name="username" id="username" class="form-control" placeholder="Email Address" ng-model="faculty.username" ng-minlength="10" ng-maxlength="50" required />
+                                <p ng-show="form.username.$invalid && !form.username.$pristine" class="help-block">Enter a valid email.</p>
+                            </div>
+                            
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required && !form.password.$pristine }">
+                                <span class="input-group-addon"><i class="icon-lock"></i></span>
+                               <input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="faculty.password" ng-minlength="8" ng-maxlength="15" ng-pattern="/^\s*\w*\s*$/" required />
+                               <p ng-show="form.password.$error.minlength" class="help-block">Password is too short.</p>
+                               <p ng-show="form.password.$error.maxlength" class="help-block">Password is too long.</p>
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                            </div>
+                            <fieldset class="form-group">
+                            <div class="input-group" ng-class="{ 'has-error': form.contact.$dirty && form.contact.$error.required && !form.contact.$pristine }">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input type="text" id="phone" class="form-control" placeholder="Contact" ng-model="faculty.contact"  ng-minlength="10" ng-maxlength="13" ng-pattern="/^(\d)+$/" required />
+                                                <p ng-show="form.contact.$error.minlength" class="help-block">Minimum 10 digits.</p>
+                                                <p ng-show="form.contact.$error.maxlength" class="help-block">Maximim 13 digits.</p>
+                                    <span ng-show="form.contact.$dirty && form.contact.$error.required" class="help-block">Contact is required</span>
+                            </div>
+                                
+                                
+                            </fieldset>
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.specialization.$dirty && form.specialization.$error.required && !form.specialization.$pristine }">
+                                <span class="input-group-addon"><i class="fa fa-book"></i></span>
+                               <input type="text" name="specialization" id="specialization" class="form-control" placeholder="Specialization" ng-model="faculty.specialization"  ng-minlength="5" ng-maxlength="50" ng-pattern="/^(\D)+$/" required />
+                               <p ng-show="form.specialization.$error.minlength" class="help-block">Specialization is too short.</p>
+                               <p ng-show="form.specialization.$error.maxlength" class="help-block">Specialization is too long.</p>
+                                <span ng-show="form.specialization.$dirty && form.specialization.$error.required" class="help-block">Specialization is required</span>
+                            </div>
+                            
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.university.$dirty && form.university.$error.required && !form.university.$pristine }">
+                                <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                <input type="text" name="university" id="university" class="form-control" placeholder="University" ng-model="faculty.university"  ng-minlength="2" ng-maxlength="50" ng-pattern="/^(\D)+$/"required />
+                                <p ng-show="form.university.$error.minlength" class="help-block">University Name is too short.</p>
+                               <p ng-show="form.university.$error.maxlength" class="help-block">University Name is too long.</p>
+            <span ng-show="form.university.$dirty && form.university.$error.required" class="help-block">University is required</span>
+                            </div>
+                                                                                                        
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required && !form.city.$pristine }">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" name="city" id="city" class="form-control" placeholder="City" ng-model="faculty.city"  ng-minlength="3" ng-maxlength="30" ng-pattern="/^(\D)+$/" required />
+                                <p ng-show="form.city.$error.minlength" class="help-block">City Name is too short.</p>
+                               <p ng-show="form.city.$error.maxlength" class="help-block">City Name is too long.</p>
+            <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">City is required</span>
+                            </div>
+                                                                                            
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required && !form.country.$pristine }">
+                                <span class="input-group-addon"><i class="fa fa-flag-o"></i></span>
+                                <input type="text" name="country" id="country" class="form-control" placeholder="Country" ng-model="faculty.country"  ng-minlength="3" ng-maxlength="30" ng-pattern="/^(\D)+$/" required />
+                                <p ng-show="form.country.$error.minlength" class="help-block">Country Name is too short.</p>
+                               <p ng-show="form.country.$error.maxlength" class="help-block">Country Name is too long.</p>
+            <span ng-show="form.country.$dirty && form.country.$error.required" class="help-block">Country is required</span>
+                            </div>
+                                                                                                  
+                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="profile()">Create Account</button>
+                        </div>
+                    </div>                                                                                                      
+                </div>
+            </div>
+        </div>   
+        </form>
+        <!-- Bootstrap and necessary plugins -->
+        <script src="assets/js/libs/jquery.min.js"></script>
+        <script src="assets/js/libs/tether.min.js"></script>
+        <script src="assets/js/libs/bootstrap.min.js"></script>
+         <script src="assets/js/views/forms.js"></script>
+         <script src="assets/js/libs/jquery.min.js"></script>
+        <script src="assets/js/libs/tether.min.js"></script>
+        <script src="assets/js/libs/bootstrap.min.js"></script>
+        <script src="assets/js/libs/pace.min.js"></script>
+        <!-- Plugins and scripts required by all views -->
+        <script src="assets/js/libs/Chart.min.js"></script>
+        <script src="assets/js/views/shared.js"></script>
+        <!-- GenesisUI main scripts -->
+        <script src="assets/js/app.js"></script>
+        <!-- Plugins and scripts required by this views -->
+        <script src="assets/js/libs/jquery.maskedinput.min.js"></script>
+        <script src="assets/js/libs/moment.min.js"></script>
+        <script src="assets/js/libs/select2.min.js"></script>
+        <script src="assets/js/libs/daterangepicker.min.js"></script>
+        <!-- Custom scripts required by this view -->
+        <script src="assets/js/views/forms.js"></script>
+        
+        <script>
+        function verticalAlignMiddle()
+        {
+            var bodyHeight = $(window).height();
+            var formHeight = $('.vamiddle').height();
+            var marginTop = (bodyHeight / 2) - (formHeight / 2);
+            if (marginTop > 0)
+            {
+                $('.vamiddle').css('margin-top', marginTop);
+            }
+        }
+        $(document).ready(function()
+        {
+            verticalAlignMiddle();
+        });
+        $(window).bind('resize', verticalAlignMiddle);
+        </script>
+        
+        
+    </body>
+</html>

@@ -7,7 +7,14 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             templateUrl: 'login/pages-login.html',
             controller:'loginctrl'
         })
-        
+        .state('notification', {
+            url: '/notification',
+            templateUrl: 'Notification/notification.html',
+            controller:'notificationCtrl',
+             params: {
+                cId: null
+            }
+        })        
         .state('register',{
         url: '/register',
         templateUrl: 'register/pages-register.html',
@@ -39,7 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('updateProfile',{
             url:'/updateProfile',
-            templateUrl:'profile/updateProfile.html',
+            templateUrl:'profile/UpdateProfile1.html',
             controller:'updateProfile'
         })
         .state('addGame',{
