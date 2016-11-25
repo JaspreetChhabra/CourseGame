@@ -26,8 +26,8 @@
                 <div class="col-md-5 center-block pull-xs-none">
                     <div class="card vamiddle">
                         <div class="card-block p-a-2">
-                            <h1>Register</h1>
-                            <p class="text-muted">Create your account</p>
+                            <h1>Manage Profile</h1>
+                            <!-- <p class="text-muted">Create your account</p> -->
                             
                             
                             <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required && !form.username.$pristine }">
@@ -106,7 +106,7 @@
             <span ng-show="form.country.$dirty && form.country.$error.required" class="help-block">Country is required</span>
                             </div>
                                                                                                   
-                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="submit()">Create Account</button>
+                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="profile()">Create Account</button>
                         </div>
                     </div>                                                                                                      
                 </div>
@@ -121,12 +121,12 @@
          <script src="assets/js/libs/jquery.min.js"></script>
         <script src="assets/js/libs/tether.min.js"></script>
         <script src="assets/js/libs/bootstrap.min.js"></script>
-        <script src="../assets/js/libs/pace.min.js"></script>
+        <script src="assets/js/libs/pace.min.js"></script>
         <!-- Plugins and scripts required by all views -->
         <script src="assets/js/libs/Chart.min.js"></script>
         <script src="assets/js/views/shared.js"></script>
         <!-- GenesisUI main scripts -->
-        <script src="../assets/js/app.js"></script>
+        <script src="assets/js/app.js"></script>
         <!-- Plugins and scripts required by this views -->
         <script src="assets/js/libs/jquery.maskedinput.min.js"></script>
         <script src="assets/js/libs/moment.min.js"></script>

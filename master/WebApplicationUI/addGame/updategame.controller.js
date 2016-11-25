@@ -20,7 +20,7 @@ if(typeof($stateParams.gameId) != 'undefined'){
          console.log("game" + $scope.game);
 
          var formatDate= $scope.game.startTime;
-         $scope.game.startTime= formatDate | date: "yyyy-MM-dd";
+       //  $scope.game.startTime= formatDate | date: "yyyy-MM-dd";
 
       
          //var formatDate1= $scope.game.startTime;
