@@ -250,7 +250,7 @@
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Dashboard</a></li>
-                <li class="active">Add Course</li>
+                <li class="active">Update Course</li>
             </ol>
             <div class="container-fluid">
                 <div class="animated fadeIn">
@@ -260,7 +260,7 @@
                         <div class="col-md-6-offset-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong>Add Course</strong> 
+                                    <strong>Update Course</strong> 
                                 </div>
                                 <form id="courseForm" method="post" name= "form">
                                 <div class="card-block">
@@ -271,7 +271,7 @@
                                     <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="text-input">Course Name </label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
-                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="cs.name" required>
+                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="course.name" required>
                                                  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> 
                                             </div>
                                         </div>
@@ -285,18 +285,20 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
-                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.." required></textarea>
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="course.desc" placeholder="Course Description.." required></textarea>
                                                 <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span>
                                             </div>
                                         </div>
 
                                         <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
 
+                                        <input type="hidden" name="userId" ng-model="course._id">
+
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="select">Select Tag</label>
                                             
                                             <div class="col-md-9">
-                                                <select class="form-control" size="1" ng-model="cs.tagId" ng-options="tag._id as tag.name for tag in tags">
+                                                <select class="form-control" size="1" ng-model="course.tagId" ng-options="tag._id as tag.name for tag in tags">
                                                      <option style="display:none" value="">Tags</option>
                                                 </select>
                                             </div>
@@ -307,39 +309,39 @@
                                             <label class="col-md-3 form-control-label">Programme</label>
                                             <div class="col-md-9">
                                                 <label class="checkbox-inline" for="inline-checkbox1">
-                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="cs.pr.MSCIT.checked" ng-checked="cs.pr.checked" ng-change="ShowHide()">MSC IT
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.MSCIT.checked" ng-checked="course.pr.MSCIT.checked" ng-change="ShowHide()">MSC IT
                                                 </label>
-                                                <div ng-show="IsVisible">
+                                               <br/>
                                                 <label class="checkbox-inline" for="inline-checkbox2">
-                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="cs.pr.MSCIT.M1.checked" ng-checked="cs.pr.M1.checked" ng-value="1" name="1">SEM 1
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="course.pr.MSCIT.M1.checked" ng-checked="course.pr.M1.checked" ng-value="1" name="1">SEM 1
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.MSCIT.M2.checked" ng-checked="cs.pr.M2.checked">SEM 2
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.MSCIT.M3.checked" ng-checked="cs.pr.M3.checked">SEM 3
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="cs.pr.MSCIT.M4.checked" ng-checked="cs.pr.M4.checked">SEM 4
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="course.pr.MSCIT.M4.checked">SEM 4
                                                 </label>
-                                                </div>
+                                                <br/>
                                                 <label class="checkbox-inline" for="inline-checkbox1">
-                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="cs.pr.BTECH.checked" ng-checked="cs.pr.BTECH.checked" value="BTECH" ng-change="ShowHide1()">B.TECH
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.BTECH.checked" ng-checked="course.pr.BTECH.checked" ng-change="ShowHide1()">B.TECH
                                                 </label>
-                                                <div ng-show="IsVisible1">
+                                                
                                                 <label class="checkbox-inline" for="inline-checkbox2">
-                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.M1.checked" value="1">SEM 1
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="course.pr.BTECH.M1.checked" ng-checked="course.pr.M1.checked" value="1">SEM 1
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M2.checked" ng-checked="cs.pr.M2.checked">SEM 2
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M3.checked" ng-checked="cs.pr.M3.checked">SEM 3
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M4.checked" ng-checked="cs.pr.M4.checked">SEM 4
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M4.checked" ng-checked="course.pr.M4.checked">SEM 4
                                                 </label>
-                                                </div>
+                                                
                                             </div>
                                     </div>
                                 </div>

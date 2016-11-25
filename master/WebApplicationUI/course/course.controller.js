@@ -25,8 +25,22 @@ if(typeof($stateParams.obj) != 'undefined'){
     });
 
 }
-else{
- console.log("hello");   
+
+if(typeof($stateParams.courseId) != 'undefined'){
+    console.log($stateParams.courseId);
+    courseID = $stateParams.courseId;
+    $scope.courseData = {};
+
+
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
+     a.get(function(res)
+     {
+         console.log("Courses data " + res.course);
+         console.log(res);
+         $scope.course = res.course;
+         
+    });
+
 }
 
 
@@ -87,22 +101,48 @@ $scope.updateGame = function()
         console.log(JSON.stringify(course));
 
 
-//
-//        var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
-//
-//        a.save(course,function(res){
-//            console.log(res.Status);
-//
-//            if(res.Status == false){
-//                    
-//                alert("Course already Exists");
-//            }else{
-//                alert("New Course added Successfully");
-//
-//                $state.go('dashboard');
-//
-//            }
-//        });
+
+       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+
+       a.save(course,function(res){
+           console.log(res.Status);
+
+           if(res.Status == false){
+                   
+               alert("Course already Exists");
+           }else{
+               alert("New Course added Successfully");
+
+               $state.go('dashboard');
+
+           }
+       });
+      
+    }
+
+    $scope.updatecourse=function()
+    {
+     alert("update course");
+        var course = $scope.course;
+        console.log(JSON.stringify(course));
+
+
+        
+       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+
+       a.save(course,function(res){
+           console.log(res.Status);
+
+           if(res.Status == false){
+                   
+               alert("Course already Exists");
+           }else{
+               alert("New Course added Successfully");
+
+               $state.go('dashboard');
+
+           }
+       });
       
     }
     

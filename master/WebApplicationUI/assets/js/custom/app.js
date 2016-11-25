@@ -14,6 +14,15 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         controller: 'registerctrl'
     })
 
+        .state('updateCourse', {
+            url: '/updateCourse',
+            templateUrl: 'course/updateCourse.html',
+            controller: 'coursectrl',
+             params: {
+                courseId: null
+            }
+        })
+
         .state('course', {
             url: '/course',
             templateUrl: 'course/addCourse.html',

@@ -126,7 +126,7 @@
                     </li>
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
-                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" href="#/addCourse?courseId=" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
                         <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Unit </a>
                         <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Unit </a>
 <!--
@@ -260,7 +260,7 @@
                         <div class="col-sm-6 col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                     {{courses.name}}
+                                     {{courses.name}} <button type="button" class="btn btn-success fa fa-pencil-square-o pull-right" ng-click="updateCourse(courses._id)" style="float:right"> Update Course</button>
                                 </div>
                                 <div class="card-block">
                                    {{courses.desc}}                            

@@ -1,14 +1,12 @@
 app.controller("addGamectrl",function($scope,$resource,$state,$http){
    
-  var a=$resource("http://shielded-tor-32602.herokuapp.com/games");
+  var a=$resource("http://shielded-tor-32602.herokuapp.com/games/list");
         a.get(function(res){
             console.log(res);
             // $scope.game = {};
 
-            $scope.up = res.Result;
-            console.log($scope.up);
+            $scope.game = res.Result;
 
-             console.log(res.Result[0].title);
         });
 
      var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/tags");
