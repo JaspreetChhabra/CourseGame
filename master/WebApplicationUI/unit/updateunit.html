@@ -27,7 +27,7 @@
 		2. 'fixed-nav'			  - Fixed navigation
 		3. 'navbar-fixed'		  - Fixed navbar
 	-->
-     <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="coursectrl">
+     <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="unitupdatectrl">
         <header class="navbar">
             <div class="container-fluid">
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
@@ -309,7 +309,7 @@
 
                                        
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="submit()"><i class="fa fa-dot-circle-o"></i> Update </button>
+                                            <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="unitUpdate()"><i class="fa fa-dot-circle-o"></i> Update </button>
                                             <a href="" class="btn btn-link"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
                                         </div>  
                                     </form>

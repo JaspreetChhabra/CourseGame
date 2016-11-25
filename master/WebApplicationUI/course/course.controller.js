@@ -89,18 +89,19 @@ $scope.updateGame = function(gameID)
     $state.go('updateGame', {gameId : gameID})
    
 }
+$scope.unitUpdate= function(topicID)
+{
+  alert(JSON.stringify(topicID));
+     //console.log(topicID);
+     $state.go('updateUnit', {topicId : topicID})
+   
+}
 
  $scope.addcourse=function()
     {
-    
-        var course = $scope.cs;
-        console.log(JSON.stringify(course));
+     var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
 
-
-
-       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
-
-       a.save(course,function(res){
+          a.save(course,function(res){
            console.log(res.Status);
 
            if(res.Status == false){

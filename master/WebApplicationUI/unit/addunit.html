@@ -279,7 +279,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="email-input">Start Time</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.startTime.$dirty && form.startTime.$error.required }">
-                                                <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="startTime" class="form-control" class="datetimepicker1" class="input-append date" placeholder="Start Time" ng-model="topics.startTime" required></input>
+                                                <input date-format="dd/MM/yyyy hh:mm:ss" type="date" name="startTime" class="form-control" class="datetimepicker1" class="input-append date" placeholder="Start Time" ng-model="topics.startTime" required></input>
                                                 <span class="add-on">
                                                     <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                                     </i>
@@ -290,7 +290,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" >End Time</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.endTime.$dirty && form.endTime.$error.required }">
-                                                <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="endTime" class="form-control" class="datetimepicker1" class="input-append date" placeholder="End Time" ng-model="topics.endTime" required></input>
+                                                <input date-format="dd/MM/yyyy hh:mm:ss" type="date" name="endTime" class="form-control" class="datetimepicker1" class="input-append date" placeholder="End Time" ng-model="topics.endTime" required></input>
                                                 <span class="add-on">
                                                     <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                                                     </i>
@@ -302,14 +302,14 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
                                             <div class="col-md-9">
-                                                <textarea name="desc" id="desc" class="form-control" placeholder="Topic Description.." ng-model="topics.desc" ng-minlength="5" ng-maxlength="125" ng-pattern="/^\s*\w*\s*$/" required></textarea>
-                                                 <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Desc is required</span>
+                                                <textarea name="desc" id="desc" class="form-control" placeholder="Topic Description.." ng-model="topics.desc" ng-minlength="5" ng-maxlength="125" required></textarea>
+                                                 <!-- <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Desc is required</span> -->
                                             </div>
                                         </div>
 
                                        
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="submit()"><i class="fa fa-dot-circle-o"></i> Add</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="addUnit()"><i class="fa fa-dot-circle-o"></i> Add</button>
                                             <a href="" class="btn btn-link"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
                                         </div>  
                                     </form>

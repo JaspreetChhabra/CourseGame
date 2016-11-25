@@ -80,7 +80,7 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         .state('updateUnit',{
             url:'/update',
             templateUrl:'unit/updateunit.html',
-            controller:'unitctrl'
+            controller:'unitupdatectrl'
         })
         .state('material', {
             url: '/material',
