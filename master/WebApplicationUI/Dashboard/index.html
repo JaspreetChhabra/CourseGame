@@ -257,18 +257,34 @@
                     <div class="container-fluid">
                 <div class="animated fadeIn">
                     <div class="row row-equal" ng-repeat = "courses in addedCourses">
-                        <div class="col-sm-6 col-md-4">
+                        <div class="col-sm-8 col-md-4 col-lg-8">
                             <div class="card">
                                 <div class="card-header">
                                      {{courses.name}} <button type="button" class="btn btn-success fa fa-pencil-square-o pull-right" ng-click="updateCourse(courses._id)" style="float:right"> Update Course</button>
                                 </div>
                                 <div class="card-block">
                                    {{courses.desc}}                            
-                                &nbsp;&nbsp;
+                                &nbsp;&nbsp;</br></br>
                                    <button type="button" ng-click="viewCourse(courses._id)" class="btn btn-info active">View More</button>
                                     
                                
                         
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 col-md-4 col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                     Send Notification
+                                </div>
+                                <div class="card-block">
+                                   <form>
+                                       <input type="text" name="title">
+                                       <textarea>Desc</textarea>
+                                       <input type="hidden" name="">
+                                       &nbsp;&nbsp;
+                                   <button type="button" ng-click="viewCourse(courses._id)" class="btn btn-info active">View More</button>
+                                   </form>                            
                                 </div>
                             </div>
                         </div>
