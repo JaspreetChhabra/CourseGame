@@ -35,13 +35,13 @@
                                     <span class="input-group-addon"><i class="icon-user"></i></span>
                                     <input id="user" type="text" class="form-control" name="user"
 										value="" placeholder="userid" autocomplete="off"  
-										required value=""  ng-model="user.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" >
+										required value=""  ng-model="user.username" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-minlength="10" ng-maxlength="50" >
                                 </div>
                                 <div class="input-group m-b-2">
                                     <span class="input-group-addon"><i class="icon-lock"></i></span>
                                    <input id="password"
 										type="password" class="form-control" name="password"
-										placeholder="Password" required value="" ng-model="user.password">
+										placeholder="Password" required value="" ng-model="user.password" ng-minlength="8" ng-maxlength="15">
                                 </div>
                                 <input type="hidden" name="usertype" ng-model="user.userType" value="{{userType}}" ng-init="user.userType= '1'">
 							<div id="checkbox" class="checkbox"	style="margin-bottom: 25px;">
