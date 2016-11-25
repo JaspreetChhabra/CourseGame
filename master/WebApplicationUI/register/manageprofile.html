@@ -20,87 +20,77 @@
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
     <body class="">
-          <form name="form" role="form" novalidate>
+          <form name="form" role="form">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 center-block pull-xs-none">
                     <div class="card vamiddle">
                         <div class="card-block p-a-2">
-                            <h1>Manage Profile</h1>
-<!--                            <p class="text-muted">Create your account</p>-->
+                            <h1>Register</h1>
+                            <p class="text-muted">Create your account</p>
                             
                             
-                            <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required && !form.username.$pristine }">
+                            <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
                                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" ng-model="faculty.firstName" ng-minlength="2" ng-maxlength="15" ng-pattern="/^(\D)+$/"required />
+                                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" ng-model="faculty.firstName" required />
                                 <span ng-show="form.firstName.$dirty && form.firstName.$error.required">First name is required </span>
                             </div>                    
                             
-                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.ng-minlength="3" ng-maxlength="8"lastName.$dirty && form.lastName.$error.required && !form.username.$pristine}">
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
                                 <span class="input-group-addon">
                                     <i class="icon-user"></i></span>
-                                 <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last name" ng-model="faculty.lastName" ng-minlength="3" ng-maxlength="15" ng-pattern="/^(\D)+$/" required />
+                                 <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last name" ng-model="faculty.lastName" required />
             <span ng-show="form.lastName.$dirty && form.lastName.$error.required">Last name is required</span>
                             </div>
                             
                          <input type="hidden" name="usertype" ng-model="faculty.userType" value="{{userType}}" ng-init="faculty.userType= '1'">
 
                             
-                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.username.$dirty && !form.username.$pristine  }">
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
                                 <span class="input-group-addon">@</span>
-<<<<<<< HEAD:master/WebApplicationUI/register/updateProfile.html
-                                <input type="email" name="username" id="username" class="form-control" placeholder="Email Address" ng-model="faculty.username" ng-minlength="10" ng-maxlength="50" required />
-                                <p ng-show="form.username.$invalid && !form.username.$pristine" class="help-block">Enter a valid email.</p>
-=======
                                 <input type="email" name="username" id="username" class="form-control" placeholder="Email Address" ng-model="faculty.username" required />
             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
->>>>>>> ff65dc80da3c3d06d04f01de566ed5e513049bba:master/WebApplicationUI/profile/updateProfile.html
                             </div>
                             
-                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required && !form.password.$pristine }">
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                               <input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="faculty.password" ng-minlength="8" ng-maxlength="15" ng-pattern="/^\s*\w*\s*$/" required />
+                               <input type="password" name="password" id="password" class="form-control" placeholder="Password" ng-model="faculty.password" required />
             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                             </div>
                             <fieldset class="form-group">
-                            <div class="input-group" ng-class="{ 'has-error': form.contact.$dirty && form.contact.$error.required && !form.contact.$pristine }">
+                            <div class="input-group" ng-class="{ 'has-error': form.contact.$dirty && form.contact.$error.required }">
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                                <input type="text" id="phone" class="form-control" placeholder="Contact" ng-model="faculty.contact"  ng-minlength="10" ng-maxlength="13" ng-pattern="/^(\d)+$/" required />
+                                                <input type="text" id="phone" class="form-control" placeholder="Contact" ng-model="faculty.contact" required />
                                     <span ng-show="form.contact.$dirty && form.contact.$error.required" class="help-block">Contact is required</span>
                             </div>
                                 
                                 
                             </fieldset>
-<<<<<<< HEAD:master/WebApplicationUI/register/updateProfile.html
-                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.specialization.$dirty && form.specialization.$error.required && !form.specialization.$pristine }">
-=======
                             <div class="input-group m-b-1" ng-class="{ 'has-error': form.specialization.$dirty && form.specialization.$error.required }">
->>>>>>> ff65dc80da3c3d06d04f01de566ed5e513049bba:master/WebApplicationUI/profile/updateProfile.html
                                 <span class="input-group-addon"><i class="fa fa-book"></i></span>
-                               <input type="text" name="specialization" id="specialization" class="form-control" placeholder="Specialization" ng-model="faculty.specialization"  ng-minlength="5" ng-maxlength="50" ng-pattern="/^(\D)+$/" required />
+                               <input type="text" name="specialization" id="specialization" class="form-control" placeholder="Specialization" ng-model="faculty.specialization" required />
             <span ng-show="form.specialization.$dirty && form.specialization.$error.required" class="help-block">specialization is required</span>
                             </div>
                             
-                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.university.$dirty && form.university.$error.required && !form.university.$pristine }">
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.university.$dirty && form.university.$error.required }">
                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                <input type="text" name="university" id="university" class="form-control" placeholder="University" ng-model="faculty.university"  ng-minlength="2" ng-maxlength="50" ng-pattern="/^(\D)+$/"required />
+                                <input type="text" name="university" id="university" class="form-control" placeholder="University" ng-model="faculty.university" required />
             <span ng-show="form.university.$dirty && form.university.$error.required" class="help-block">University is required</span>
                             </div>
                                                                                                         
-                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required && !form.city.$pristine }">
+                            <div class="input-group m-b-1" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
                                 <span class="input-group-addon"><i class="fa fa-car"></i></span>
-                                <input type="text" name="city" id="city" class="form-control" placeholder="City" ng-model="faculty.city"  ng-minlength="3" ng-maxlength="30" ng-pattern="/^(\D)+$/" required />
+                                <input type="text" name="city" id="city" class="form-control" placeholder="City" ng-model="faculty.city" required />
             <span ng-show="form.city.$dirty && form.city.$error.required" class="help-block">City is required</span>
                             </div>
                                                                                             
-                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required && !form.country.$pristine }">
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.country.$dirty && form.country.$error.required }">
                                 <span class="input-group-addon"><i class="fa fa-flag-o"></i></span>
-                                <input type="text" name="country" id="country" class="form-control" placeholder="Country" ng-model="faculty.country"  ng-minlength="3" ng-maxlength="30" ng-pattern="/^(\D)+$/" required />
+                                <input type="text" name="country" id="country" class="form-control" placeholder="Country" ng-model="faculty.country" required />
             <span ng-show="form.country.$dirty && form.country.$error.required" class="help-block">Country is required</span>
                             </div>
                                                                                                   
-                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="submit()">Update Account</button>
-                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="../Dashboard/index.html()">Cancel</button>
+                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="submit()">Create Account</button>
                         </div>
                     </div>                                                                                                      
                 </div>

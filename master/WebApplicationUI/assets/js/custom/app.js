@@ -39,8 +39,13 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('updateProfile',{
             url:'/updateProfile',
+<<<<<<< HEAD
             templateUrl:'register/updateProfile',
             controller:'registerctrl'
+=======
+            templateUrl:'profile/updateProfile.html',
+            controller:'updateProfile'
+>>>>>>> ff65dc80da3c3d06d04f01de566ed5e513049bba
         })
         .state('addGame',{
         url: '/addGame',
