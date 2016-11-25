@@ -1,12 +1,12 @@
-app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
+app.controller("updateProfile",function($scope,$resource,$state,$http,$location){
      
-     $scope.submit=function()
+     $scope.profile=function()
     {
         var user = $scope.faculty;
         console.log(user);
 
         $scope.user = { "username" : "bjscdb", "password" : "25"};
-        var a=$resource("https://shielded-tor-32602.herokuapp.com/users/register");
+ //       var a=$resource("https://shielded-tor-32602.herokuapp.com/users/update");
 
         a.save(user,function(res)
         {
@@ -20,7 +20,6 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
                 alert("Data inserted Successfully");
 
                 $state.go('dashboard');
-
             }
         });
     }
