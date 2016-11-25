@@ -26,8 +26,8 @@
                 <div class="col-md-5 center-block pull-xs-none">
                     <div class="card vamiddle">
                         <div class="card-block p-a-2">
-                            <h1>Manage Profile</h1>
-<!--                            <p class="text-muted">Create your account</p>-->
+                            <h1>Register</h1>
+                            <p class="text-muted">Create your account</p>
                             
                             
                             <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
@@ -90,8 +90,7 @@
             <span ng-show="form.country.$dirty && form.country.$error.required" class="help-block">Country is required</span>
                             </div>
                                                                                                   
-                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="submit()">Update Account</button>
-                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="../Dashboard/index.html()">Cancel</button>
+                            <button type="button" class="btn btn-block btn-success" ng-disabled="form.$invalid || vm.dataLoading"  ng-click="submit()">Create Account</button>
                         </div>
                     </div>                                                                                                      
                 </div>
