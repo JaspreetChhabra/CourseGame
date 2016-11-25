@@ -30,7 +30,14 @@
                             <div class="card-block">
                                 <h1>Login</h1>
                                 <p class="text-muted">Sign In to your account</p>
-                                <div class="form-group row">
+                                <div class="col-sm-8 col-md-4 col-lg-4">
+                            <div class="card">
+                                <div class="card-header card-info">
+                                     Send Notification
+                                </div>
+                                <div class="card-block">
+                                   <form class="form" method="post" name="announcements">
+                                        <div class="form-group row">
                                             <label class="col-sm-3 form-control-label" for="text-input">Title Name </label>
                                             <div class="col-sm-9" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
                                                 <input type="text" name="title" id="title" class="form-control" placeholder="Title" ng-model="announcements.name" required>
@@ -41,28 +48,20 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 form-control-label" for="textarea-input">Description</label>
                                             <div class="col-sm-9" ng-class="{ 'has-error': form.desc.$dirty && form.desc.$error.required }">
-                                                <textarea name="desc" id="desc" class="form-control" rows="1" ng-model="announcements.desc" placeholder="" required></textarea>
-                                                <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Notification Description is required</span>
+                                                <textarea ng-model="announcements.desc" required></textarea>
+                                            
                                             </div>
                                         </div>
 
                                         <input type="hidden" ng-model="announcements.courseId" ng-value="courses._id" ng-init="announcements.courseId = courses._id">
                                         <input type="hidden" ng-model="announcements.userId" ng-value="userid" ng-init="announcements.userId = userid">
                                          &nbsp;&nbsp;
-                                   <button type="button" ng-click="sendNotification(announcements)" class="btn btn-info active">Send Notification </button>
+                                   <button type="button" ng-click="sendNotification()" class="btn btn-info active">Send Notification </button> 
+                                   </form>                       
                                 </div>
                             </div>
                         </div>
-                        <div class="card card-inverse card-primary p-y-3" style="width:44%">
-                            <div class="card-block text-xs-center">
-                                <div>
-                                    <h2>Sign up Now</h2>
-                                    <p>Sign Up now and interact with your students in a mordern way.
-                                    </p>
-                                    <button type="button" class="btn btn-primary active m-t-1" ng-click="redirect()">Register Now!</button>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

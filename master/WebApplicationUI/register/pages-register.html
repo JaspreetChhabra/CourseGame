@@ -36,7 +36,7 @@
                                 <span ng-show="form.firstName.$dirty && form.firstName.$error.required">First name is required </span>
                             </div>                    
                             
-                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.ng-minlength="3" ng-maxlength="8"lastName.$dirty && form.lastName.$error.required && !form.username.$pristine}">
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.lastName.$error.required && !form.username.$pristine}">
                                 <span class="input-group-addon">
                                     <i class="icon-user"></i></span>
                                  <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last name" ng-model="faculty.lastName" ng-minlength="3" ng-maxlength="15" ng-pattern="/^(\D)+$/" required />

@@ -1,6 +1,7 @@
 app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state) {
 
     $scope.addedCourses = {};
+    $scope.announcements = "";
 
     userID = localStorage.getItem("userID");
     console.log("dashboard " + userID);
@@ -33,6 +34,10 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
 
     }
 
+    $scope.addcourse = function(){
+        $state.go('course');
+    }
+
     $scope.updateCourse = function(courseID)
     {
         alert(courseID);
@@ -44,6 +49,15 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
         alert(courseID);
 
         $state.go('updateProfile' , {courseId : courseID})
+    }
+
+    $scope.sendNotification = function(courseID){
+
+        console.log(courseID);
+
+        //announcements/insert
+
+        $state.go("notification", {cId : courseID});
     }
 });
 

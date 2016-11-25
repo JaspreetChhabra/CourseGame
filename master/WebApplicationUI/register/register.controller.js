@@ -14,10 +14,10 @@ app.controller("registerctrl",function($scope,$resource,$state,$http,$location){
             if(res.Status == false)
             {
                     
-                alert("Username already exists.");
+                alert("Username already exists !! Please try with a new email ID");
             }else
             {
-                alert("Data inserted Successfully");
+                alert("registered Successfully :)");
 
                 $state.go('dashboard');
 
