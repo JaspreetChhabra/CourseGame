@@ -1,4 +1,4 @@
-<!--
+d<!--
 * GenesisUI Bootstrap 4 Admin Template built as framework!
 * Version 1.4.0
 * https://GenesisUI.com
@@ -27,7 +27,7 @@
 		2. 'fixed-nav'			  - Fixed navigation
 		3. 'navbar-fixed'		  - Fixed navbar
 	-->
-    <body class="navbar-fixed sidebar-nav fixed-nav">
+    <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="coursectrl">
         <header class="navbar">
             <div class="container-fluid">
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
@@ -78,7 +78,7 @@
 -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img src="../assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                             <span class="hidden-md-down">admin</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -126,9 +126,9 @@
                     </li>
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
-                        <a class="nav-link nav-dropdown-toggle" href="#/addCourse?courseId=" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
-                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Unit </a>
-                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Unit </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="updatecourse()"><i class="icon-puzzle"></i> Update Courses </a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
 <!--
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
@@ -250,113 +250,112 @@
             <ol class="breadcrumb m-b-0">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Dashboard</a></li>
-<!--                <li class="active">Add Unit</li>-->
+                <li class="active">Update Course</li>
             </ol>
             <div class="container-fluid">
                 <div class="animated fadeIn">
-                    <div class="container-fluid">
-                <div class="animated fadeIn">
-                    <div class="row row-equal" ng-repeat = "courses in addedCourses">
-                        <div class="col-sm-6 col-md-4">
+                    <body ng-controller="coursectrl">
+<br><br>
+ <div class="row">
+                        <div class="col-md-6-offset-3">
                             <div class="card">
                                 <div class="card-header">
-                                     {{courses.name}} <button type="button" class="btn btn-success fa fa-pencil-square-o pull-right" ng-click="updateCourse(courses._id)" style="float:right"> Update Course</button>
+                                    <strong>Update Course</strong> 
                                 </div>
+                                <form id="courseForm" method="post" name= "form">
                                 <div class="card-block">
-                                   {{courses.desc}}                            
-                                &nbsp;&nbsp;
-                                   <button type="button" ng-click="viewCourse(courses._id)" class="btn btn-info active">View More</button>
+<!--
+                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                        
+-->
+                                    <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Course Name </label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
+                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="course.name" required>
+                                                 <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> 
+                                            </div>
+                                        </div>
+                                        
                                     
-                               
-                        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                      
-<!--                    <div class="card-group m-b-1">-->
+                                          <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
 
-<!--
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="h1 text-muted text-xs-right m-b-2">
-                                    <i class="icon-people"></i>
-                                </div>
-                                <div class="h4 m-b-0">87.500</div>
-                                <small class="text-muted text-uppercase font-weight-bold">Visitors</small>
-                                <progress class="progress progress-xs progress-info m-t-1 m-b-0" value="25" max="100">25%</progress>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4">
-                            <div class="card card-inverse card-danger text-xs-center">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                        <footer>Someone famous in
-                                            <cite title="Source Title">Source Title</cite>
-                                        </footer>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
--->
-<!--
-                        <div class="row row-equal" ng-repeat = "courses in addedCourses">
-                        <div class="col-lg-6 col-lg-4">
-                            <div class="card card-inverse card-success">
-                                <div class="card-header">
-                                   {{courses.name}}
-                                </div>
-                                <div class="card-block card-primary">
-                                   {{courses.desc}}
-                                    <button ng-click="viewCourse(courses._id)">View More</button>
-                                </div>
--->
-                            </div>
-                        </div>
-                        <!--<div class="card">
-                            <div class="card-block">
-                                <div class="h1 text-muted text-xs-right m-b-2">
-                                    <i class="icon-user-follow"></i>
-                                </div>
-                                <div class="h4 m-b-0">385</div>
-                                <small class="text-muted text-uppercase font-weight-bold">New Clients</small>
-                                <progress class="progress progress-xs progress-success m-t-1 m-b-0" value="25" max="100">25%</progress>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="h1 text-muted text-xs-right m-b-2">
-                                    <i class="icon-basket-loaded"></i>
-                                </div>
-                                <div class="h4 m-b-0">1238</div>
-                                <small class="text-muted text-uppercase font-weight-bold">Products sold</small>
-                                <progress class="progress progress-xs progress-warning m-t-1 m-b-0" value="25" max="100">25%</progress>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="h1 text-muted text-xs-right m-b-2">
-                                    <i class="icon-pie-chart"></i>
-                                </div>
-                                <div class="h4 m-b-0">28%</div>
-                                <small class="text-muted text-uppercase font-weight-bold">Returning Visitors</small>
-                                <progress class="progress progress-xs progress-primary m-t-1 m-b-0" value="25" max="100">25%</progress>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="h1 text-muted text-xs-right m-b-2">
-                                    <i class="icon-speedometer"></i>
-                                </div>
-                                <div class="h4 m-b-0">5:34:11</div>
-                                <small class="text-muted text-uppercase font-weight-bold">Avg. Time</small>
-                                <progress class="progress progress-xs progress-danger m-t-1 m-b-0" value="25" max="100">25%</progress>
-                            </div>
--->
-                        </div>
-                    </div>
 
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="course.desc" placeholder="Course Description.." required></textarea>
+                                                <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+
+                                        <input type="hidden" name="userId" ng-model="course._id">
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="select">Select Tag</label>
+                                            
+                                            <div class="col-md-9">
+                                                <select class="form-control" size="1" ng-model="course.tagId" ng-options="tag._id as tag.name for tag in tags">
+                                                     <option style="display:none" value="">Tags</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                       
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label">Programme</label>
+                                            <div class="col-md-9">
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.MSCIT.checked" ng-checked="course.pr.MSCIT.checked" ng-change="ShowHide()">MSC IT
+                                                </label>
+                                               <br/>
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="course.pr.MSCIT.M1.checked" ng-checked="course.pr.M1.checked" ng-value="1" name="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="course.pr.MSCIT.M4.checked">SEM 4
+                                                </label>
+                                                <br/>
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.BTECH.checked" ng-checked="course.pr.BTECH.checked" ng-change="ShowHide1()">B.TECH
+                                                </label>
+                                                
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="course.pr.BTECH.M1.checked" ng-checked="course.pr.M1.checked" value="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M4.checked" ng-checked="course.pr.M4.checked">SEM 4
+                                                </label>
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="updatecourse()"><i class="fa fa-dot-circle-o"></i> Update </button>
+                                    <a href="../Dashboard/index.html"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        </main>
         <footer class="footer ng-scope">
             <span class="pull-right text-muted">
                 <a href="http://bootstrapmaster.com">LeafUI</a> © 2016 creativeLabs. Powered by <a href="http://GenesisUI.com">GenesisUI</a>

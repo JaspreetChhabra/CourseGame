@@ -20,7 +20,7 @@
 		2. 'fixed-nav'			  - Fixed navigation
 		3. 'navbar-fixed'		  - Fixed navbar
 	-->
-    <body class="navbar-fixed sidebar-nav fixed-nav">
+    <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="addGamectrl">
         <header class="navbar">
             <div class="container-fluid">
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
@@ -233,9 +233,8 @@
                                 <div class="card-header">
                                     <strong>Add</strong> Game
                                 </div>
-                                <form name="form" ng-submit="vm.addgame()" role="form" ng-controller="addGamectrl">
                                 <div class="card-block">
-                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                    
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="text-input">Game</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
@@ -250,21 +249,24 @@
                                             </div>
                                         </div>
 
-                                            <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-                <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
+                                            
+                                        <div class="form-group row" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+                                            <label class="col-md-3 form-control-label" for="textarea-input">Game</label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" size="1" ng-model="game.gameId" ng-options="games._id as games.title for games in game1">
+                                                     <option style="display:none" value="">Games</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        DATE <input id="date-birth" class="form-control" type="date" date-model="dateBirth" >
+
+                                                {{ dateBirth | date: 'yyyy-MM-dd' }}
                                         <div class="form-group row" ng-class="{ 'has-error': form.startTime.$dirty && form.startTime.$error.required }">
                                             <label class="col-md-3 form-control-label" for="sdate">Starting Date</label>
                                             <div class="col-md-9">
-                                                <input type="date" name="startTime" id="startTime" class="form-control" placeholder="Starting date" ng-model="game.startTime" required />
+                                                <input type="date"  name="startTime" id="startTime" class="form-control" placeholder="Starting date" ng-model="game.startTime" required />
+
                                                 <!-- <span class="help-block">Please enter your email</span> -->
                                             </div>
                                         </div>
@@ -276,6 +278,7 @@
                                                 <!-- <span class="help-block">Please enter your email</span> -->
                                             </div>
                                         </div>
+
                                        <!--  <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="select">Select Course for Update</label>
                                             <div class="col-md-9">
@@ -322,17 +325,17 @@
                                                 <input type="text" name="minScore" id="minScore" class="form-control" placeholder="Minimum Score" ng-model="game.minScore" required />
                                             </div>
                                         </div>
-                                    </form>
+                                    
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-sm btn-primary" ng-click="submit()">
+                                    <button class="btn btn-sm btn-primary" ng-click="submit()">
                                     <i class="fa fa-dot-circle-o"></i> Submit
                                     </button>
                                     <a href="../Dashboard/index.html"></a><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button>
                                 </div>
                             </div> 
                         </div>
-                        </form>
+                       
                         <!--/col-->
                     </div>
                 </div>    

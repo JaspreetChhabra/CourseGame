@@ -1,4 +1,4 @@
-var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload','ngStorage']);
+var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload','ngStorage','angularMoment']);
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
@@ -13,6 +13,15 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         templateUrl: 'register/pages-register.html',
         controller: 'registerctrl'
     })
+
+        .state('updateCourse', {
+            url: '/updateCourse',
+            templateUrl: 'course/updateCourse.html',
+            controller: 'coursectrl',
+             params: {
+                courseId: null
+            }
+        })
 
         .state('course', {
             url: '/course',
@@ -41,7 +50,10 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         .state('updateGame',{
             url:'/updateGame',
             templateUrl:'addGame/updategame.html',
-            controller:'updateGameCtrl'
+            controller:'updateGameCtrl',
+             params: {
+                gameId: null
+            }
         })
         
         .state('home', {

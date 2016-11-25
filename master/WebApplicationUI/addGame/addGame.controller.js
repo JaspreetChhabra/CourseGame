@@ -1,14 +1,20 @@
 app.controller("addGamectrl",function($scope,$resource,$state,$http){
    
-  var a=$resource("http://shielded-tor-32602.herokuapp.com/games");
+  //var a=$resource("http://shielded-tor-32602.herokuapp.com/games/list");
+
+$scope.dateBirth = new Date(2014, 3, 19);
+   
+
+    var a=$resource("http://shielded-tor-32602.herokuapp.com/games/list");
         a.get(function(res){
             console.log(res);
             // $scope.game = {};
 
-            $scope.up = res.Result;
-            console.log($scope.up);
+            $scope.game1 = res.Result;
+            //alert(JSON.stringify($scope))
 
-             console.log(res.Result[0].title);
+
+
         });
 
      var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/tags");
@@ -18,7 +24,9 @@ app.controller("addGamectrl",function($scope,$resource,$state,$http){
                  $scope.tags = res.Result;
 
                  console.log($scope.tags);
+
             });
+
         
 
 // var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/tags");
@@ -35,12 +43,12 @@ app.controller("addGamectrl",function($scope,$resource,$state,$http){
    $scope.submit=function()
     {
         var games = $scope.game;
-        console.log(games);
+        alert(JSON.stringify(games));
 
         //$scope.user = { "username" : "bjscdb", "password" : "25"};
         //var a=$resource("https://shielded-tor-32602.herokuapp.com/users/login")   
         //var a=$resource("localhost:/games/insert");
-        alert("hello");
+       
         var a=$resource("https://shielded-tor-32602.herokuapp.com/games/insert");
        
         a.save($scope.game,function(res){

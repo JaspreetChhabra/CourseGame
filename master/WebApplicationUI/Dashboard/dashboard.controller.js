@@ -31,7 +31,16 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
         $state.go('viewCourse', {obj : courseID})
 
     }
+
+    $scope.updateCourse = function(courseID)
+    {
+        alert(courseID);
+
+        $state.go('updateCourse' , {courseId : courseID})
+    }
 });
+
+
 
 
 // app.controller("dashboardctrl",function($scope,$resource,$state,$http,$location){

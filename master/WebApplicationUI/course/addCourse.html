@@ -1,3 +1,10 @@
+<!--
+* GenesisUI Bootstrap 4 Admin Template built as framework!
+* Version 1.4.0
+* https://GenesisUI.com
+* Copyright 2016 creativeLabs Łukasz Holeczek
+* License : https://GenesisUI.com/license.html
+-->
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
     <head>
@@ -8,7 +15,7 @@
         <meta name="author" content="Lukasz Holeczek">
         <meta name="keyword" content="LeafUI Admin - UI Admin Kit Powered by Bootstrap 4">
         <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-        <title>Course Game</title>
+        <title>LeafUI Admin - UI Admin Kit</title>
         <!-- Main styles for this application -->
         <link href="../assets/css/style.css" rel="stylesheet">
     </head>
@@ -20,15 +27,18 @@
 		2. 'fixed-nav'			  - Fixed navigation
 		3. 'navbar-fixed'		  - Fixed navbar
 	-->
-    <body class="navbar-fixed sidebar-nav fixed-nav">
+    <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="coursectrl">
         <header class="navbar">
             <div class="container-fluid">
                 <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
                 <a class="navbar-brand" href="#"></a>
                 <ul class="nav navbar-nav hidden-md-down">
+<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
                     </li>
+-->
+<!--
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Dashboard</a>
                     </li>
@@ -38,29 +48,36 @@
                     <li class="nav-item p-x-1">
                         <a class="nav-link" href="#">Settings</a>
                     </li>
+-->
                 </ul>
                 <ul class="nav navbar-nav pull-right hidden-md-down">
                     <li class="nav-item dropdown">
+
+<!--
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English">
                         </a>
+-->
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-header text-xs-center">
                                 <strong>Choose language</strong>
                             </div>
-                            <a class="dropdown-item" href="#">
+                          <!--  <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/Poland.png" class="img-flag" alt="Polish"> Polish</a>
                             <a class="dropdown-item" href="#">
                                 <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English"> English</a>
                             <a class="dropdown-item" href="#">
-                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>
+                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>-->
                         </div>
+
                     </li>
+<!--
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="icon-bell"></i><span class="label label-pill label-danger">5</span></a>
                     </li>
+-->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
                             <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
                             <span class="hidden-md-down">admin</span>
                         </a>
@@ -68,6 +85,7 @@
                             <div class="dropdown-header text-xs-center">
                                 <strong>Account</strong>
                             </div>
+<!--
                             <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="label label-info">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="label label-success">42</span></a>
                             <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="label label-danger">42</span></a>
@@ -81,12 +99,15 @@
                             <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="label label-primary">42</span></a>
                             <div class="divider"></div>
                             <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
+-->
                             <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
                         </div>
                     </li>
+<!--
                     <li class="nav-item">
                         <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
                     </li>
+-->
                 </ul>
             </div>
         </header>
@@ -97,17 +118,21 @@
                         Dashboard
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
+                        <a class="nav-link" href="Dashboard/index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
                     </li>
                     <li class="divider"></li>
                     <li class="nav-title">
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Components</a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Unit </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Unit </a>
+<!--
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> BUTTONS</a>
+                                <a class="nav-link" href="course.html"><i class="icon-puzzle"></i> BUTTONS</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
@@ -125,7 +150,9 @@
                                 <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> TABLES</a>
                             </li>
                         </ul>
+-->
                     </li>
+<!--
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ICONS</a>
                         <ul class="nav-dropdown-items">
@@ -213,36 +240,44 @@
                             </li>
                         </ul>
                     </li>
+-->
                 </ul>
             </nav>
         </div>
         <!-- Main content -->
         <main class="main">
             <!-- Breadcrumb -->
-            
+            <ol class="breadcrumb m-b-0">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Add Course</li>
+            </ol>
             <div class="container-fluid">
                 <div class="animated fadeIn">
-                            
-                    <!--/.row-->
-                    <div class="row">
+                    <body ng-controller="coursectrl">
+<br><br>
+ <div class="row">
                         <div class="col-md-6-offset-3">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong>Add</strong> Course
+                                    <strong>Add Course</strong> 
                                 </div>
-                                <form id="courseForm" method="post" name= "courseForm">
+                                <form id="courseForm" method="post" name= "form">
                                 <div class="card-block">
+<!--
                                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
                                         
-                                        <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="text-input">Course Name</label>
-                                            <div class="col-md-9"  ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
+-->
+                                    <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Course Name </label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
                                                 <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="cs.name" required>
-                                               <!--  <span class="help-block">This is a help text</span> -->
+                                                 <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> 
                                             </div>
                                         </div>
-
-                                         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
+                                        
+                                    
+                                          <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
 
 
                                         
@@ -250,7 +285,8 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
-                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.."></textarea>
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.." required></textarea>
+                                                <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span>
                                             </div>
                                         </div>
 
@@ -258,6 +294,7 @@
 
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="select">Select Tag</label>
+                                            
                                             <div class="col-md-9">
                                                 <select class="form-control" size="1" ng-model="cs.tagId" ng-options="tag._id as tag.name for tag in tags">
                                                      <option style="display:none" value="">Tags</option>
@@ -304,8 +341,7 @@
                                                 </label>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="addcourse()"><i class="fa fa-dot-circle-o"></i> Add</button>
@@ -316,7 +352,13 @@
                     </div>
                 </div>
             </div>
-        </div>                    
+        </div>  
+        </main>
+        <footer class="footer ng-scope">
+            <span class="pull-right text-muted">
+                <a href="http://bootstrapmaster.com">LeafUI</a> © 2016 creativeLabs. Powered by <a href="http://GenesisUI.com">GenesisUI</a>
+            </span>
+        </footer>
         <!-- Bootstrap and necessary plugins -->
         <script src="../assets/js/libs/jquery.min.js"></script>
         <script src="../assets/js/libs/tether.min.js"></script>
@@ -326,6 +368,15 @@
         <script src="../assets/js/libs/Chart.min.js"></script>
         <script src="../assets/js/views/shared.js"></script>
         <!-- GenesisUI main scripts -->
-        <script src="../assets/js/app.js"></script>    
+        <script src="../assets/js/app.js"></script>
+        <!-- Plugins and scripts required by this views -->
+        <script src="../assets/js/libs/toastr.min.js"></script>
+        <script src="../assets/js/libs/gauge.min.js"></script>
+        <script src="../assets/js/libs/moment.min.js"></script>
+        <script src="../assets/js/libs/daterangepicker.min.js"></script>
+        <!-- Custom scripts required by this view -->
+        <script src="../assets/js/views/main.js"></script>
+        
+        
     </body>
 </html>
