@@ -4,6 +4,7 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
 
     userID = localStorage.getItem("userID");
     console.log("dashboard " + userID);
+    $scope.userid=userID;
     //var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getByFaculty/userID");
     var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getByFaculty/"+userID);
      a.get(function(res)
@@ -37,6 +38,12 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
         alert(courseID);
 
         $state.go('updateCourse' , {courseId : courseID})
+    }
+     $scope.updateProfile = function(courseID)
+    {
+        alert(courseID);
+
+        $state.go('updateProfile' , {courseId : courseID})
     }
 });
 
