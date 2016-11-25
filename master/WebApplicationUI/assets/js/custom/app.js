@@ -1,4 +1,4 @@
-var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload','ngStorage']);
+var app=angular.module("myApp",['ui.router','ngResource','ngFileUpload','ngStorage','angularMoment']);
 app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
     
     $stateProvider
@@ -39,8 +39,8 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         })
         .state('updateProfile',{
             url:'/updateProfile',
-            templateUrl:'profile/updateProfile',
-            controller:'registerctrl'
+            templateUrl:'profile/updateProfile.html',
+            controller:'updateProfile'
         })
         .state('addGame',{
         url: '/addGame',
@@ -50,7 +50,10 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
         .state('updateGame',{
             url:'/updateGame',
             templateUrl:'addGame/updategame.html',
-            controller:'updateGameCtrl'
+            controller:'updateGameCtrl',
+             params: {
+                gameId: null
+            }
         })
         
         .state('home', {

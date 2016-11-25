@@ -1,7 +1,7 @@
 
 app.controller("coursectrl",function($scope,$resource,$state,$http,$location,$window,$localStorage,$filter,$stateParams){
 
-alert("ms");
+
 
 
 $scope.cs = {};
@@ -32,7 +32,7 @@ if(typeof($stateParams.courseId) != 'undefined'){
     $scope.courseData = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/course/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.course);
@@ -82,21 +82,17 @@ if(typeof($stateParams.courseId) != 'undefined'){
         
 
 
-$scope.updateGame = function()
+$scope.updateGame = function(gameID)
 {
-    alert("heloo");
- var a=$resource("https://shielded-tor-32602.herokuapp.com/games");
-     a.get(function(res) 
-     {
-        console.log(res);
-      //  console.log(game_id);
-     });  
+  
+    console.log(gameID);
+    $state.go('updateGame', {gameId : gameID})
    
 }
 
  $scope.addcourse=function()
     {
-     alert("ms");
+    
         var course = $scope.cs;
         console.log(JSON.stringify(course));
 
