@@ -16,8 +16,8 @@ if(typeof($stateParams.topicId) != 'undefined'){
      // alert(JSON.stringify(res));
         console.log(res.Status);
                  console.log(res);
-         $scope.topic = res.Result;
-         console.log("game" + $scope.topic);
+         $scope.topics = res.Result;
+         console.log("data of unit" + $scope.topic);
 
          //var formatDate= $scope.game.startTime;
          //$scope.game.startTime= formatDate | date: "yyyy-MM-dd";
@@ -25,6 +25,8 @@ if(typeof($stateParams.topicId) != 'undefined'){
       
          //var formatDate1= $scope.game.startTime;
          //$scope.game.endTime = moment(formatDate).format('DD/MM/YYYY');
+
+        // var units = $scope.topics;
     });
 
 }
@@ -33,7 +35,7 @@ if(typeof($stateParams.topicId) != 'undefined'){
      $scope.unitUpdate=function()
     {
         var units = $scope.topics;
-        alert(JSON.stringify(units));
+        //alert(JSON.stringify(units));
 
         //$scope.user = { "username" : "bjscdb", "password" : "25"};
 

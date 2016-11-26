@@ -265,15 +265,22 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="text-input">Unit Name</label>
                                             <div class="col-md-9" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required &&!form.name.$pristine }">
-                                                <input type="text" name="name" id="name" class="form-control" placeholder="Unit name" ng-model="topics.name" ng-minlength="3" ng-maxlength="15" ng-pattern="/^(\D)+$/"required /> 
+                                                <input type="text" name="name" id="name" class="form-control" placeholder="Unit name" ng-model="topics.name" required /> 
                                                 <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Unit name is required</span>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="text-input">Difficulty Level</label>
-                                            <div class="col-md-9" ng-class="{ 'has-error': form.difLevel.$dirty && form.difLevel.$error.required }">
-                                                <input type="text" name="difLevel" id="difLevel" class="form-control" placeholder="Difficulty" ng-model="topics.difLevel" required />
-                                                <span ng-show="form.difLevel.$dirty && form.difLevel.$error.required" class="help-block">Difficulty Level is required</span>
+                                       <div class="form-group row">
+                                            <label class="col-md-3 form-control-label">Difficulty Level</label>
+                                            <div class="col-md-9">
+                                                <label class="radio-inline" for="inline-radio1">
+                                                    <input type="radio" name="difLevel" ng-model="topics.difLevel" value="easy"> Easy
+                                                </label>
+                                                <label class="radio-inline" for="inline-radio2">
+                                                    <input type="radio" name="difLevel" ng-model="topics.difLevel" value="medium"> Medium
+                                                </label>
+                                                <label class="radio-inline" for="inline-radio3">
+                                                    <input type="radio" name="difLevel" ng-model="topics.difLevel" value="hard"> Hard
+                                                </label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -302,7 +309,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
                                             <div class="col-md-9">
-                                                <textarea name="desc" id="desc" class="form-control" placeholder="Topic Description.." ng-model="topics.desc" ng-minlength="5" ng-maxlength="125" ng-pattern="/^\s*\w*\s*$/" required></textarea>
+                                                <textarea name="desc" id="desc" class="form-control" placeholder="Topic Description.." ng-model="topics.desc" required></textarea>
                                                  <span ng-show="form.desc.$dirty && form.desc.$error.required" class="help-block">Desc is required</span>
                                             </div>
                                         </div>

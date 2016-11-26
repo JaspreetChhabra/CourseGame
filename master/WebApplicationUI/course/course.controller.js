@@ -91,8 +91,8 @@ $scope.updateGame = function(gameID)
 }
 $scope.unitUpdate= function(topicID)
 {
-  alert(JSON.stringify(topicID));
-     //console.log(topicID);
+    //alert(JSON.stringify(topicID));
+    //console.log(topicID);
      $state.go('updateUnit', {topicId : topicID})
    
 }
