@@ -270,9 +270,9 @@
 -->
                                     <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="text-input">Course Name </label>
-                                            <div class="col-md-9" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required && !form.courseName.$pristine}">
-                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="cs.name" ng-minlength="3" ng-maxlength="50" ng-pattern="/^\s*\w*\s*$/" required>
-                                                 <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name should be maximum 50 characters and minimum 3 characetrs and is required.</span> 
+                                            <div class="col-md-9">
+                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="cs.name" ng-minlength="3" ng-maxlength="50" required>
+                                                 <!-- <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name should be maximum 50 characters and minimum 3 characetrs and is required.</span> --> 
                                             </div>
                                         </div>
                                         
@@ -284,9 +284,9 @@
                                         
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
-                                            <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required && !form.coursedesc.$pristine }">
-                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.." ng-minlength="5" ng-maxlength="125" ng-pattern="/^(\D)+$/" required></textarea>
-                                                <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span>
+                                            <div class="col-md-9">
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="cs.desc" placeholder="Course Description.." ng-minlength="5" ng-maxlength="125" required></textarea>
+                                                <!-- <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span> -->
                                             </div>
                                         </div>
 
@@ -328,16 +328,16 @@
                                                 </label>
                                                 <div ng-show="IsVisible1">
                                                 <label class="checkbox-inline" for="inline-checkbox2">
-                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.M1.checked" value="1">SEM 1
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.B1.checked" value="1">SEM 1
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M2.checked" ng-checked="cs.pr.M2.checked">SEM 2
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.B2.checked" ng-checked="cs.pr.B2.checked">SEM 2
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M3.checked" ng-checked="cs.pr.M3.checked">SEM 3
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.B3.checked" ng-checked="cs.pr.B3.checked">SEM 3
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.M4.checked" ng-checked="cs.pr.M4.checked">SEM 4
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="cs.pr.BTECH.B4.checked" ng-checked="cs.pr.B4.checked">SEM 4
                                                 </label>
                                                 </div>
                                             </div>

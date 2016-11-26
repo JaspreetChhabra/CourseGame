@@ -66,10 +66,10 @@
                                     <span class="input-group-addon"><i class="icon-user"></i></span>
                                     <input id="fp" type="text" class="form-control" name="fp"
 										value="" placeholder="Email Address" autocomplete="off"  
-										required value=""  ng-model="user.fp" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" >
+										required value=""  ng-model="userEmail.fp" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" >
                                                  
                                 </div>
-                                             <button type="button" class="btn btn-primary active m-t-1" ng-click="redirect()">Send Email!</button>
+                                             <button type="button" class="btn btn-primary active m-t-1" ng-click="sendmail(userEmail.fp)">Send Email!</button>
                                              </form>
                                         </div>
                                    

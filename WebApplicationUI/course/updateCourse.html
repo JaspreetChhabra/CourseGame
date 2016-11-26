@@ -118,14 +118,14 @@ d<!--
                         Dashboard
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Dashboard/index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
+                        <a class="nav-link" href="#/dashboard"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
                     </li>
                     <li class="divider"></li>
                     <li class="nav-title">
                         UI Elements
                     </li>
                     <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle"  href="#/course"><i class="icon-puzzle"></i> Add Courses </a>
 <!--
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
@@ -288,6 +288,7 @@ d<!--
                                         </div>
 
                                         <input type="hidden" name="userId" ng-model="course.userId" ng-value="userId" ng-init="course.userId= userId">
+                                        <input type="hidden" name="userId" ng-model="course._id" ng-value="course._id" ng-init="course.userId= course._id">
 
                                         <input type="hidden" name="userId" ng-model="course._id">
 
@@ -306,37 +307,41 @@ d<!--
                                             <label class="col-md-3 form-control-label">Programme</label>
                                             <div class="col-md-9">
                                                 <label class="checkbox-inline" for="inline-checkbox1">
-                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.MSCIT.checked" ng-checked="course.pr.MSCIT.checked" ng-change="ShowHide()">MSC IT
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.MSCIT.checked" ng-checked="course.pr.MSCIT.checked" >MSC IT
                                                 </label>
                                                <br/>
                                                 <label class="checkbox-inline" for="inline-checkbox2">
-                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="course.pr.MSCIT.M1.checked" ng-checked="course.pr.M1.checked" ng-value="1" name="1">SEM 1
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="course.pr.MSCIT.M1.checked" ng-checked="course.pr.MSCIT.M1.checked" ng-value="1" name="1">SEM 1
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M2.checked" ng-checked="course.pr.MSCIT.M2.checked">SEM 2
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M3.checked" ng-checked="course.pr.MSCIT.M3.checked">SEM 3
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
                                                     <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="course.pr.MSCIT.M4.checked">SEM 4
                                                 </label>
                                                 <br/>
                                                 <label class="checkbox-inline" for="inline-checkbox1">
-                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.BTECH.checked" ng-checked="course.pr.BTECH.checked" ng-change="ShowHide1()">B.TECH
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.BTECH.checked" ng-checked="course.pr.BTECH.checked">B.TECH
                                                 </label>
-                                                
+                                                <br/>
                                                 <label class="checkbox-inline" for="inline-checkbox2">
-                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="course.pr.BTECH.M1.checked" ng-checked="course.pr.M1.checked" value="1">SEM 1
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="course.pr.BTECH.M1.checked" ng-checked="course.pr.BTECH.M1.checked" value="1">SEM 1
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M2.checked" ng-checked="course.pr.BTECH.M2.checked">SEM 2
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M3.checked" ng-checked="course.pr.BTECH.M3.checked">SEM 3
                                                 </label>
                                                 <label class="checkbox-inline" for="inline-checkbox3">
-                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M4.checked" ng-checked="course.pr.M4.checked">SEM 4
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M4.checked" ng-checked="course.pr.BTECH.M4.checked">SEM 4
+                                                </label>
+                                                <br/>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="isOpen.checked" ng-checked="isOpen.checked">OPEN
                                                 </label>
                                                 
                                             </div>

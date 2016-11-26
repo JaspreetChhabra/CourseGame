@@ -30,6 +30,12 @@ app.config(function($stateProvider, $urlRouterProvider,$resourceProvider) {
             }
         })
 
+        .state('forgotPass', {
+            url: '/forgotPass/{token}',
+            templateUrl: 'forgotPassword/forgotPass.html',
+            controller: 'forgotCtrl'
+        })
+
         .state('course', {
             url: '/course',
             templateUrl: 'course/addCourse.html',
