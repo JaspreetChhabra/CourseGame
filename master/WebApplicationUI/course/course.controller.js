@@ -14,7 +14,7 @@ if(typeof($stateParams.obj) != 'undefined'){
     $scope.data = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/+" courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.Status);
@@ -32,12 +32,12 @@ if(typeof($stateParams.courseId) != 'undefined'){
     $scope.courseData = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/course/getById/"+ courseID);
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.course);
          console.log(res);
-         $scope.course = res.course;
+         $scope.course = res.courses;
          
     });
 

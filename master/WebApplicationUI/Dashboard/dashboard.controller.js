@@ -40,7 +40,7 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
 
     $scope.updateCourse = function(courseID)
     {
-        alert(courseID);
+        //alert(courseID);
 
         $state.go('updateCourse' , {courseId : courseID})
     }

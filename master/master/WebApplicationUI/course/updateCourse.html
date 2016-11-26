@@ -1,0 +1,384 @@
+d<!--
+* GenesisUI Bootstrap 4 Admin Template built as framework!
+* Version 1.4.0
+* https://GenesisUI.com
+* Copyright 2016 creativeLabs Łukasz Holeczek
+* License : https://GenesisUI.com/license.html
+-->
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="LeafUI Admin - UI Admin Kit Powered by Bootstrap 4">
+        <meta name="author" content="Lukasz Holeczek">
+        <meta name="keyword" content="LeafUI Admin - UI Admin Kit Powered by Bootstrap 4">
+        <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+        <title>Course Game</title>
+        <!-- Main styles for this application -->
+        <link href="../assets/css/style.css" rel="stylesheet">
+    </head>
+    <!-- BODY options, add following classes to body to change options
+		1. 'sidebar-nav'		  - Navigation on the left
+			1.1. 'sidebar-off-canvas'	- Off-Canvas
+				1.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
+				1.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
+		2. 'fixed-nav'			  - Fixed navigation
+		3. 'navbar-fixed'		  - Fixed navbar
+	-->
+    <body class="navbar-fixed sidebar-nav fixed-nav" ng-controller="coursectrl">
+        <header class="navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
+                <a class="navbar-brand" href="#"></a>
+                <ul class="nav navbar-nav hidden-md-down">
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
+                    </li>
+-->
+<!--
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="#">Users</a>
+                    </li>
+                    <li class="nav-item p-x-1">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+-->
+                </ul>
+                <ul class="nav navbar-nav pull-right hidden-md-down">
+                    <li class="nav-item dropdown">
+
+<!--
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English">
+                        </a>
+-->
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header text-xs-center">
+                                <strong>Choose language</strong>
+                            </div>
+                          <!--  <a class="dropdown-item" href="#">
+                                <img src="assets/img/flags/Poland.png" class="img-flag" alt="Polish"> Polish</a>
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/img/flags/United-Kingdom.png" class="img-flag" alt="English"> English</a>
+                            <a class="dropdown-item" href="#">
+                                <img src="assets/img/flags/Spain.png" class="img-flag" alt="Espa&#xF1;ol"> Español</a>-->
+                        </div>
+
+                    </li>
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="icon-bell"></i><span class="label label-pill label-danger">5</span></a>
+                    </li>
+-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                            <span class="hidden-md-down">admin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-header text-xs-center">
+                                <strong>Account</strong>
+                            </div>
+<!--
+                            <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span class="label label-info">42</span></a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i> Messages<span class="label label-success">42</span></a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-tasks"></i> Tasks<span class="label label-danger">42</span></a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comments<span class="label label-warning">42</span></a>
+                            <div class="dropdown-header text-xs-center">
+                                <strong>Settings</strong>
+                            </div>
+                            <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="label label-default">42</span></a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="label label-primary">42</span></a>
+                            <div class="divider"></div>
+                            <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
+-->
+                            <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                        </div>
+                    </li>
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
+                    </li>
+-->
+                </ul>
+            </div>
+        </header>
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">
+                        Dashboard
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Dashboard/index.html"><i class="icon-speedometer"></i> DASHBOARD <span class="label label-info">NEW</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-title">
+                        UI Elements
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="updatecourse()"><i class="icon-puzzle"></i> Update Courses </a>
+                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
+                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
+<!--
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="course.html"><i class="icon-puzzle"></i> BUTTONS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> CARDS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> FORMS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> SWITCHES</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> TABLES</a>
+                            </li>
+                        </ul>
+-->
+                    </li>
+<!--
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> ICONS</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-energy"></i> Plugins</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-calendar.html"><i class="icon-calendar"></i> CALENDAR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-notifications.html"><i class="icon-info"></i> NOTIFICATIONS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-sliders.html"><i class="icon-equalizer"></i> SLIDERS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="plugins-tables.html"><i class="icon-list"></i> TABLES</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forms.html"><i class="icon-note"></i> FORMS <span class="label label-danger">NEW</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> WIDGETS <span class="label label-info">NEW</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> CHARTS</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="nav-title">
+                        Extras
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> PAGES</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-dropdown">
+                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-layers"></i> UI Kits</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item nav-dropdown">
+                                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-speech"></i> INVOICING</a>
+                                <ul class="nav-dropdown-items">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="UIkits-invoicing-invoice.html"><i class="icon-speech"></i> INVOICE</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item nav-dropdown">
+                                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-speech"></i> EMAIL</a>
+                                <ul class="nav-dropdown-items">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="UIkits-email-inbox.html"><i class="icon-speech"></i> INBOX</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="UIkits-email-message.html"><i class="icon-speech"></i> MESSAGE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="UIkits-email-compose.html"><i class="icon-speech"></i> COMPOSE</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+-->
+                </ul>
+            </nav>
+        </div>
+        <!-- Main content -->
+        <main class="main">
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb m-b-0">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li class="active">Update Course</li>
+            </ol>
+            <div class="container-fluid">
+                <div class="animated fadeIn">
+                    <body ng-controller="coursectrl">
+<br><br>
+ <div class="row">
+                        <div class="col-md-6-offset-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Update Course</strong> 
+                                </div>
+                                <form id="courseForm" method="post" name= "form">
+                                <div class="card-block">
+<!--
+                                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                        
+-->
+                                    <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="text-input">Course Name </label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required && !form.coursedesc.$pristine}">
+                                                <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Enter Course Name" ng-model="course.name" ng-minlength="3" ng-maxlength="30" ng-pattern="/^\s*\w*\s*$/" required>
+                                                 <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> 
+                                            </div>
+                                        </div>
+                                        
+                                    
+                                          <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
+
+
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="textarea-input">Description</label>
+                                            <div class="col-md-9" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required && !form.coursedesc.$pristine}">
+                                                <textarea name="coursedesc" id="coursedesc" class="form-control" rows="9" ng-model="course.desc" placeholder="Course Description.." ng-minlength="5" ng-maxlength="125" ng-pattern="/^(\D)+$/"required></textarea>
+                                                <span ng-show="form.coursedesc.$dirty && form.coursedesc.$error.required" class="help-block">Course Desc is required</span>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+
+                                        <input type="hidden" name="userId" ng-model="course._id">
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="select">Select Tag</label>
+                                            
+                                            <div class="col-md-9">
+                                                <select class="form-control" size="1" ng-model="course.tagId" ng-options="tag._id as tag.name for tag in tags">
+                                                     <option style="display:none" value="">Tags</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                       
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label">Programme</label>
+                                            <div class="col-md-9">
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.MSCIT.checked" ng-checked="course.pr.MSCIT.checked" ng-change="ShowHide()">MSC IT
+                                                </label>
+                                               <br/>
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2"  ng-model="course.pr.MSCIT.M1.checked" ng-checked="course.pr.M1.checked" ng-value="1" name="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.MSCIT.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3"  ng-model="course.pr.MSCIT.M4.checked">SEM 4
+                                                </label>
+                                                <br/>
+                                                <label class="checkbox-inline" for="inline-checkbox1">
+                                                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" ng-model="course.pr.BTECH.checked" ng-checked="course.pr.BTECH.checked" ng-change="ShowHide1()">B.TECH
+                                                </label>
+                                                
+                                                <label class="checkbox-inline" for="inline-checkbox2">
+                                                    <input type="checkbox" id="inline-checkbox2" name="inline-checkbox2" ng-model="course.pr.BTECH.M1.checked" ng-checked="course.pr.M1.checked" value="1">SEM 1
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M2.checked" ng-checked="course.pr.M2.checked">SEM 2
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M3.checked" ng-checked="course.pr.M3.checked">SEM 3
+                                                </label>
+                                                <label class="checkbox-inline" for="inline-checkbox3">
+                                                    <input type="checkbox" id="inline-checkbox3" name="inline-checkbox3" ng-model="course.pr.BTECH.M4.checked" ng-checked="course.pr.M4.checked">SEM 4
+                                                </label>
+                                                
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-sm btn-primary" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="updatecourse()"><i class="fa fa-dot-circle-o"></i> Update </button>
+                                    <a href="../Dashboard/index.html"><button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancel</button></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        </main>
+        <footer class="footer ng-scope">
+            <span class="pull-right text-muted">
+                <a href="http://bootstrapmaster.com">LeafUI</a> © 2016 creativeLabs. Powered by <a href="http://GenesisUI.com">GenesisUI</a>
+            </span>
+        </footer>
+        <!-- Bootstrap and necessary plugins -->
+        <script src="../assets/js/libs/jquery.min.js"></script>
+        <script src="../assets/js/libs/tether.min.js"></script>
+        <script src="../assets/js/libs/bootstrap.min.js"></script>
+        <script src="../assets/js/libs/pace.min.js"></script>
+        <!-- Plugins and scripts required by all views -->
+        <script src="../assets/js/libs/Chart.min.js"></script>
+        <script src="../assets/js/views/shared.js"></script>
+        <!-- GenesisUI main scripts -->
+        <script src="../assets/js/app.js"></script>
+        <!-- Plugins and scripts required by this views -->
+        <script src="../assets/js/libs/toastr.min.js"></script>
+        <script src="../assets/js/libs/gauge.min.js"></script>
+        <script src="../assets/js/libs/moment.min.js"></script>
+        <script src="../assets/js/libs/daterangepicker.min.js"></script>
+        <!-- Custom scripts required by this view -->
+        <script src="../assets/js/views/main.js"></script>
+        
+        
+    </body>
+</html>

@@ -9,7 +9,6 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location,$loc
         $scope.user.username = localStorage.getItem('username');
     }
     
-  
 
     $scope.save = function(){
 
@@ -76,6 +75,38 @@ app.controller("loginctrl",function($scope,$resource,$state,$http,$location,$loc
     $scope.redirect = function(){
 
         $state.go('register');
+    }
+
+    //forgot Password users/web/forgotPass
+    $scope.sendmail = function(userEmail){
+        console.log(userEmail);
+
+        var forgot = {"username" : userEmail};
+        var a=$resource("http://localhost:3030/users/web/forgotPass");
+
+        a.save(forgot,function(res){
+            console.log(res.Status);
+
+            // if(res.Status == true){
+            //     console.log("data " + res.LoggedUser._id);
+            //     localStorage.setItem('userID', res.LoggedUser._id);
+            //     localStorage.setItem('userName' , res.LoggedUser.firstName + " " + res.LoggedUser.lastName);
+            // }
+
+            // if(res.Status == false){
+                    
+            //     alert("Please check username and password");
+            // }else{
+                
+            //     alert("Successful");
+            //     console.log(res);
+
+            //     $state.go('dashboard');
+
+            // }
+        });
+
+
     }
 
   // $http.get("https://blooming-springs-95211.herokuapp.com/users/login").then(function (response) {

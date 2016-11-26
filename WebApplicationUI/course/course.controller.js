@@ -14,7 +14,7 @@ if(typeof($stateParams.obj) != 'undefined'){
     $scope.data = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.Status);
@@ -32,7 +32,7 @@ if(typeof($stateParams.courseId) != 'undefined'){
     $scope.courseData = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/course/getById/"+ courseID);
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.course);
@@ -120,11 +120,11 @@ $scope.updateGame = function(gameID)
     {
      alert("update course");
         var course = $scope.course;
-        console.log(JSON.stringify(course));
+        console.log(course);
 
 
         
-       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/update");
 
        a.save(course,function(res){
            console.log(res.Status);
@@ -133,7 +133,7 @@ $scope.updateGame = function(gameID)
                    
                alert("Course already Exists");
            }else{
-               alert("New Course added Successfully");
+               alert("Course Updated Successfully");
 
                $state.go('dashboard');
 

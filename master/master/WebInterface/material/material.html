@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<title>Course Game</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.min.css">
+    <script type="text/javascript">
+    $(function() {
+    $('.datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+        });
+    });
+    </script>
+</head>
+<body>
+<br><br>
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading" >
+          <h3 class="panel-title">Please Fill the Details...</h3>
+        </div>
+        <div class="panel-body">
+    <form name="form" ng-submit="" role="form">
+
+        <div class="form-group" ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
+           <!--  <label for="username">First name</label> -->
+        <input type="text" name="name" id="firstName" class="form-control" placeholder="Name" ng-model="material.name" required />
+            <span ng-show="form.name.$dirty && form.name.$error.required" class="help-block">Name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.fileType.$dirty && form.fileType.$error.required }">
+            <!-- <label for="username">Last name</label> -->
+            <select name="fileType" id="Text1" class="form-control" ng-model="material.fileType" required>
+                <option value="" disabled selected>Select File type</option>
+                <option>pdf</option>
+                <option>doc</option>
+                <option>xlsx</option>
+                <option>pub</option>
+                <option>pptx</option>
+            </select>
+            <span ng-show="form.fileType.$dirty && form.fileType.$error.required" class="help-block">File Type is required</span>
+        </div>
+        
+        <div class="form-group" ng-class="{ 'has-error': form.startTime.$dirty && form.startTime.$error.required }">
+            <!-- <label for="startTime">startTime</label> -->
+            <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="startTime" class="form-control" class="datetimepicker1" class="input-append date" class="form-control" ng-model="material.endTime" required></input>
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+            </span>
+            <span ng-show="form.startTime.$dirty && form.startTime.$error.required" class="help-block">Start Time is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.endTime.$dirty && form.endTime.$error.required }">
+            <!-- <label for="endTime">endTime</label> -->
+            <input date-format="dd/MM/yyyy hh:mm:ss" type="text" name="endTime" class="form-control" class="datetimepicker1" class="input-append date" ng-model="material.endTime" required></input>
+            <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+            </span>
+            <span ng-show="form.endTime.$dirty && form.endTime.$error.required" class="help-block">End Time is required</span>
+        </div>
+
+         <div class="form-group">
+            <!-- <label for="specialization">Specialization</label> -->
+            <textarea name="desc" class="form-control" placeholder="Description" ng-model="material.desc"></textarea>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.topicId.$dirty && form.topicId.$error.required }">
+            <!-- <label for="topicId">topicId</label> -->
+            <input type="text" name="topicId" id="topicId" class="form-control" placeholder="Topic Id" ng-model="material.topicId" required />
+            <span ng-show="form.topicId.$dirty && form.topicId.$error.required" class="help-block">Topic Id is required</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary" ng-click="submit()">Submit</button>
+           
+            <a href="#/login" class="btn btn-link">Cancel</a>
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
+  </div>
+    </div>
+      </div>
+
+</body>
+</html>
