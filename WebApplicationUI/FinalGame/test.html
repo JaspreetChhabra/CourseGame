@@ -1,0 +1,269 @@
+<html>
+<title>
+	Sort Attack
+</title>
+<head>
+	<link href="./css/demo.css" rel="stylesheet" type="text/css">
+
+	<script src="lib/easeljs-0.8.2.min.js"></script>
+	
+	<script>
+
+		//var stage, g, rect;
+
+		function init() {
+    		var stage = new createjs.Stage("sortingCanvas");
+    		createjs.Touch.enable(stage);
+    		stage.mouseMoveOutside = false;
+		//VARIABLES
+		//Drag Object Size
+		dragRadius = 40;
+		//Destination Size
+		destHeight = 100;
+		destWidth = 100;
+		flag = 0;
+		flag1 = 0;
+		//First
+		var box1 = new createjs.Shape();
+		box1.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+
+		var source = new createjs.Container();
+		source.x = 10;
+		source.y = 50;
+		source.setBounds(350, 50, destHeight, destWidth);
+
+		source.addChild(box1);
+
+		var label = new createjs.Text("5", "30px Lato", "#00000");
+		label.name = 5;
+		label.textAlign="center";
+		label.y -= 7;
+
+		var circle = new createjs.Shape();
+		circle.graphics.setStrokeStyle(2).beginStroke("black")
+		.beginFill("red").drawCircle(0,0, dragRadius);
+
+		var dragger = new createjs.Container();
+		dragger.x = source.x + destWidth/2;
+		dragger.y = source.y + destWidth/2;
+		dragger.addChild(circle, label);
+		dragger.setBounds(100, 100, dragRadius*2, dragRadius*2);
+
+		//Second
+		var label1 = new createjs.Text("3", "30px Lato", "#00000");
+		label1.name = 3;
+		label1.textAlign="center";
+		label1.y -= 15;
+
+		var circle1 = new createjs.Shape();
+		circle1.graphics.setStrokeStyle(2).beginStroke("black")
+		.beginFill("red").drawCircle(0,0, dragRadius);
+
+		var dragger1 = new createjs.Container();
+		dragger1.x = 350 + destWidth/2;
+		dragger1.y = 50 + destWidth/2;
+		dragger1.addChild(circle1, label1);
+		dragger1.setBounds(100, 100, dragRadius*2, dragRadius*2);
+
+		var box2 = new createjs.Shape();
+		box2.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, 100, 100);
+
+		var secondSource = new createjs.Container();
+		secondSource.x = 350;
+		secondSource.y = 50;
+		secondSource.setBounds(350, 50, destHeight, destWidth);
+
+		secondSource.addChild(box2);
+		//Third - Destination
+		var label2 = new createjs.Text("HERE", "bold 14px Lato", "#000");
+		label2.textAlign = "center";
+		label2.x += 50;
+		label2.y += 40;
+
+		var box = new createjs.Shape();
+		box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		var destination = new createjs.Container();
+		destination.x = 180;
+		destination.y = 190;
+		destination.setBounds(190, 200, destHeight, destWidth);
+
+		destination.addChild(label2, box);
+
+
+		//DRAG
+
+		if( label.name > label1.name){
+		dragger1.on("pressmove", function(evt){
+			console.log(evt.currentTarget.x + " " + evt.currentTarget.y)
+		     evt.currentTarget.x = evt.stageX;
+		     evt.currentTarget.y = evt.stageY;
+		     stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+		     if(intersect(evt.currentTarget, destination)){
+		       evt.currentTarget.alpha=0.2;
+		       box.graphics.clear();
+		       box.graphics.setStrokeStyle(3)
+		       .beginStroke("#0066A4")
+		       .rect(0, 0, destHeight, destWidth);
+
+		       if(label.name > label1.name){
+		       		console.log("Text" + label1.name);
+		       		flag = flag+1;
+		       		console.log("done" + flag);
+		       }
+		       else
+		       {
+		       	 console.log("sadness");
+		       }
+		       
+		       
+		     }else{
+		       evt.currentTarget.alpha=1;
+		       box.graphics.clear();     
+		       box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		     }
+
+		});
+		}
+
+		//Mouse UP and SNAP====================
+		dragger1.on("pressup", function(evt) {
+		  if(intersect(evt.currentTarget, destination)){
+		    dragger1.x = destination.x + destWidth/2;
+		    dragger1.y = destination.y + destHeight/2;
+		    dragger1.alpha = 1;
+		    box.graphics.clear();     
+		    box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		    stage.update(evt);
+		  }
+		  else{
+			  	dragger1.x = secondSource.x + destWidth/2;
+			    dragger1.y = secondSource.y + destWidth/2;
+			    dragger1.alpha = 1;
+			    box.graphics.clear();     
+			    box.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+			    stage.update(evt);	
+		  	}
+		});
+
+		//for first element last move
+		//DRAG
+		dragger1.on("pressmove", function(evt){
+			console.log(evt.currentTarget.x + " " + evt.currentTarget.y)
+		     evt.currentTarget.x = evt.stageX;
+		     evt.currentTarget.y = evt.stageY;
+		     stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+		     if(intersect(evt.currentTarget, source)){
+		     	console.log("aaya");
+		       //alert("correct");
+		       evt.currentTarget.alpha=1;
+		       box1.graphics.clear();     
+		       box1.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		     }else{
+		       console.log("correct");
+		       evt.currentTarget.alpha=0.2;
+		       box1.graphics.clear();
+		       box1.graphics.setStrokeStyle(3)
+		       .beginStroke("#0066A4")
+		       .rect(0, 0, destHeight, destWidth);
+		     }
+
+		});
+
+		//Mouse UP and SNAP====================
+		dragger1.on("pressup", function(evt) {
+		  if(intersect(evt.currentTarget, source)){
+		    dragger1.x = source.x + destWidth/2;
+		    dragger1.y = source.y + destHeight/2;
+		    dragger1.alpha = 1;
+		    box1.graphics.clear();     
+		    box1.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		    stage.update(evt);
+		  }
+		  else{
+		  	dragger1.x = destination.x + destWidth/2;
+		    dragger1.y = destination.y + destWidth/2;
+		    dragger1.alpha = 1;
+		    box1.graphics.clear();     
+		    box1.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		    stage.update(evt);
+		  }
+		});
+
+
+		//for second element 
+		//DRAG
+		dragger.on("pressmove", function(evt){
+			console.log(evt.currentTarget.x + " " + evt.currentTarget.y)
+		     evt.currentTarget.x = evt.stageX;
+		     evt.currentTarget.y = evt.stageY;
+		     stage.update(); //much smoother because it refreshes the screen every pixel movement instead of the FPS set on the Ticker
+		     if(intersect(evt.currentTarget, secondSource)){
+		       evt.currentTarget.alpha=0.2;
+		       box2.graphics.clear();
+		       box2.graphics.setStrokeStyle(3)
+		       .beginStroke("#0066A4")
+		       .rect(0, 0, destHeight, destWidth);
+
+		       
+		     }else{
+		       evt.currentTarget.alpha=1;
+		       box2.graphics.clear();     
+		       box2.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		     }
+
+		});
+
+		//Mouse UP and SNAP====================
+		dragger.on("pressup", function(evt) {
+		  if(intersect(evt.currentTarget, secondSource)){
+		    dragger.x = secondSource.x + destWidth/2;
+		    dragger.y = secondSource.y + destHeight/2;
+		    dragger.alpha = 1;
+		    box2.graphics.clear();     
+		    box2.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		    stage.update(evt);
+		  }
+		  else{
+		  	dragger.x = source.x + destWidth/2;
+		    dragger.y = source.y + destWidth/2;
+		    dragger.alpha = 1;
+		    box2.graphics.clear();     
+		    box2.graphics.setStrokeStyle(2).beginStroke("black").rect(0, 0, destHeight, destWidth);
+		    stage.update(evt);
+		  }
+		});
+
+
+		function intersect(obj1, obj2){
+		  var objBounds1 = obj1.getBounds().clone();
+		  var objBounds2 = obj2.getBounds().clone();
+		  
+		  var pt = obj1.globalToLocal(objBounds2.x, objBounds2.y);
+		  
+		  var h1 = -(objBounds1.height / 2 + objBounds2.height);
+		  var h2 = objBounds2.width / 2;
+		  var w1 = -(objBounds1.width / 2 + objBounds2.width);
+		  var w2 = objBounds2.width / 2;
+		 
+		  
+		  if(pt.x > w2 || pt.x < w1) return false;
+		  if(pt.y > h2 || pt.y < h1) return false;
+		  
+		  return true;
+		}
+
+		
+		//Adds the object into stage
+		stage.addChild(destination, dragger, dragger1, source, secondSource);
+		stage.mouseMoveOutside = true;
+		
+		stage.update();
+  		}
+	</script>
+</head>
+<body onload="init();">
+	<canvas id="sortingCanvas" width="500" height="300">
+		
+	</canvas>
+</body>
+</html>

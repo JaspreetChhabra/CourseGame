@@ -253,14 +253,16 @@
                 <li class="active">View Courses</li>
             </ol>
             
-            
+                
                 <div class="container-fluid " ng-repeat = "topic in topics">
                 <div class="animated fadeIn">
                     <div class="row row-equal">
                         <div class="col-md-12">
                             <div class="card">
+                                <button type="button" class="btn btn-success fa fa-plus pull-right" ng-click="addUnit(course._id)" style="float:right"> Add Unit</button>
+                                <button type="button" class="btn btn-success fa fa-plus pull-right" ng-click="unitUpdate(topic._id)" style="float:right"> Update Unit</button>
                                 <div class="card-header card-primary">
-                                   <h5>{{topic.name}}   <button type="button" class="btn btn-success fa fa-plus pull-right" ng-click="addUnit(topics._id)" style="float:right"> Add Unit</button></h5>
+                                   <h5>{{topic.name}} </h5>
                                 </div>
                                  <div class="card-block">
                                      <Strong> Unit Description </Strong>

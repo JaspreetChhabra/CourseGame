@@ -14,7 +14,7 @@ if(typeof($stateParams.obj) != 'undefined'){
     $scope.data = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/58088fd6fca646f0276e07c2");
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.Status);
@@ -32,17 +32,16 @@ if(typeof($stateParams.courseId) != 'undefined'){
     $scope.courseData = {};
 
 
-    var a=$resource("https://shielded-tor-32602.herokuapp.com/course/getById/"+ courseID);
+    var a=$resource("https://shielded-tor-32602.herokuapp.com/courses/getById/"+ courseID);
      a.get(function(res)
      {
          console.log("Courses data " + res.course);
          console.log(res);
-         $scope.course = res.course;
+         $scope.course = res.courses;
          
     });
 
 }
-
 
 
 
@@ -89,18 +88,32 @@ $scope.updateGame = function(gameID)
     $state.go('updateGame', {gameId : gameID})
    
 }
+$scope.unitUpdate= function(topicID)
+{
+    //alert(JSON.stringify(topicID));
+    //console.log(topicID);
+     $state.go('updateUnit', {topicId : topicID})
+   
+}
+$scope.addUnit= function(courseID)
+{
+    //alert(JSON.stringify(topicID));
+    //console.log(topicID);
+     $state.go('unit', {courseId : courseID})
+   
+}
 
+$scope.addMaterial = function(topicID){
+
+  $state.go('material' , {topicId : topicID})
+}
  $scope.addcourse=function()
     {
-    
-        var course = $scope.cs;
-        console.log(JSON.stringify(course));
 
+      var course = $scope.cs;
+     var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
 
-
-       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
-
-       a.save(course,function(res){
+          a.save(course,function(res){
            console.log(res.Status);
 
            if(res.Status == false){

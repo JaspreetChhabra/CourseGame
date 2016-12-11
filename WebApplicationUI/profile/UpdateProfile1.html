@@ -32,13 +32,13 @@
                             
                             <div class="input-group m-b-1 " ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required && !form.username.$pristine }">
                                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" ng-model="faculty.firstName" ng-minlength="2" ng-maxlength="15" ng-pattern="/^(\D)+$/"required />
+                                 <input type="text" name="firstName" id="firstName" class="form-control" placeholder="First name" ng-model="faculty.firstName" ng-minlength="2" ng-maxlength="15" ng-pattern="/^(\D)+$/" required/>
                                 <p ng-show="form.firstName.$error.minlength" class="help-block">Enter Valid Name.</p>
                                <p ng-show="form.firstName.$error.maxlength" class="help-block">Enter valid name.</p>
                                 <span ng-show="form.firstName.$dirty && form.firstName.$error.required">First name is required </span>
                             </div>                    
                             
-                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.ng-minlength="3" ng-maxlength="8"lastName.$dirty && form.lastName.$error.required && !form.username.$pristine}">
+                            <div class="input-group m-b-1"  ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required && !form.username.$pristine}">
                                 <span class="input-group-addon">
                                     <i class="icon-user"></i></span>
                                  <input type="text" name="lastName" id="Text1" class="form-control" placeholder="Last name" ng-model="faculty.lastName" ng-minlength="3" ng-maxlength="15" ng-pattern="/^(\D)+$/" required />
