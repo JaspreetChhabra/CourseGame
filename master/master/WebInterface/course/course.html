@@ -1,0 +1,219 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myApp">
+<title>Add Course</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+<body ng-controller="coursectrl">
+<br><br>
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading" >
+          <h3 class="panel-title">ADD NEW COURSE</h3>
+        </div>
+        <div class="panel-body">
+        
+    <form id="courseForm" method="post" name= "courseForm">
+
+        <div class="form-group" ng-class="{ 'has-error': form.courseName.$dirty && form.courseName.$error.required }">
+           <!--  <label for="username">First name</label> -->
+        <input type="text" name="courseName" id="courseName" class="form-control" placeholder="Course Name" ng-model="cs.name" required />
+            <!-- <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        
+        </div>
+
+         <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
+
+
+         <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+           
+            <textarea name="coursedesc" id="coursedesc" class="form-control" placeholder="Course Description" ng-model="cs.desc">
+            </textarea>
+       
+        </div>
+         <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+
+        <label>Select Tag </label>   
+        <select ng-model="cs.tagId" ng-options="tag._id as tag.name for tag in tags">
+          <option style="display:none" value="">Tags</option>      
+        </select>
+
+        <div class="col-lg-12">
+        <label class="checkbox">MSCIT
+           <input type="checkbox" ng-model="cs.pr.MSCIT.checked" ng-checked="cs.pr.checked" ng-change="ShowHide()">
+        </label>
+
+        <div ng-show="IsVisible" class="col-sm-10">
+          <label class="checkbox">SEM 1
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M1.checked" ng-checked="cs.pr.M1.checked" ng-value="1" name="1">
+          </label>
+          <label class="checkbox">SEM 2
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M2.checked" ng-checked="cs.pr.M2.checked">
+          </label>
+          <label class="checkbox">SEM 3
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M3.checked" ng-checked="cs.pr.M3.checked">
+          </label>
+          <label class="checkbox">SEM 4
+             <input type="checkbox" ng-model="cs.pr.MSCIT.M4.checked" ng-checked="cs.pr.M4.checked">
+          </label>
+        </div>
+        </div>
+              
+        <div class="col-lg-12">
+              <label class="checkbox">BTECH
+                 <input type="checkbox" ng-model="cs.pr.BTECH.checked" ng-checked="cs.pr.BTECH.checked" value="BTECH" ng-change="ShowHide1()">
+              </label>
+        <div ng-show="IsVisible1" class="col-sm-10">
+              <label class="checkbox">SEM 1
+                 <input type="checkbox" ng-model="cs.pr.BTECH.B1.checked" ng-checked="cs.pr.M1.checked" value="1">
+              </label>
+              <label class="checkbox">SEM 2
+             <input type="checkbox" ng-model="cs.pr.BTECH.M2.checked" ng-checked="cs.pr.M2.checked">
+            </label>
+            <label class="checkbox">SEM 3
+               <input type="checkbox" ng-model="cs.pr.BTECH.M3.checked" ng-checked="cs.pr.M3.checked">
+            </label>
+            <label class="checkbox">SEM 4
+               <input type="checkbox" ng-model="cs.pr.BTECH.M4.checked" ng-checked="cs.pr.M4.checked">
+            </label>
+
+        </div>
+        </div>
+
+        </div>
+          <br/>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || cs.dataLoading" class="btn btn-primary" ng-click="addcourse()">Add</button>
+            <a href="#/dashboard" class="btn btn-link">Cancel</a>
+        </div>
+
+
+
+    </form>
+          <!-- <label ng-repeat="user in userTypes">
+              <input type="checkbox" name="{{user.type}}" id="{{user.type}}" ng-model="user.checked" ng-change="selectedpr()">
+              <label for="{{user.type}}">{{user.type}}</label>
+              <br/>
+                <label ng-repeat="option in user.options">
+                    <input type="checkbox" name="{{option}}" id="{{option}}" ng-model="option.checked" ng-change="selectedpr()">
+                    <label for="{{option}}">{{option}}</label>
+                </label>
+
+          </label> -->
+          <!-- <label>MSC IT
+            <input type="checkbox" ng-model="cs.prog" ng-true-value="'MSCIT'">
+          </label><br/>
+
+          {{cs.prog}}
+          <label>Value2:
+            <input type="checkbox" ng-model="checkboxModel.value2"
+                   ng-true-value="'YES'" ng-false-value="'NO'">
+           </label>
+
+        <label for="chkprogram" ng-model="cs.prog">MSCIT 
+          <input type="checkbox" name="mscit" ng-model="prog.checked" ng-change="ShowHide()" value="mscit" />
+        </label>
+
+        <div ng-show="IsVisible" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" ng-model="cs.prog.mscit" value="sem1" />
+        </label>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" ng-model="cs.prog.mscit" value="sem2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" ng-model="cs.prog.mscit" value="sem3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" ng-model="cs.prog.mscit" value="sem4" />
+        </label>
+       </div>
+
+      <br/>
+        <label for="chkprogram1">BTech 
+          <input type="checkbox" id="btech" ng-model="cs.prog.btech" ng-change="ShowHide1()" />
+        </label>
+         <br/>
+           <div ng-show="IsVisible1" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        <label for="chkprogram">SEM-2
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4
+          <input type="checkbox" id="SEM-4" />
+        </label>
+        <label for="chkprogram">SEM-5
+          <input type="checkbox" id="SEM-5" />
+        </label>
+        <label for="chkprogram">SEM-6
+          <input type="checkbox" id="SEM-6" />
+        </label>
+        <label for="chkprogram">SEM-7
+          <input type="checkbox" id="SEM-7" />
+        </label>
+        <label for="chkprogram">SEM-8
+          <input type="checkbox" id="SEM-8" />
+        </label>
+       </div>
+        <label for="chkprogram">MTech 
+          <input type="checkbox" id="mtech" ng-model="mtech" ng-change="ShowHide2()" />
+        </label>
+          <br/>
+          <div ng-show="IsVisible2" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" />
+        </label>
+       </div>
+        <label for="chkprogram">Mdes 
+          <input type="checkbox" id="mdes" ng-model="mdes" ng-change="ShowHide3()" />
+        </label>
+         <div ng-show="IsVisible3" class="col-sm-10">
+        <label for="chkprogram">SEM-1 
+          <input type="checkbox" id="SEM-1" />
+        </label>
+        <label for="chkprogram">SEM-2 
+          <input type="checkbox" id="SEM-2" />
+        </label>
+        <label for="chkprogram">SEM-3 
+          <input type="checkbox" id="SEM-3" />
+        </label>
+        <label for="chkprogram">SEM-4 
+          <input type="checkbox" id="SEM-4" />
+        </label> -->
+       
+           <!--  <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /> -->
+            
+</div>
+</div>
+</div>
+  </div>
+    </div>
+
+
+
+</body>
+</html>

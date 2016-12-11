@@ -126,9 +126,6 @@ d<!--
                     </li>
                     <li class="nav-item nav-dropdown">
                         <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
-                        <a class="nav-link nav-dropdown-toggle" ng-click="updatecourse()"><i class="icon-puzzle"></i> Update Courses </a>
-                        <a class="nav-link nav-dropdown-toggle"  ng-click="addcourse()"><i class="icon-puzzle"></i> Add Courses </a>
-                        <a class="nav-link nav-dropdown-toggle" ng-click="addcourse()"><i class="icon-puzzle"></i> Update Courses </a>
 <!--
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
@@ -277,7 +274,7 @@ d<!--
                                         </div>
                                         
                                     
-                                          <input type="hidden" name="status" id="status" value="true" ng-model="cs.isActive" ng-init="cs.isActive = 'true'">
+                                          <input type="hidden" name="status" id="status" value="true" ng-model="course.isActive" ng-init="course.isActive = 'true'">
 
 
                                         
@@ -290,7 +287,7 @@ d<!--
                                             </div>
                                         </div>
 
-                                        <input type="hidden" name="userId" ng-model="cs.userId" ng-value="userId" ng-init="cs.userId= userId">
+                                        <input type="hidden" name="userId" ng-model="course.userId" ng-value="userId" ng-init="course.userId= userId">
 
                                         <input type="hidden" name="userId" ng-model="course._id">
 

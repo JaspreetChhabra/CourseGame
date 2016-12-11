@@ -133,11 +133,11 @@ $scope.addMaterial = function(topicID){
     {
      alert("update course");
         var course = $scope.course;
-        console.log(JSON.stringify(course));
+        console.log(course);
 
 
         
-       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/insert");
+       var a = $resource("https://shielded-tor-32602.herokuapp.com/courses/update");
 
        a.save(course,function(res){
            console.log(res.Status);
@@ -146,7 +146,7 @@ $scope.addMaterial = function(topicID){
                    
                alert("Course already Exists");
            }else{
-               alert("New Course added Successfully");
+               alert("Course Updated Successfully");
 
                $state.go('dashboard');
 

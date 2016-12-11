@@ -40,15 +40,16 @@ app.controller('dashboardctrl', function ($scope, $localStorage,$resource,$state
 
     $scope.updateCourse = function(courseID)
     {
-        alert(courseID);
+        //alert(courseID);
 
         $state.go('updateCourse' , {courseId : courseID})
     }
-     $scope.updateProfile = function(courseID)
-    {
-        alert(courseID);
 
-        $state.go('updateProfile' , {courseId : courseID})
+     $scope.updateProfile = function(userID)
+    {
+        
+
+        $state.go('updateProfile' , {userId : userID})
     }
 
     $scope.sendNotification = function(courseID){

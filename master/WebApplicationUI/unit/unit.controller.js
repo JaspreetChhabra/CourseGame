@@ -1,29 +1,33 @@
 app.controller("unitctrl",function($scope,$resource,$state,$http,$location){
    
      
-     $scope.submit=function()
+     $scope.addUnit=function()
     {
         // var user = $scope.faculty;
         // console.log(user);
 
-        // //$scope.user = { "username" : "bjscdb", "password" : "25"};
-        // var a=$resource("https://shielded-tor-32602.herokuapp.com/users/register");
+        //$scope.user = { "username" : "bjscdb", "password" : "25"};
 
-        // a.save(user,function(res)
-        // {
-        //     console.log(res);
-        //     if(res.Status == false)
-        //     {
+        var unit = $scope.topics;
+        alert(JSON.stringify(unit));
+
+        var a=$resource("https://shielded-tor-32602.herokuapp.com/topics/insert");
+
+        a.save(unit,function(res)
+        {
+            console.log(res);
+            if(res.Status == false)
+            {
                     
-        //         alert("Please check username and password");
-        //     }else
-        //     {
-        //         alert("Successful");
+                alert("Unit already Exist");
+            }else
+            {
+                alert("Unit Added Sucessfully");
 
-        //         $state.go('dashboard');
+                $state.go('dashboard');
 
-        //     }
-        // });
+            }
+        });
     }
 
     });

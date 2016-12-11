@@ -1,0 +1,101 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<title>Add Course</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+  
+</head>
+
+<body>
+<br><br>
+<div class="container">
+  <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+      <div class="panel panel-default">
+        <div class="panel-heading" >
+          <h3 class="panel-title">ADD NEW Game</h3>
+        </div>
+        <div class="panel-body">
+        
+    <form name="form" ng-submit="vm.addgame()" role="form" ng-controller="addGamectrl">
+
+        <div class="form-group" ng-class="{ 'has-error': form.title.$dirty && form.title.$error.required }">
+           <!--  <label for="username">First name</label> -->
+        <input type="text" name="title" id="title" class="form-control" placeholder="Game Name" ng-model="game.title" required />
+            <!-- <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+
+         <div class="form-group" ng-class="{ 'has-error': form.coursedesc.$dirty && form.coursedesc.$error.required }">
+           
+            <textarea name="desc" id="desc" class="form-control" placeholder="Game Description" ng-model="game.desc">
+            </textarea>
+       <!--      <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.startTime.$dirty && form.startTime.$error.required }">
+            <label for="sdate">Starting Date</label> 
+        <input type="date" name="startTime" id="startTime" class="form-control" placeholder="Starting date" ng-model="game.startTime" required />
+           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.endTime.$dirty && form.endTime.$error.required }">
+         <label for="sdate">Ending Date</label>
+        <input type="date" name="endTime" id="endTime" class="form-control" placeholder="End date" ng-model="game.endTime" required />
+           <!--  <span ng-show="form.courseName.$dirty && form.courseName.$error.required" class="help-block">Course Name is required</span> -->
+
+<label>Select Course for Update </label>   
+        <select ng-model="cs.title" ng-options="ups._id as ups.title for ups in up">
+          <option style="display:none" value="">Course</option>      
+        </select>
+
+
+        </div>
+        <label>Difficulty Level</label>
+    		<div class="form-group">
+        		<label class="radio-inline">
+            	<input type="radio" name="difLevel" ng-model="game.difLevel" value="hard"> Hard
+        		</label>
+        		<label class="radio-inline">
+            	<input type="radio" name="difLevel" ng-model="game.difLevel" value="medium"> Medium
+        		</label>
+        		<label class="radio-inline">
+            	<input type="radio" name="difLevel" ng-model="game.difLevel" value="easy"> Easy
+        		</label>
+    		</div>
+    	<div class="form-group" ng-class="{ 'has-error': form.points.$dirty && form.points.$error.required }">
+        <input type="text" name="points" id="points" class="form-control" placeholder="Maximum Points Earn" ng-model="game.points" required />
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.maxAttempt.$dirty && form.maxAttempt.$error.required }">
+        <input type="text" name="maxAttempt" id="points" class="form-control" placeholder="Maximum Attempt" ng-model="game.maxAttempt" required />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': form.minScore.$dirty && form.minScore.$error.required }">
+        <input type="text" name="minScore" id="minScore" class="form-control" placeholder="Minimum Score" ng-model="game.minScore" required />
+        </div>
+      
+
+        <div class="form-actions">
+            <button type="submit"  class="btn btn-primary" ng-click="submit()">Add Game</button>
+           
+        </div>
+
+    </form>
+</div>
+</div>
+</div>
+  </div>
+    </div>
+
+
+
+
+</body>
+</html>
